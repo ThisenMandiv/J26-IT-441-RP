@@ -8,9 +8,11 @@ from src.distance import (
     build_fake_matrix,
     get_google_matrix,
     get_matrix,
+    get_matrix_with_start,
     haversine_km,
 )
 from src.loader import load_destinations
+from src.models import TripRequest
 
 
 @pytest.fixture
@@ -145,3 +147,32 @@ def test_google_missing_route_falls_back_to_estimate(destinations, monkeypatch):
     a, b = destinations[0].id, destinations[1].id
     assert matrix[a][b]["source"] == "haversine"
     assert matrix[a][b]["distance_km"] > 0
+
+
+# ---------- Start point ----------
+
+def _trip(lat: float, lng: float) -> TripRequest:
+    return TripRequest(num_days=2, total_budget_lkr=50_000, start_lat=lat, start_lng=lng)
+
+
+def test_matrix_with_start_adds_start_row_and_column(destinations, tmp_path):
+    matrix = get_matrix_with_start(destinations, _trip(6.9344, 79.8428), cache_dir=tmp_path)
+    start = config.START_NODE_ID
+    assert set(matrix) == {start} | {d.id for d in destinations}
+    assert matrix[start][start]["distance_km"] == 0
+    assert all(matrix[start][d.id]["distance_km"] > 0 for d in destinations)
+    assert all(d.id in matrix and start in matrix[d.id] for d in destinations)
+
+
+def test_different_start_points_get_their_own_cache_file(destinations, tmp_path):
+    a = get_matrix_with_start(destinations, _trip(6.9344, 79.8428), cache_dir=tmp_path)  # Colombo
+    b = get_matrix_with_start(destinations, _trip(7.2906, 80.6337), cache_dir=tmp_path)  # Kandy
+    assert len(list(tmp_path.glob("*.json"))) == 2
+    first = destinations[0].id
+    assert a[config.START_NODE_ID][first] != b[config.START_NODE_ID][first]
+
+
+def test_destination_named_start_is_rejected(destinations, tmp_path):
+    clash = destinations[0].model_copy(update={"id": config.START_NODE_ID})
+    with pytest.raises(ValueError, match="reserved"):
+        get_matrix_with_start([clash], _trip(6.9344, 79.8428), cache_dir=tmp_path)

@@ -17,13 +17,18 @@ def in_sri_lanka(lat: float, lng: float) -> bool:
 
 # ---------- Inputs ----------
 
-class Destination(BaseModel):
-    """A ranked destination from Component 1. Business rules are checked in loader.py."""
+class Location(BaseModel):
+    """Anything with an id and coordinates: a destination or the trip's start point."""
 
     id: str
-    name: str
     lat: float
     lng: float
+
+
+class Destination(Location):
+    """A ranked destination from Component 1. Business rules are checked in loader.py."""
+
+    name: str
     category: str
     cost_lkr: float
     visit_duration_min: int
