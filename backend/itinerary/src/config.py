@@ -74,6 +74,15 @@ OBJECTIVE_WEIGHTS = {
     "unscheduled": 2.0,  # penalty per place that could not be scheduled
     "overrun": 5.0,  # penalty per 10,000 LKR over the daily budgets
 }
+# Weight settings used by scripts/evaluate.py, so results are not tied to one choice.
+# APPROX: chosen once by hand before any evaluation run, not tuned on the results.
+EVALUATION_WEIGHT_SETTINGS = {
+    "default": OBJECTIVE_WEIGHTS,
+    # a traveller who mostly cares about money: spending and overruns cost 3x more
+    "budget": {**OBJECTIVE_WEIGHTS, "spend": 3.0, "overrun": 15.0},
+    # a traveller who hates sitting in a car or waiting: 3x travel and waiting penalties
+    "time": {**OBJECTIVE_WEIGHTS, "travel_time": 3.0, "wait": 3.0},
+}
 OBJECTIVE_TIME_SCALE_MIN = 60.0  # 1 hour = 1.0
 OBJECTIVE_MONEY_SCALE_LKR = 10_000.0  # 10,000 LKR = 1.0
 
