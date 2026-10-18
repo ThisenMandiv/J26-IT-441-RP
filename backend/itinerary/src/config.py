@@ -53,5 +53,11 @@ EDGE_TIME_SCALE_MIN = 60.0  # one hour of driving = 1.0
 # APPROX: cost of one hour of driving at the average speed (40 km/h x 100 LKR/km = 4000 LKR) = 1.0
 EDGE_COST_SCALE_LKR = AVG_ROAD_SPEED_KMH * TRAVEL_COST_PER_KM_LKR
 
+# --- A* heuristic bounds (WBS 3.4) ---
+# The heuristic must never overestimate, so it assumes the best case for every km.
+MAX_PLAUSIBLE_SPEED_KMH = 100.0  # Sri Lankan expressway speed limit: no leg is faster on average
+# Must be <= every per-km rate used to build edges. Lower it if cheaper transport is added.
+MIN_TRAVEL_COST_PER_KM_LKR = TRAVEL_COST_PER_KM_LKR
+
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging
