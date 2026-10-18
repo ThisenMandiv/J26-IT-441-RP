@@ -59,5 +59,8 @@ MAX_PLAUSIBLE_SPEED_KMH = 100.0  # Sri Lankan expressway speed limit: no leg is 
 # Must be <= every per-km rate used to build edges. Lower it if cheaper transport is added.
 MIN_TRAVEL_COST_PER_KM_LKR = TRAVEL_COST_PER_KM_LKR
 
+# --- Day scheduling (WBS 3.6) ---
+MAX_WAIT_MIN = 60  # APPROX: longest the traveller will wait for a place to open
+
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging

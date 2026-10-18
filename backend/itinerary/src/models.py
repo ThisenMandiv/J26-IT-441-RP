@@ -64,10 +64,19 @@ class Stop(BaseModel):
     destination_id: str
     name: str
     arrival_time: time
+    wait_min: float = 0.0  # waiting for the place to open; visit starts at arrival + wait
     departure_time: time
     travel_time_min: float  # from the previous stop (or start point)
     travel_cost_lkr: float
     entry_cost_lkr: float
+
+
+class UnscheduledStop(BaseModel):
+    """A destination that could not be placed within the trip, and why."""
+
+    destination_id: str
+    name: str
+    reason: str
 
 
 class DayPlan(BaseModel):
@@ -75,7 +84,7 @@ class DayPlan(BaseModel):
 
     day: int
     stops: list[Stop] = []
-    daily_budget_lkr: float
+    daily_budget_lkr: float | None = None  # set by budget allocation (WBS 3.7)
     daily_cost_lkr: float = 0.0
     over_budget: bool = False
 
