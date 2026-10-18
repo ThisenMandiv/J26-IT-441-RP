@@ -29,6 +29,12 @@ DEFAULT_VISIT_DURATION_MIN = 60  # APPROX: used if a destination has no estimate
 AVG_ROAD_SPEED_KMH = 40.0  # APPROX: typical Sri Lankan road average
 ROAD_DISTANCE_FACTOR = 1.3  # APPROX: road distance / straight-line distance
 
+# --- Google Distance Matrix API (key is read from .env, never stored here) ---
+GOOGLE_API_KEY_ENV = "GOOGLE_MAPS_API_KEY"
+GOOGLE_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json"
+GOOGLE_BATCH_SIZE = 10  # 10 origins x 10 destinations = 100 elements, the per-request limit
+GOOGLE_TIMEOUT_S = 30
+
 # --- Travel cost ---
 TRAVEL_COST_PER_KM_LKR = 100.0  # APPROX: hired car / tuk-tuk rate
 
