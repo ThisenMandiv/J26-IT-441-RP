@@ -1,0 +1,84 @@
+"""Pydantic data models for inputs (destinations, trip request) and outputs (itinerary)."""
+
+from datetime import time
+
+from pydantic import BaseModel, Field, model_validator
+
+from src import config
+
+
+def in_sri_lanka(lat: float, lng: float) -> bool:
+    """True if the point is inside the Sri Lanka bounding box."""
+    return (
+        config.SL_MIN_LAT <= lat <= config.SL_MAX_LAT
+        and config.SL_MIN_LNG <= lng <= config.SL_MAX_LNG
+    )
+
+
+# ---------- Inputs ----------
+
+class Destination(BaseModel):
+    """A ranked destination from Component 1. Business rules are checked in loader.py."""
+
+    id: str
+    name: str
+    lat: float
+    lng: float
+    category: str
+    cost_lkr: float
+    visit_duration_min: int
+    opening_time: time
+    closing_time: time
+    score: float = Field(ge=0.0, le=1.0)
+
+
+class TripRequest(BaseModel):
+    """What the traveller asks for."""
+
+    num_days: int = Field(ge=1)
+    total_budget_lkr: float = Field(ge=0)
+    start_lat: float
+    start_lng: float
+    day_start: time = config.DEFAULT_DAY_START
+    day_end: time = config.DEFAULT_DAY_END
+
+    @model_validator(mode="after")
+    def check_request(self) -> "TripRequest":
+        if not in_sri_lanka(self.start_lat, self.start_lng):
+            raise ValueError("start point must be inside Sri Lanka")
+        if self.day_end <= self.day_start:
+            raise ValueError("day_end must be after day_start")
+        return self
+
+
+# ---------- Outputs (fields only for now) ----------
+
+class Stop(BaseModel):
+    """One visit within a day."""
+
+    destination_id: str
+    name: str
+    arrival_time: time
+    departure_time: time
+    travel_time_min: float  # from the previous stop (or start point)
+    travel_cost_lkr: float
+    entry_cost_lkr: float
+
+
+class DayPlan(BaseModel):
+    """All stops for a single day plus its budget status."""
+
+    day: int
+    stops: list[Stop] = []
+    daily_budget_lkr: float
+    daily_cost_lkr: float = 0.0
+    over_budget: bool = False
+
+
+class Itinerary(BaseModel):
+    """The full multi-day plan."""
+
+    days: list[DayPlan] = []
+    total_budget_lkr: float
+    total_cost_lkr: float = 0.0
+    over_budget: bool = False
