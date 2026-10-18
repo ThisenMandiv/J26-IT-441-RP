@@ -130,6 +130,7 @@ def _make_stop(stop_id: Hashable, node: dict, attempt: Attempt) -> Stop:
         travel_time_min=attempt.leg.duration_min,
         travel_cost_lkr=attempt.leg.cost_lkr,
         entry_cost_lkr=node["cost_lkr"],
+        score=node["score"],
     )
 
 

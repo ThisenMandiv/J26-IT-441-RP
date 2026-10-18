@@ -62,6 +62,21 @@ MIN_TRAVEL_COST_PER_KM_LKR = TRAVEL_COST_PER_KM_LKR
 # --- Day scheduling (WBS 3.6) ---
 MAX_WAIT_MIN = 60  # APPROX: longest the traveller will wait for a place to open
 
+# --- Plan objective (src/objective.py) ---
+# One number per complete itinerary: reward minus penalties (higher is better).
+# Each raw total is divided by its scale first, so the weights compare like with like.
+# APPROX: hand-picked starting values, to be tuned (or learned) later.
+OBJECTIVE_WEIGHTS = {
+    "score": 10.0,  # reward per point of destination score (each place scores 0..1)
+    "travel_time": 1.0,  # penalty per hour of driving
+    "spend": 1.0,  # penalty per 10,000 LKR planned (entry + travel)
+    "wait": 1.0,  # penalty per hour spent waiting for places to open
+    "unscheduled": 2.0,  # penalty per place that could not be scheduled
+    "overrun": 5.0,  # penalty per 10,000 LKR over the daily budgets
+}
+OBJECTIVE_TIME_SCALE_MIN = 60.0  # 1 hour = 1.0
+OBJECTIVE_MONEY_SCALE_LKR = 10_000.0  # 10,000 LKR = 1.0
+
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging
 BUDGET_RESERVE_PCT = 0.10  # APPROX: share of the total kept back for unplanned spending

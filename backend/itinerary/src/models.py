@@ -69,6 +69,7 @@ class Stop(BaseModel):
     travel_time_min: float  # from the previous stop (or start point)
     travel_cost_lkr: float
     entry_cost_lkr: float
+    score: float = 0.0  # destination score from Component 1, used by the objective
 
 
 class UnscheduledStop(BaseModel):
@@ -96,3 +97,4 @@ class Itinerary(BaseModel):
     total_budget_lkr: float
     total_cost_lkr: float = 0.0
     over_budget: bool = False
+    unscheduled: list[UnscheduledStop] = []
