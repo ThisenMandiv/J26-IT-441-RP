@@ -36,7 +36,7 @@ class PipelineResult(NamedTuple):
     graph: nx.DiGraph  # kept for evaluation (opening-hours check)
 
 
-def _apply_budget(day_plans: Sequence[DayPlan], report: OverrunReport) -> list[DayPlan]:
+def apply_budget(day_plans: Sequence[DayPlan], report: OverrunReport) -> list[DayPlan]:
     """Copy each day with its allocated budget and overrun flag filled in."""
     by_day = {d.day: d for d in report.days}
     return [
@@ -67,7 +67,7 @@ def run_sequential(
     report = check_overruns(schedule.days, allocation)
 
     itinerary = Itinerary(
-        days=_apply_budget(schedule.days, report),
+        days=apply_budget(schedule.days, report),
         total_budget_lkr=trip_request.total_budget_lkr,
         total_cost_lkr=report.trip.total_planned_lkr,
         over_budget=report.trip.over_budget,

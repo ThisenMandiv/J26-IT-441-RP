@@ -11,7 +11,7 @@ from src.graph import build_graph
 from src.loader import load_destinations
 from src.models import DayPlan, Destination, Stop, TripRequest
 from src.routing import shortest_path_matrix
-from src.scheduler import schedule_days, to_minutes, validate_opening_hours
+from src.scheduler import schedule_days, schedule_fixed, to_minutes, validate_opening_hours
 from src.tsp import nearest_neighbor_order, two_opt
 
 START = config.START_NODE_ID
@@ -289,3 +289,36 @@ def test_validate_flags_short_visit(one_place_graph):
 def test_validate_flags_unknown_place(one_place_graph):
     (conflict,) = validate_opening_hours(_plan(time(10, 0), time(11, 0), stop_id="Z"), one_place_graph)
     assert "not in the graph" in conflict
+
+
+# ---------- schedule_fixed (used by the joint optimizer) ----------
+
+@pytest.mark.parametrize("num_days", [1, 3, 7])
+def test_schedule_fixed_rebuilds_greedy_plan_exactly(num_days):
+    _, g, t, result = mock_plan(num_days)
+    day_orders = [ids(d) for d in result.days]
+    assert schedule_fixed(day_orders, g, t) == result.days
+
+
+def test_schedule_fixed_uses_given_days():
+    a = place("A", time(6, 0), time(18, 0), visit=60)
+    b = place("B", time(6, 0), time(18, 0), visit=60, km_north=3)
+    t = trip(num_days=2)
+    days = schedule_fixed([[], ["B", "A"]], graph_for([a, b], t), t)
+    assert [ids(d) for d in days] == [[], ["B", "A"]]
+    assert days[1].stops[0].travel_time_min == math.ceil(
+        graph_for([a, b], t).edges[START, "B"]["duration_min"])  # day 1 empty, so leaves from START
+
+
+def test_schedule_fixed_returns_none_when_a_stop_does_not_fit():
+    b = place("B", time(6, 0), time(18, 0), visit=120)
+    a = place("A", time(6, 0), time(9, 0), visit=30, km_north=3)  # closes before B is done
+    t = trip()
+    assert schedule_fixed([["B", "A"]], graph_for([a, b], t), t) is None
+    assert schedule_fixed([["A", "B"]], graph_for([a, b], t), t) is not None
+
+
+def test_schedule_fixed_checks_day_count():
+    t = trip(num_days=2)
+    with pytest.raises(ValueError, match="expected 2 days"):
+        schedule_fixed([[]], graph_for([], t), t)

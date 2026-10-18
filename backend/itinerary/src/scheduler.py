@@ -206,6 +206,42 @@ def schedule_days(
     return ScheduleResult(days, unscheduled)
 
 
+def schedule_fixed(
+    day_orders: Sequence[Sequence[Hashable]],
+    graph: nx.DiGraph,
+    trip_request: TripRequest,
+    weights: Weights = config.EDGE_WEIGHTS,
+    max_wait_min: int = config.MAX_WAIT_MIN,
+    cache: dict | None = None,
+) -> list[DayPlan] | None:
+    """Schedule exactly the given stops on the given days, in the given order.
+
+    Unlike schedule_days nothing is skipped or deferred: returns None as soon as one
+    stop does not fit (closed, too long a wait, or past day_end). Same timing rules,
+    so the sequential plan's own day orders rebuild to the same times.
+    Pass a cache dict to reuse travel legs across many calls (used by the joint optimizer).
+    """
+    if len(day_orders) != trip_request.num_days:
+        raise ValueError(f"expected {trip_request.num_days} days, got {len(day_orders)}")
+    cache = {} if cache is None else cache
+    day_start, day_end = to_minutes(trip_request.day_start), to_minutes(trip_request.day_end)
+    location, days = config.START_NODE_ID, []
+
+    for day, stop_ids in enumerate(day_orders, start=1):
+        clock, stops = day_start, []
+        for stop_id in stop_ids:
+            node = graph.nodes[stop_id]
+            attempt = _try_stop(node, _leg(graph, location, stop_id, weights, cache),
+                                clock, day_end, max_wait_min)
+            if not attempt.ok:
+                return None
+            stops.append(_make_stop(stop_id, node, attempt))
+            clock, location = attempt.departure, stop_id
+        cost = sum(s.travel_cost_lkr + s.entry_cost_lkr for s in stops)
+        days.append(DayPlan(day=day, stops=stops, daily_cost_lkr=round(cost, 2)))
+    return days
+
+
 def validate_opening_hours(day_plans: Sequence[DayPlan], graph: nx.DiGraph) -> list[str]:
     """Independent re-check of every scheduled stop. Returns conflicts (empty list = valid).
 

@@ -77,6 +77,11 @@ OBJECTIVE_WEIGHTS = {
 OBJECTIVE_TIME_SCALE_MIN = 60.0  # 1 hour = 1.0
 OBJECTIVE_MONEY_SCALE_LKR = 10_000.0  # 10,000 LKR = 1.0
 
+# --- Joint optimizer (src/joint.py) ---
+JOINT_MAX_ITERATIONS = 2000  # candidate changes tried by hill climbing
+JOINT_SEED = 42  # fixed random seed, so results are repeatable
+JOINT_DROP_POOL = 3  # "drop" picks among this many lowest-value scheduled stops
+
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging
 BUDGET_RESERVE_PCT = 0.10  # APPROX: share of the total kept back for unplanned spending
