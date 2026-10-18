@@ -64,3 +64,5 @@ MAX_WAIT_MIN = 60  # APPROX: longest the traveller will wait for a place to open
 
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging
+BUDGET_RESERVE_PCT = 0.10  # APPROX: share of the total kept back for unplanned spending
+BUDGET_SPLIT_METHOD = "proportional"  # "proportional" (to planned cost) or "equal"
