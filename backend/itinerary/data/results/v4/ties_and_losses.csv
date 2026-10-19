@@ -1,0 +1,23 @@
+part,scenario_id,run,seq_obj,joint_obj,obj_gain,seq_places,joint_places,result
+budget grid,L50-M,"1x, 5 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"1x, 15 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"2x, 5 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"2x, 15 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"5x, 5 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"5x, 15 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"10x, 5 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-M,"10x, 15 restarts",137.8973,137.8973,0.0,32,32,tie
+budget grid,L50-T,"1x, 5 restarts",74.9672,74.9672,0.0,32,32,tie
+budget grid,L50-T,"1x, 15 restarts",74.9672,74.9672,0.0,32,32,tie
+budget grid,L50-T,"5x, 5 restarts",74.9672,74.9672,0.0,32,32,tie
+budget grid,L50-T,"5x, 15 restarts",74.9672,74.9672,0.0,32,32,tie
+block move,L50-M,"1x, 5 restarts, block",137.8973,137.8973,0.0,32,32,tie
+block move,L50-M,"1x, 15 restarts, block",137.8973,137.8973,0.0,32,32,tie
+block move,L50-M,"2x, 5 restarts, block",137.8973,137.8973,0.0,32,32,tie
+block move,L50-M,"2x, 15 restarts, block",137.8973,137.8973,0.0,32,32,tie
+block move,L50-M,"5x, 5 restarts, block",137.8973,137.8973,0.0,32,32,tie
+block move,L50-M,"5x, 15 restarts, block",137.8973,137.8973,0.0,32,32,tie
+block move,L50-T,"1x, 5 restarts, block",74.9672,74.9672,0.0,32,32,tie
+block move,L50-T,"1x, 15 restarts, block",74.9672,74.9672,0.0,32,32,tie
+block move,L50-T,"5x, 5 restarts, block",74.9672,74.9672,0.0,32,32,tie
+block move,L50-T,"5x, 15 restarts, block",74.9672,74.9672,0.0,32,32,tie

@@ -118,6 +118,12 @@ JOINT_RESTARTS = 5  # restart 0 starts from the sequential plan, the others from
 JOINT_USE_ANNEALING = True
 JOINT_ANNEAL_START_TEMP = 2.0  # APPROX: a 2-point loss is accepted ~37% of the time at the start
 JOINT_ANNEAL_END_TEMP = 0.01  # near the end it is effectively hill climbing
+# Block move (v4): take 2..JOINT_BLOCK_MAX_LEN consecutive stops of one day and move them,
+# in the same order, to another day or position. One change then keeps a nearby group of
+# places together, where single moves break the day's timing one stop at a time.
+# Off = exactly the v3 optimizer (same random choices, same plans).
+JOINT_USE_BLOCK_MOVES = False
+JOINT_BLOCK_MAX_LEN = 4  # APPROX: about one day's worth of stops in these trips
 
 # --- Exact benchmark (src/exact.py) ---
 EXACT_MAX_PLACES = 8  # exhaustive search is only run on trips this small

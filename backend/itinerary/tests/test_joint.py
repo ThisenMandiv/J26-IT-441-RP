@@ -229,3 +229,41 @@ def test_search_log_of_winner_matches_move_log(mock_runs):
         assert won.improvements == len(result.moves)
         assert won.last_improvement == (result.moves[-1].iteration if result.moves else 0)
         assert won.start_score == result.start_score
+
+
+# ---------- Block move (v4) ----------
+
+def test_block_move_keeps_stops_together_and_in_order():
+    import random
+
+    from src.joint import _block
+    orders = [["A", "B", "C", "D"], ["E"], []]
+    for seed in range(50):
+        new, pool, description = _block(orders, ["P"], random.Random(seed), None, None)
+        assert sorted(s for day in new for s in day) == list("ABCDE") and pool == ["P"]
+        assert orders == [["A", "B", "C", "D"], ["E"], []]  # input not changed
+        length = int(description.split("(")[1].split()[0])
+        assert 2 <= length <= config.JOINT_BLOCK_MAX_LEN
+        first = description.split()[1].split("..")[0]
+        day = next(d for d in new if first in d)
+        i = day.index(first)
+        block = day[i:i + length]
+        assert "".join(block) in "ABCD"  # consecutive, original order
+
+
+def test_block_moves_off_gives_the_v3_plan(mock_destinations, cache_dir):
+    """Off by default: same random choices, so the same plan as without the option."""
+    assert config.JOINT_USE_BLOCK_MOVES is False
+    default = optimize_joint(mock_destinations, trip(3), max_iterations=300, cache_dir=cache_dir)
+    off = optimize_joint(mock_destinations, trip(3), max_iterations=300, cache_dir=cache_dir,
+                         block_moves=False)
+    assert default.score == off.score and default.moves == off.moves
+    assert all("block" not in s.by_kind for s in off.stats)
+
+
+def test_block_moves_on_is_valid_and_used(mock_destinations, cache_dir):
+    result = optimize_joint(mock_destinations, trip(3), max_iterations=300, cache_dir=cache_dir,
+                            block_moves=True)
+    assert result.score.total >= result.baseline.score.total
+    assert validate_opening_hours(result.itinerary.days, result.graph) == []
+    assert result.stats[0].by_kind["block"][0] > 0  # block changes were tried

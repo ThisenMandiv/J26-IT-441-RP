@@ -1,7 +1,7 @@
 """Version 4 evaluation: why does joint tie sequential at 30 and 50 places?
 
     python scripts/evaluate_v4.py                    # everything (about half an hour)
-    python scripts/evaluate_v4.py --parts grid       # only part 1
+    python scripts/evaluate_v4.py --parts grid       # only part 1 (about 15 minutes)
 
 Everything goes to data/results/v4/. v1, v2 and v3 files are never written.
 
@@ -13,9 +13,12 @@ Everything goes to data/results/v4/. v1, v2 and v3 files are never written.
        search_log.csv    one row per restart of every run: changes tried / infeasible /
                          accepted / improving, the iteration of the last improvement,
                          and the same counts per change kind
-    2. Scaling rule: every scalability trip (15 to 50 places) with the budget from
-       src.joint.scaled_iterations (constants in src/config.py), to show the run time.
-       scaling_rule.csv
+       Result of part 1: more budget does NOT remove the ties at 50 places (L50-M ties
+       at every setting), so no budget-scaling rule was added. See part 2 instead.
+    2. Block move: the same grid with the new "block" change switched on
+       (config.JOINT_USE_BLOCK_MOVES / JOINT_BLOCK_MAX_LEN). Objective and baselines unchanged.
+       block_grid.csv, block_search_log.csv   same columns as part 1
+       block_vs_grid.csv                      part 1 and part 2 side by side, per setting
     3. ties_and_losses.csv   EVERY run above where joint ties or loses against sequential.
 
 All inputs are mock (or SYNTHETIC) data and the travel matrix is the APPROX haversine estimate.
@@ -97,9 +100,7 @@ def _run_row(sc: Scenario, label: str, r: JointResult, runtime_s: float, **extra
     }
 
 
-def _timed_joint(sc: Scenario, block_moves: bool = False, **kwargs) -> tuple[JointResult, float]:
-    if block_moves:  # only passed when asked, so this script also runs on the v3 optimizer
-        kwargs["block_moves"] = True
+def _timed_joint(sc: Scenario, **kwargs) -> tuple[JointResult, float]:
     start = time.perf_counter()
     r = optimize_joint(sc.destinations, sc.trip, **kwargs)
     return r, time.perf_counter() - start
@@ -125,23 +126,17 @@ def run_budget_grid(scenarios: Sequence[Scenario], multipliers=GRID_MULTIPLIERS,
     return pd.DataFrame(runs), pd.DataFrame(log)
 
 
-# ---------- 2. Scaling rule ----------
+# ---------- 2. Block move vs part 1 ----------
 
-def run_scaling_rule(scenarios: Sequence[Scenario], cache_dir: Path = config.CACHE_DIR,
-                     block_moves: bool = False) -> tuple[pd.DataFrame, pd.DataFrame]:
-    from src.joint import scaled_iterations  # part 2 only
-    runs, log = [], []
-    for sc in scenarios:
-        iterations = scaled_iterations(len(sc.destinations))
-        label = f"scaled ({iterations}), {config.JOINT_RESTARTS} restarts" + (", block" if block_moves else "")
-        r, t = _timed_joint(sc, max_iterations=iterations, seed=config.JOINT_SEED, cache_dir=cache_dir,
-                            block_moves=block_moves)
-        runs.append(_run_row(sc, label, r, t, iterations=iterations, restarts=config.JOINT_RESTARTS,
-                             block_moves=block_moves))
-        log += _log_rows(sc, label, r)
-        print(f"  {sc.id} {label}: joint {r.score.total:.2f} vs seq {r.baseline.score.total:.2f} ({t:.1f} s)",
-              flush=True)
-    return pd.DataFrame(runs), pd.DataFrame(log)
+def block_vs_grid(grid: pd.DataFrame, block: pd.DataFrame) -> pd.DataFrame:
+    """Same trip, budget and restarts, without and with the block move."""
+    keys = ["scenario_id", "multiplier", "restarts"]
+    cols = ["joint_obj", "obj_gain", "joint_places", "runtime_s", "r0_improvements", "best_random_restart_obj"]
+    out = grid[[*keys, "seq_obj", *cols]].merge(block[[*keys, *cols]], on=keys, suffixes=("", "_block"))
+    out["block_minus_grid"] = (out["joint_obj_block"] - out["joint_obj"]).round(4)
+    out["block_effect"] = ["better" if d >= EPS else "worse" if d <= -EPS else "same"
+                           for d in out["block_minus_grid"]]
+    return out
 
 
 # ---------- 3. Ties and losses ----------
@@ -163,18 +158,15 @@ def _check_out_dir(out_dir: Path):
 
 
 def run_v4(out_dir: Path = RESULTS_DIR, cache_dir: Path = config.CACHE_DIR,
-           parts: Sequence[str] = ("grid", "rule"),
+           parts: Sequence[str] = ("grid", "block"),
            grid_scenarios: Sequence[Scenario] | None = None,
-           rule_scenarios: Sequence[Scenario] | None = None,
            multipliers=GRID_MULTIPLIERS, restarts=GRID_RESTARTS,
            base_iterations: int = config.JOINT_MAX_ITERATIONS) -> dict[str, pd.DataFrame]:
     out_dir = Path(out_dir)
     _check_out_dir(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    scale = build_scalability_scenarios()
     if grid_scenarios is None:
-        grid_scenarios = [s for s in scale if s.id in GRID_SCENARIOS]
-    rule_scenarios = scale if rule_scenarios is None else rule_scenarios
+        grid_scenarios = [s for s in build_scalability_scenarios() if s.id in GRID_SCENARIOS]
 
     tables, losses = {}, []
     if "grid" in parts:
@@ -182,11 +174,14 @@ def run_v4(out_dir: Path = RESULTS_DIR, cache_dir: Path = config.CACHE_DIR,
         grid, log = run_budget_grid(grid_scenarios, multipliers, restarts, base_iterations, cache_dir)
         tables.update(budget_grid=grid, search_log=log)
         losses.append(ties_and_losses(grid, "budget grid"))
-    if "rule" in parts:
-        print("Part 2: scaling rule", flush=True)
-        rule, rule_log = run_scaling_rule(rule_scenarios, cache_dir)
-        tables.update(scaling_rule=rule, scaling_rule_log=rule_log)
-        losses.append(ties_and_losses(rule, "scaling rule"))
+    if "block" in parts:
+        print("Part 2: budget grid with the block move", flush=True)
+        block, block_log = run_budget_grid(grid_scenarios, multipliers, restarts, base_iterations, cache_dir,
+                                           block_moves=True)
+        tables.update(block_grid=block, block_search_log=block_log)
+        if "budget_grid" in tables:
+            tables["block_vs_grid"] = block_vs_grid(tables["budget_grid"], block)
+        losses.append(ties_and_losses(block, "block move"))
     tables["ties_and_losses"] = pd.concat(losses, ignore_index=True) if losses else pd.DataFrame()
     for name, table in tables.items():
         table.to_csv(out_dir / f"{name}.csv", index=False)
@@ -197,9 +192,10 @@ GRID_COLUMNS = ["scenario_id", "multiplier", "restarts", "seq_obj", "joint_obj",
                 "joint_places", "runtime_s", "winning_restart", "tried", "infeasible", "accepted",
                 "r0_improvements", "r0_last_improvement", "best_random_restart_obj", "random_gap_to_seq",
                 "restarts_improving_late", "random_last_impr_pct_mean"]
-RULE_COLUMNS = ["scenario_id", "places", "iterations", "restarts", "seq_obj", "joint_obj", "obj_gain",
-                "seq_places", "joint_places", "runtime_s", "winning_restart", "r0_improvements",
-                "best_random_restart_obj", "restarts_improving_late"]
+BLOCK_COLUMNS = ["scenario_id", "multiplier", "restarts", "seq_obj", "joint_obj", "joint_obj_block",
+                 "block_minus_grid", "block_effect", "obj_gain_block", "joint_places", "joint_places_block",
+                 "runtime_s", "runtime_s_block", "r0_improvements", "r0_improvements_block",
+                 "best_random_restart_obj", "best_random_restart_obj_block"]
 
 
 def report_v4(tables) -> str:
@@ -207,11 +203,15 @@ def report_v4(tables) -> str:
     if "budget_grid" in tables:
         lines += ["=== 1. Budget grid (multiplier x config.JOINT_MAX_ITERATIONS per restart) ===",
                   tables["budget_grid"][GRID_COLUMNS].to_string(index=False), ""]
-    if "scaling_rule" in tables:
-        rule = tables["scaling_rule"]
-        lines += ["=== 2. Scaling rule (src.joint.scaled_iterations) ===",
-                  rule[RULE_COLUMNS].to_string(index=False),
-                  f"slowest run {rule['runtime_s'].max():.1f} s", ""]
+    if "block_grid" in tables:
+        lines += ["=== 2. Same grid with the block move ===",
+                  tables["block_grid"][GRID_COLUMNS].to_string(index=False), ""]
+    if "block_vs_grid" in tables:
+        c = tables["block_vs_grid"]
+        lines += ["=== 2b. Block move vs part 1 (same trip, budget, restarts, seed) ===",
+                  c[BLOCK_COLUMNS].to_string(index=False),
+                  "block move effect: " + ", ".join(f"{k} {v}" for k, v in c["block_effect"].value_counts().items()),
+                  ""]
     losses = tables["ties_and_losses"]
     lines += ["=== 3. EVERY run where joint ties or loses ===",
               losses.to_string(index=False) if len(losses) else "none"]
@@ -220,7 +220,7 @@ def report_v4(tables) -> str:
 
 def main(argv: Sequence[str] | None = None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--parts", nargs="+", default=["grid", "rule"], choices=["grid", "rule"])
+    parser.add_argument("--parts", nargs="+", default=["grid", "block"], choices=["grid", "block"])
     parser.add_argument("--out-dir", type=Path, default=RESULTS_DIR)
     args = parser.parse_args(argv)
 

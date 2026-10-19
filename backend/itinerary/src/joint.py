@@ -9,7 +9,8 @@ waiting, unscheduled places, budget overruns and the coverage floor.
        random visit order split into days by the same greedy scheduler
     2. in each restart, repeat max_iterations times:
          pick a random change: swap two stops / move a stop to another position or day /
-                               drop a low-value stop / insert an unscheduled stop
+                               drop a low-value stop / insert an unscheduled stop /
+                               (optional) move a block of consecutive stops to another day
          rebuild the days with scheduler.schedule_fixed (rejects if a stop does not fit)
          re-check opening hours, re-allocate the budget, score the plan
          keep it if the score is higher; with simulated annealing also keep a WORSE
@@ -167,7 +168,22 @@ def _insert(day_orders, pool, rng, graph, weights):
     return new, [s for s in pool if s != stop], f"insert {stop} into day {d + 1}, position {i + 1}"
 
 
-def _random_change(day_orders, pool, rng, graph, weights):
+def _block(day_orders, pool, rng, graph, weights):
+    """Cut 2..JOINT_BLOCK_MAX_LEN consecutive stops out of one day and paste them, in order,
+    at a random position of another day (or elsewhere in the same day)."""
+    d = rng.choice([i for i, stops in enumerate(day_orders) if len(stops) >= 2])
+    length = rng.randint(2, min(config.JOINT_BLOCK_MAX_LEN, len(day_orders[d])))
+    start = rng.randint(0, len(day_orders[d]) - length)
+    new = _copy(day_orders)
+    block = new[d][start:start + length]
+    del new[d][start:start + length]
+    nd, ni = _random_slot(new, rng)
+    new[nd][ni:ni] = block
+    return new, pool, (f"block {block[0]}..{block[-1]} ({length} stops) from day {d + 1} "
+                       f"to day {nd + 1}, position {ni + 1}")
+
+
+def _random_change(day_orders, pool, rng, graph, weights, block_moves=False):
     """Pick one applicable kind of change at random and apply it to a copy."""
     scheduled = len(_positions(day_orders))
     kinds = []
@@ -177,6 +193,8 @@ def _random_change(day_orders, pool, rng, graph, weights):
         kinds += [_move, _drop]
     if pool:
         kinds.append(_insert)
+    if block_moves and any(len(stops) >= 2 for stops in day_orders):
+        kinds.append(_block)  # appended last, so with block_moves=False the choices are unchanged
     return rng.choice(kinds)(day_orders, pool, rng, graph, weights) if kinds else None
 
 
@@ -196,7 +214,7 @@ def _accept(delta: float, iteration: int, iterations: int, anneal: bool, rng: ra
 
 
 def _search(start: Candidate, reasons, graph, trip, weights, iterations, anneal, rng, cache,
-            restart: int = 0):
+            restart: int = 0, block_moves: bool = False):
     """One local-search run from `start`.
 
     Returns (best candidate seen, changes that improved it, RestartStats).
@@ -208,7 +226,7 @@ def _search(start: Candidate, reasons, graph, trip, weights, iterations, anneal,
     tried = infeasible = accepted = accepted_worse = 0
     by_kind: dict[str, list[int]] = {}
     for iteration in range(1, iterations + 1):
-        change = _random_change(current.day_orders, current.pool, rng, graph, weights)
+        change = _random_change(current.day_orders, current.pool, rng, graph, weights, block_moves)
         if change is None:
             break  # nothing scheduled and nothing to insert
         day_orders, pool, description = change
@@ -261,12 +279,15 @@ def optimize_joint(
     cache_dir: str | Path = config.CACHE_DIR,
     restarts: int = config.JOINT_RESTARTS,
     anneal: bool = config.JOINT_USE_ANNEALING,
+    block_moves: bool | None = None,
 ) -> JointResult:
     """Improve on the sequential plan by local search (with restarts) on the joint objective.
 
     max_iterations is per restart. restarts=1, anneal=False is plain hill climbing
-    from the sequential plan (the version 1 optimizer).
+    from the sequential plan (the version 1 optimizer). block_moves=None uses
+    config.JOINT_USE_BLOCK_MOVES.
     """
+    block_moves = config.JOINT_USE_BLOCK_MOVES if block_moves is None else block_moves
     weights = config.OBJECTIVE_WEIGHTS if weights is None else weights
     baseline = run_sequential(destinations, trip_request, use_google, cache_dir)
     graph = baseline.graph
@@ -291,7 +312,7 @@ def optimize_joint(
             if start is None:
                 continue
         found, moves, stats = _search(start[0], start[1], graph, trip_request, weights,
-                                      max_iterations, anneal, rng, cache, restart)
+                                      max_iterations, anneal, rng, cache, restart, block_moves)
         all_stats.append(stats)
         if found.score.total > best.score.total + IMPROVEMENT_EPS:  # strictly better only
             best, best_moves, best_restart, best_start = found, moves, restart, start[0].score.total
