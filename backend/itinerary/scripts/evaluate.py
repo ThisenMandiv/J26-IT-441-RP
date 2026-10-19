@@ -105,24 +105,35 @@ def _rescore(result, weights) -> float:
 
 
 def evaluate_scenario(scenario: Scenario, weight_settings: Mapping[str, Mapping[str, float]],
-                      max_iterations: int, cache_dir: Path, run_exact: bool = True) -> list[dict]:
-    """Rows for every method under every weight setting."""
+                      max_iterations: int, cache_dir: Path, run_exact: bool = True,
+                      row_fn=_row) -> list[dict]:
+    """Rows for every method under every weight setting.
+
+    With config.USE_TRANSPORT_MODES on (version 5) the transport mode of each leg depends on
+    the weights, so naive and sequential are rebuilt per weight setting; otherwise once.
+    row_fn builds one row (scripts/evaluate_v5.py adds columns this way).
+    """
     dests, trip = scenario.destinations, scenario.trip
-    naive, naive_time = _timed(run_naive, dests, trip, cache_dir=cache_dir)
-    seq, seq_time = _timed(run_sequential, dests, trip, cache_dir=cache_dir)
+    per_weight = config.USE_TRANSPORT_MODES
+    if not per_weight:
+        naive, naive_time = _timed(run_naive, dests, trip, cache_dir=cache_dir)
+        seq, seq_time = _timed(run_sequential, dests, trip, cache_dir=cache_dir)
     small = run_exact and len(dests) <= config.EXACT_MAX_PLACES
 
     rows = []
     for name, weights in weight_settings.items():
-        rows.append(_row(scenario, name, NAIVE, naive, _rescore(naive, weights), naive_time))
-        rows.append(_row(scenario, name, SEQ, seq, _rescore(seq, weights), seq_time))
+        if per_weight:
+            naive, naive_time = _timed(run_naive, dests, trip, cache_dir=cache_dir, mode_weights=weights)
+            seq, seq_time = _timed(run_sequential, dests, trip, cache_dir=cache_dir, mode_weights=weights)
+        rows.append(row_fn(scenario, name, NAIVE, naive, _rescore(naive, weights), naive_time))
+        rows.append(row_fn(scenario, name, SEQ, seq, _rescore(seq, weights), seq_time))
         # joint and exact times include building their own sequential plan
         jnt, t = _timed(optimize_joint, dests, trip, weights=weights, max_iterations=max_iterations,
                         seed=config.JOINT_SEED, cache_dir=cache_dir)
-        rows.append(_row(scenario, name, JOINT, jnt, jnt.score.total, t))
+        rows.append(row_fn(scenario, name, JOINT, jnt, jnt.score.total, t))
         if small:
             ex, t = _timed(exact_benchmark, dests, trip, weights=weights, cache_dir=cache_dir)
-            rows.append(_row(scenario, name, EXACT, ex, ex.score.total, t))
+            rows.append(row_fn(scenario, name, EXACT, ex, ex.score.total, t))
     return rows
 
 
@@ -380,7 +391,7 @@ def run_evaluation(scenarios: Sequence[Scenario],
                    weight_settings: Mapping[str, Mapping[str, float]] = config.EVALUATION_WEIGHT_SETTINGS,
                    out_dir: Path = RESULTS_DIR, cache_dir: Path = config.CACHE_DIR,
                    max_iterations: int = config.JOINT_MAX_ITERATIONS,
-                   run_exact: bool = True) -> dict[str, pd.DataFrame]:
+                   run_exact: bool = True, row_fn=_row) -> dict[str, pd.DataFrame]:
     """Run all scenarios, write the CSVs and charts to out_dir.
 
     Returns the tables {"results", "summary", "means", "means_small", "exact_gap"}.
@@ -388,7 +399,7 @@ def run_evaluation(scenarios: Sequence[Scenario],
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     rows = [row for sc in scenarios
-            for row in evaluate_scenario(sc, weight_settings, max_iterations, cache_dir, run_exact)]
+            for row in evaluate_scenario(sc, weight_settings, max_iterations, cache_dir, run_exact, row_fn)]
     results = pd.DataFrame(rows)
     gaps = exact_gaps(results)
     small_ids = list(gaps["scenario_id"].unique()) if len(gaps) else []
@@ -430,7 +441,9 @@ def report(tables: Mapping[str, pd.DataFrame], scenarios: Sequence[Scenario]) ->
                                          "objective_score", "runtime_s"]].to_string(index=False), ""]
 
     naive = results[(results["method"] == NAIVE) & (results["weights"] == results["weights"].iloc[0])]
-    lines += ["=== 2. Naive baseline: opening-hour conflicts it causes (same plan under every weight setting) ===",
+    same_plan = ("same plan under every weight setting" if not config.USE_TRANSPORT_MODES
+                 else f"{results['weights'].iloc[0]} weights; with transport modes the plan depends on the weights")
+    lines += [f"=== 2. Naive baseline: opening-hour conflicts it causes ({same_plan}) ===",
               naive[["scenario_id", "places_scheduled", "conflicts", "conflict_rate", "travel_min",
                      "within_budget"]].to_string(index=False),
               f"total: {int(naive['conflicts'].sum())} conflicts in {int(naive['places_scheduled'].sum())} "

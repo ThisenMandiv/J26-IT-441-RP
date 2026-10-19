@@ -1,0 +1,9 @@
+setting,runs,better,same,mixed,worse,obj_improved,obj_ties,mean_obj_gain,mean_diff_score_coll,mean_diff_places,travel_reduction_of_totals_pct,seq_adherence,joint_adherence,naive_obj_above_joint
+all rules off (v3),45,14,19,12,0,26,19,9.397,0.155,0.178,13.8,0.667,0.8,1
+transport modes,45,13,23,9,0,22,23,7.168,0.409,0.489,7.3,0.778,0.844,2
+hill speeds,45,15,21,9,0,24,21,10.874,0.186,0.222,11.89,0.667,0.8,0
+lunch break,45,6,30,7,2,16,29,1.602,-0.091,-0.133,9.05,0.867,0.889,1
+evening drive,45,19,11,15,0,34,11,12.501,0.128,0.156,13.35,0.6,0.756,1
+daily costs,45,14,18,13,0,27,18,11.429,-0.042,-0.067,21.18,0.533,0.667,1
+early start days 2+,45,14,9,22,0,36,9,13.452,-0.037,-0.067,19.2,0.533,0.756,0
+all rules on,45,11,20,14,0,25,20,6.711,0.155,0.178,-4.42,0.667,0.733,0

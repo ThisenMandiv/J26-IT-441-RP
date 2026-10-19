@@ -10,7 +10,9 @@ limit, day end). Depth-first search, one decision at a time:
     from the current state (day, location, clock, places visited):
       - visit one more unvisited place today, if it fits    -> new state, score it
       - or end today and continue tomorrow from here (only if today has a stop;
-        an empty day in the middle gives the same plan as an empty day at the end)
+        an empty day in the middle gives the same plan as an empty day at the end,
+        UNLESS days differ: with per-day start times or evening drives (version 5)
+        an empty day can matter, so then empty middle days are searched too)
 
 Every state is a complete plan (the remaining days stay empty), so each one is a
 candidate. Branch and bound keeps this fast: adding stops can only ADD travel, spend,
@@ -27,11 +29,12 @@ from typing import NamedTuple
 import networkx as nx
 
 from src import config
-from src.budget import OverrunReport, allocate_budget, check_overruns
+from src.budget import OverrunReport, allocate_budget, check_overruns, cost_breakdown
 from src.models import Destination, Itinerary, TripRequest, UnscheduledStop
 from src.objective import PlanScore, coverage_shortfall, score_plan
 from src.pipeline import apply_budget, run_sequential
-from src.scheduler import _leg, _never_fits, _try_stop, schedule_fixed, to_minutes  # same timing rules
+from src.scheduler import (_leg, _never_fits, activity_end, attempt, close_day, day_window,  # same timing rules
+                           schedule_fixed)
 
 EPS = 1e-9
 BOUND_TOL = 0.01  # plan_totals rounds to 2 decimals; never prune a branch over rounding noise
@@ -60,7 +63,8 @@ class _Search:
     def __init__(self, graph, trip, weights, num_places):
         self.graph, self.trip, self.weights, self.n = graph, trip, weights, num_places
         self.cache: dict = {}
-        self.day_start, self.day_end = to_minutes(trip.day_start), to_minutes(trip.day_end)
+        # days can differ only with per-day starts or evening drives; then empty days may matter
+        self.empty_days_matter = trip.day_starts is not None or trip.evening_limit_min() > 0
         self.best_score, self.best_orders = -float("inf"), None
         self.states = 0
 
@@ -110,28 +114,36 @@ class _Search:
     def run(self, candidates: list[Hashable]):
         orders = [[] for _ in range(self.trip.num_days)]
         self.consider(orders, _Totals())
-        self._expand(0, config.START_NODE_ID, self.day_start, orders, candidates, _Totals())
+        window = day_window(self.trip, 1, None)
+        self._expand(0, config.START_NODE_ID, window.start, orders, candidates, _Totals(), window)
 
-    def _expand(self, day, location, clock, orders, remaining, totals):
+    def _expand(self, day, location, clock, orders, remaining, totals, window, lunch_taken=False):
+        """day is 0-based; window = scheduler.day_window of this day (same rules as schedule_fixed).
+        lunch_taken: today's lunch is already in the plan (only with config.USE_LUNCH_BREAK).
+        Lunch costs and idle time are left out of _Totals, so the bound stays optimistic."""
         self.states += 1
         if self._hopeless(self._bound(totals, remaining)):
             return
         for place in remaining:
             node = self.graph.nodes[place]
             leg = _leg(self.graph, location, place, config.EDGE_WEIGHTS, self.cache)
-            attempt = _try_stop(node, leg, clock, self.day_end, config.MAX_WAIT_MIN)
-            if not attempt.ok:
+            result = attempt(node, leg, clock, window.end, config.MAX_WAIT_MIN, lunch_taken,
+                             evening_min=-1 if orders[day] else window.evening_min)
+            if not result.ok:
                 continue
             orders[day].append(place)
             new = _Totals(totals.score + node["score"], totals.travel_min + leg.duration_min,
                           totals.spend_lkr + leg.cost_lkr + node["cost_lkr"],
-                          totals.wait_min + attempt.wait, totals.count + 1)
+                          totals.wait_min + result.wait, totals.count + 1)
             rest = [p for p in remaining if p != place]
             self.consider(orders, new)
-            self._expand(day, place, attempt.departure, orders, rest, new)
+            self._expand(day, place, result.departure, orders, rest, new, window,
+                         lunch_taken or result.lunch is not None)
             orders[day].pop()
-        if orders[day] and day + 1 < self.trip.num_days:
-            self._expand(day + 1, location, self.day_start, orders, remaining, totals)
+        if (orders[day] or self.empty_days_matter) and day + 1 < self.trip.num_days:
+            late_lunch = close_day(clock, bool(orders[day]), lunch_taken, window.end)
+            tomorrow = day_window(self.trip, day + 2, activity_end(clock, late_lunch))
+            self._expand(day + 1, location, tomorrow.start, orders, remaining, totals, tomorrow)
 
 
 def exact_benchmark(
@@ -146,7 +158,8 @@ def exact_benchmark(
     if len(destinations) > max_places:
         raise ValueError(f"exact benchmark allows at most {max_places} places, got {len(destinations)}")
     weights = config.OBJECTIVE_WEIGHTS if weights is None else weights
-    baseline = run_sequential(destinations, trip_request, use_google, cache_dir)  # same graph as the others
+    # same graph as the others (with transport modes on: modes picked for these weights)
+    baseline = run_sequential(destinations, trip_request, use_google, cache_dir, mode_weights=weights)
     graph = baseline.graph
 
     search = _Search(graph, trip_request, weights, len(destinations))
@@ -163,6 +176,7 @@ def exact_benchmark(
         total_cost_lkr=report.trip.total_planned_lkr,
         over_budget=report.trip.over_budget,
         unscheduled=unscheduled,
+        cost_breakdown=cost_breakdown(days),
     )
     return ExactResult(itinerary, score, report, graph, search.states)
 

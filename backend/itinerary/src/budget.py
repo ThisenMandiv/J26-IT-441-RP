@@ -4,7 +4,10 @@
 2. check_overruns:      compare each day's planned cost with its allocation
 3. suggest_reductions:  for overrun days, which stop to drop and how much it saves
 
-Planned cost of a day = entry costs + travel costs of its stops (from the scheduler).
+Planned cost of a day = entry costs + travel costs of its stops (from the scheduler),
+plus the lunch stop's food cost (config.USE_LUNCH_BREAK) and the day's food,
+accommodation and other costs (config.USE_DAILY_COSTS). cost_breakdown() splits the
+planned cost into accommodation / transport / food / activities / other.
 Nothing here changes the day plans; every function only reads them.
 
 Note on the default proportional split: every day gets the same fraction of its
@@ -67,8 +70,33 @@ class Suggestion(NamedTuple):
 # ---------- Helpers ----------
 
 def planned_cost(day: DayPlan) -> float:
-    """Entry plus travel cost of every stop in the day."""
-    return round(sum(s.entry_cost_lkr + s.travel_cost_lkr for s in day.stops), 2)
+    """Entry plus travel cost of every stop in the day, plus lunch and living costs (version 5)."""
+    cost = sum(s.entry_cost_lkr + s.travel_cost_lkr for s in day.stops)
+    if day.lunch is not None:
+        cost += day.lunch.food_cost_lkr
+    cost += day.food_cost_lkr + day.accommodation_cost_lkr + day.other_cost_lkr  # all 0.0 with the flag off
+    return round(cost, 2)
+
+
+COST_CATEGORIES = ("accommodation", "transport", "food", "activities", "other")
+
+
+def day_breakdown(day: DayPlan) -> dict[str, float]:
+    """One day's planned cost per category. The values add up to planned_cost(day)."""
+    lunch = day.lunch.food_cost_lkr if day.lunch is not None else 0.0
+    return {
+        "accommodation": round(day.accommodation_cost_lkr, 2),
+        "transport": round(sum(s.travel_cost_lkr for s in day.stops), 2),
+        "food": round(day.food_cost_lkr + lunch, 2),
+        "activities": round(sum(s.entry_cost_lkr for s in day.stops), 2),  # entry fees
+        "other": round(day.other_cost_lkr, 2),
+    }
+
+
+def cost_breakdown(day_plans: Sequence[DayPlan]) -> dict[str, float]:
+    """Whole-trip planned cost per category (accommodation, transport, food, activities, other)."""
+    days = [day_breakdown(d) for d in day_plans]
+    return {c: round(sum(d[c] for d in days), 2) for c in COST_CATEGORIES}
 
 
 def _split_to_cents(amount: float, shares: Sequence[float]) -> list[float]:

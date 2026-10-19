@@ -31,7 +31,7 @@ from typing import NamedTuple
 import networkx as nx
 
 from src import config
-from src.budget import OverrunReport, allocate_budget, check_overruns
+from src.budget import OverrunReport, allocate_budget, check_overruns, cost_breakdown
 from src.models import DayPlan, Destination, Itinerary, TripRequest, UnscheduledStop
 from src.objective import PlanScore, score_plan
 from src.pipeline import PipelineResult, apply_budget, run_sequential
@@ -289,7 +289,8 @@ def optimize_joint(
     """
     block_moves = config.JOINT_USE_BLOCK_MOVES if block_moves is None else block_moves
     weights = config.OBJECTIVE_WEIGHTS if weights is None else weights
-    baseline = run_sequential(destinations, trip_request, use_google, cache_dir)
+    # mode_weights: with transport modes on, legs use the modes THIS traveller would pick
+    baseline = run_sequential(destinations, trip_request, use_google, cache_dir, mode_weights=weights)
     graph = baseline.graph
     rng = random.Random(seed)
     cache: dict = {}
@@ -323,6 +324,7 @@ def optimize_joint(
         total_cost_lkr=best.report.trip.total_planned_lkr,
         over_budget=best.report.trip.over_budget,
         unscheduled=best.unscheduled,
+        cost_breakdown=cost_breakdown(best.days),
     )
     return JointResult(itinerary, best.score, best.report, graph, best_moves, baseline,
                        best_restart, best_start, tuple(all_stats))

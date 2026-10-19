@@ -1,0 +1,4711 @@
+{
+ "S01/naive": {
+  "score": 41.8032,
+  "total_cost_lkr": 79135.0,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "62169.09",
+    "daily_cost_lkr": "18221.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:25:00",
+      "wait_min": "0.0",
+      "departure_time": "13:25:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "64888.71",
+    "daily_cost_lkr": "19018.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:24:00",
+      "wait_min": "0.0",
+      "departure_time": "15:24:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "16:21:00",
+      "wait_min": "0.0",
+      "departure_time": "17:21:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "74430.06",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "55434.36",
+    "daily_cost_lkr": "16247.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "12:04:00",
+      "wait_min": "0.0",
+      "departure_time": "15:04:00",
+      "travel_time_min": "244.0",
+      "travel_cost_lkr": "16247.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "5",
+    "daily_budget_lkr": "13077.78",
+    "daily_cost_lkr": "3833.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:28:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D11",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D12",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S01/sequential": {
+  "score": 44.4634,
+  "total_cost_lkr": 102365.6,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "37389.89",
+    "daily_cost_lkr": "14175.7",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "12:33:00",
+      "wait_min": "0.0",
+      "departure_time": "15:03:00",
+      "travel_time_min": "211.0",
+      "travel_cost_lkr": "14065.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "51962.13",
+    "daily_cost_lkr": "19700.5",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:58:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "15:57:00",
+      "wait_min": "0.0",
+      "departure_time": "16:57:00",
+      "travel_time_min": "239.0",
+      "travel_cost_lkr": "15867.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "57539.09",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "57834.76",
+    "daily_cost_lkr": "21927.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:00:00",
+      "wait_min": "0.0",
+      "departure_time": "15:00:00",
+      "travel_time_min": "180.0",
+      "travel_cost_lkr": "11957.8",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "15:35:00",
+      "wait_min": "0.0",
+      "departure_time": "17:05:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "5",
+    "daily_budget_lkr": "65274.13",
+    "daily_cost_lkr": "24747.5",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:44:00",
+      "wait_min": "0.0",
+      "departure_time": "13:44:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "15:57:00",
+      "wait_min": "0.0",
+      "departure_time": "17:27:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "day 5: arrival 18:00 is after closing 17:30"
+   ],
+   [
+    "D12",
+    "day 5: arrival 18:49 is after closing 18:00"
+   ],
+   [
+    "D14",
+    "day 5: arrival 20:50 is after closing 19:00"
+   ],
+   [
+    "D10",
+    "day 5: arrival 19:27 is after closing 18:00"
+   ],
+   [
+    "D15",
+    "day 5: arrival 00:23 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S02/naive": {
+  "score": 41.8032,
+  "total_cost_lkr": 79135.0,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "25903.79",
+    "daily_cost_lkr": "18221.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:25:00",
+      "wait_min": "0.0",
+      "departure_time": "13:25:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "27036.96",
+    "daily_cost_lkr": "19018.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:24:00",
+      "wait_min": "0.0",
+      "departure_time": "15:24:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "16:21:00",
+      "wait_min": "0.0",
+      "departure_time": "17:21:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "31012.53",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "23097.65",
+    "daily_cost_lkr": "16247.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "12:04:00",
+      "wait_min": "0.0",
+      "departure_time": "15:04:00",
+      "travel_time_min": "244.0",
+      "travel_cost_lkr": "16247.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "5",
+    "daily_budget_lkr": "5449.07",
+    "daily_cost_lkr": "3833.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:28:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D11",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D12",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S02/sequential": {
+  "score": 44.4634,
+  "total_cost_lkr": 102365.6,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "15579.12",
+    "daily_cost_lkr": "14175.7",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "12:33:00",
+      "wait_min": "0.0",
+      "departure_time": "15:03:00",
+      "travel_time_min": "211.0",
+      "travel_cost_lkr": "14065.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "21650.89",
+    "daily_cost_lkr": "19700.5",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:58:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "15:57:00",
+      "wait_min": "0.0",
+      "departure_time": "16:57:00",
+      "travel_time_min": "239.0",
+      "travel_cost_lkr": "15867.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "23974.62",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "24097.82",
+    "daily_cost_lkr": "21927.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:00:00",
+      "wait_min": "0.0",
+      "departure_time": "15:00:00",
+      "travel_time_min": "180.0",
+      "travel_cost_lkr": "11957.8",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "15:35:00",
+      "wait_min": "0.0",
+      "departure_time": "17:05:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "5",
+    "daily_budget_lkr": "27197.55",
+    "daily_cost_lkr": "24747.5",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:44:00",
+      "wait_min": "0.0",
+      "departure_time": "13:44:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "15:57:00",
+      "wait_min": "0.0",
+      "departure_time": "17:27:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "day 5: arrival 18:00 is after closing 17:30"
+   ],
+   [
+    "D12",
+    "day 5: arrival 18:49 is after closing 18:00"
+   ],
+   [
+    "D14",
+    "day 5: arrival 20:50 is after closing 19:00"
+   ],
+   [
+    "D10",
+    "day 5: arrival 19:27 is after closing 18:00"
+   ],
+   [
+    "D15",
+    "day 5: arrival 00:23 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S03/naive": {
+  "score": 30.1521,
+  "total_cost_lkr": 44979.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "19623.08",
+    "daily_cost_lkr": "19614.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "14:40:00",
+      "wait_min": "0.0",
+      "departure_time": "16:10:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "25376.92",
+    "daily_cost_lkr": "25365.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "08:33:00",
+      "wait_min": "0.0",
+      "departure_time": "11:33:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "12:29:00",
+      "wait_min": "0.0",
+      "departure_time": "15:29:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S03/sequential": {
+  "score": 30.1521,
+  "total_cost_lkr": 44979.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "19623.08",
+    "daily_cost_lkr": "19614.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "14:40:00",
+      "wait_min": "0.0",
+      "departure_time": "16:10:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "25376.92",
+    "daily_cost_lkr": "25365.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "08:33:00",
+      "wait_min": "0.0",
+      "departure_time": "11:33:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "12:29:00",
+      "wait_min": "0.0",
+      "departure_time": "15:29:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D14",
+    "day 2: visit would end 18:57, after day end 18:00"
+   ],
+   [
+    "D10",
+    "day 2: arrival 18:10 is after closing 18:00"
+   ]
+  ]
+ },
+ "S03/joint/default": {
+  "score": 30.1521,
+  "total_cost_lkr": 44979.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "19623.08",
+    "daily_cost_lkr": "19614.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "14:40:00",
+      "wait_min": "0.0",
+      "departure_time": "16:10:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "25376.92",
+    "daily_cost_lkr": "25365.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "08:33:00",
+      "wait_min": "0.0",
+      "departure_time": "11:33:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "12:29:00",
+      "wait_min": "0.0",
+      "departure_time": "15:29:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D14",
+    "day 2: visit would end 18:57, after day end 18:00"
+   ],
+   [
+    "D10",
+    "day 2: arrival 18:10 is after closing 18:00"
+   ]
+  ]
+ },
+ "S03/joint/budget": {
+  "score": 21.1562,
+  "total_cost_lkr": 44979.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "19623.08",
+    "daily_cost_lkr": "19614.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "14:40:00",
+      "wait_min": "0.0",
+      "departure_time": "16:10:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "25376.92",
+    "daily_cost_lkr": "25365.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "08:33:00",
+      "wait_min": "0.0",
+      "departure_time": "11:33:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "12:29:00",
+      "wait_min": "0.0",
+      "departure_time": "15:29:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D14",
+    "day 2: visit would end 18:57, after day end 18:00"
+   ],
+   [
+    "D10",
+    "day 2: arrival 18:10 is after closing 18:00"
+   ]
+  ]
+ },
+ "S04/naive": {
+  "score": 34.333,
+  "total_cost_lkr": 30002.8,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "59160.84",
+    "daily_cost_lkr": "16435.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "113.0",
+      "travel_cost_lkr": "7484.5",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "48839.16",
+    "daily_cost_lkr": "13567.7",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "08:35:00",
+      "wait_min": "0.0",
+      "departure_time": "12:35:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "13:32:00",
+      "wait_min": "0.0",
+      "departure_time": "14:32:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   }
+  ],
+  "unscheduled": []
+ },
+ "S04/sequential": {
+  "score": 33.6546,
+  "total_cost_lkr": 31954.0,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "69812.67",
+    "daily_cost_lkr": "20655.5",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "113.0",
+      "travel_cost_lkr": "7484.5",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "16:54:00",
+      "wait_min": "0.0",
+      "departure_time": "17:54:00",
+      "travel_time_min": "64.0",
+      "travel_cost_lkr": "4220.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "38187.33",
+    "daily_cost_lkr": "11298.5",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "08:57:00",
+      "wait_min": "0.0",
+      "departure_time": "12:57:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     }
+    ]
+   }
+  ],
+  "unscheduled": []
+ },
+ "S04/exact/default": {
+  "score": 34.333,
+  "total_cost_lkr": 30002.8,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "59160.84",
+    "daily_cost_lkr": "16435.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "113.0",
+      "travel_cost_lkr": "7484.5",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "48839.16",
+    "daily_cost_lkr": "13567.7",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "08:35:00",
+      "wait_min": "0.0",
+      "departure_time": "12:35:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "13:32:00",
+      "wait_min": "0.0",
+      "departure_time": "14:32:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   }
+  ],
+  "unscheduled": []
+ },
+ "S04/exact/budget": {
+  "score": 28.3325,
+  "total_cost_lkr": 30002.8,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "59160.84",
+    "daily_cost_lkr": "16435.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "113.0",
+      "travel_cost_lkr": "7484.5",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "48839.16",
+    "daily_cost_lkr": "13567.7",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "08:35:00",
+      "wait_min": "0.0",
+      "departure_time": "12:35:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "13:32:00",
+      "wait_min": "0.0",
+      "departure_time": "14:32:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   }
+  ],
+  "unscheduled": []
+ },
+ "S05/naive": {
+  "score": 20.819,
+  "total_cost_lkr": 50642.9,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "24749.78",
+    "daily_cost_lkr": "18568.9",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "09:00:00",
+      "wait_min": "0.0",
+      "departure_time": "10:00:00",
+      "travel_time_min": "60.0",
+      "travel_cost_lkr": "3977.8",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:09:00",
+      "wait_min": "0.0",
+      "departure_time": "14:39:00",
+      "travel_time_min": "189.0",
+      "travel_cost_lkr": "12591.1",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "19978.54",
+    "daily_cost_lkr": "14989.2",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "09:53:00",
+      "wait_min": "0.0",
+      "departure_time": "13:53:00",
+      "travel_time_min": "113.0",
+      "travel_cost_lkr": "7489.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "22771.68",
+    "daily_cost_lkr": "17084.8",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "11:19:00",
+      "wait_min": "0.0",
+      "departure_time": "14:19:00",
+      "travel_time_min": "199.0",
+      "travel_cost_lkr": "13251.8",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     },
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "15:17:00",
+      "wait_min": "0.0",
+      "departure_time": "17:47:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D11",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S05/sequential": {
+  "score": 11.9372,
+  "total_cost_lkr": 42628.2,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "28570.98",
+    "daily_cost_lkr": "18043.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "09:00:00",
+      "wait_min": "0.0",
+      "departure_time": "10:00:00",
+      "travel_time_min": "60.0",
+      "travel_cost_lkr": "3977.8",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "13:31:00",
+      "wait_min": "0.0",
+      "departure_time": "16:01:00",
+      "travel_time_min": "211.0",
+      "travel_cost_lkr": "14065.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "6069.4",
+    "daily_cost_lkr": "3833.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:58:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "32859.62",
+    "daily_cost_lkr": "20751.8",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:19:00",
+      "wait_min": "0.0",
+      "departure_time": "15:19:00",
+      "travel_time_min": "199.0",
+      "travel_cost_lkr": "13251.8",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D02",
+    "day 3: visit would end 18:42, after day end 18:00"
+   ],
+   [
+    "D11",
+    "day 3: arrival 19:11 is after closing 19:00"
+   ],
+   [
+    "D01",
+    "day 3: arrival 19:30 is after closing 17:30"
+   ],
+   [
+    "D10",
+    "day 3: arrival 21:06 is after closing 18:00"
+   ]
+  ]
+ },
+ "S06/naive": {
+  "score": 1.3378,
+  "total_cost_lkr": 28455.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "54000.0",
+    "daily_cost_lkr": "28455.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:53:00",
+      "wait_min": "0.0",
+      "departure_time": "10:53:00",
+      "travel_time_min": "53.0",
+      "travel_cost_lkr": "3525.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "14:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "194.0",
+      "travel_cost_lkr": "12929.2",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D08",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D09",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S06/sequential": {
+  "score": 1.3378,
+  "total_cost_lkr": 28455.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "54000.0",
+    "daily_cost_lkr": "28455.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:53:00",
+      "wait_min": "0.0",
+      "departure_time": "10:53:00",
+      "travel_time_min": "53.0",
+      "travel_cost_lkr": "3525.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "14:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "194.0",
+      "travel_cost_lkr": "12929.2",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D09",
+    "day 1: visit would end 18:47, after day end 18:00"
+   ],
+   [
+    "D08",
+    "day 1: visit would end 20:09, after closing 18:00"
+   ],
+   [
+    "D14",
+    "day 1: arrival 19:35 is after closing 19:00"
+   ],
+   [
+    "D15",
+    "day 1: arrival 00:19 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S06/joint/default": {
+  "score": 1.3378,
+  "total_cost_lkr": 28455.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "54000.0",
+    "daily_cost_lkr": "28455.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:53:00",
+      "wait_min": "0.0",
+      "departure_time": "10:53:00",
+      "travel_time_min": "53.0",
+      "travel_cost_lkr": "3525.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "14:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "194.0",
+      "travel_cost_lkr": "12929.2",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D09",
+    "day 1: visit would end 18:47, after day end 18:00"
+   ],
+   [
+    "D08",
+    "day 1: visit would end 20:09, after closing 18:00"
+   ],
+   [
+    "D14",
+    "day 1: arrival 19:35 is after closing 19:00"
+   ],
+   [
+    "D15",
+    "day 1: arrival 00:19 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S06/exact/default": {
+  "score": 1.3378,
+  "total_cost_lkr": 28455.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "54000.0",
+    "daily_cost_lkr": "28455.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:53:00",
+      "wait_min": "0.0",
+      "departure_time": "10:53:00",
+      "travel_time_min": "53.0",
+      "travel_cost_lkr": "3525.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "14:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "194.0",
+      "travel_cost_lkr": "12929.2",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D08",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D09",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D14",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D15",
+    "left out by the exact benchmark: the best plan does not include it"
+   ]
+  ]
+ },
+ "S06/joint/budget": {
+  "score": -4.3532,
+  "total_cost_lkr": 28455.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "54000.0",
+    "daily_cost_lkr": "28455.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:53:00",
+      "wait_min": "0.0",
+      "departure_time": "10:53:00",
+      "travel_time_min": "53.0",
+      "travel_cost_lkr": "3525.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "14:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "194.0",
+      "travel_cost_lkr": "12929.2",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D09",
+    "day 1: visit would end 18:47, after day end 18:00"
+   ],
+   [
+    "D08",
+    "day 1: visit would end 20:09, after closing 18:00"
+   ],
+   [
+    "D14",
+    "day 1: arrival 19:35 is after closing 19:00"
+   ],
+   [
+    "D15",
+    "day 1: arrival 00:19 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S06/exact/budget": {
+  "score": -4.3532,
+  "total_cost_lkr": 28455.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "54000.0",
+    "daily_cost_lkr": "28455.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:53:00",
+      "wait_min": "0.0",
+      "departure_time": "10:53:00",
+      "travel_time_min": "53.0",
+      "travel_cost_lkr": "3525.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "14:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "194.0",
+      "travel_cost_lkr": "12929.2",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D08",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D09",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D14",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D15",
+    "left out by the exact benchmark: the best plan does not include it"
+   ]
+  ]
+ },
+ "S07/naive": {
+  "score": 11.2172,
+  "total_cost_lkr": 59054.6,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "8330.85",
+    "daily_cost_lkr": "18221.3",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:25:00",
+      "wait_min": "0.0",
+      "departure_time": "13:25:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "8695.29",
+    "daily_cost_lkr": "19018.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:24:00",
+      "wait_min": "0.0",
+      "departure_time": "15:24:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "16:21:00",
+      "wait_min": "0.0",
+      "departure_time": "17:21:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "9973.86",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D09",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D03",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D11",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D12",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S07/sequential": {
+  "score": -8.3813,
+  "total_cost_lkr": 55691.1,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "6872.62",
+    "daily_cost_lkr": "14175.7",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "12:33:00",
+      "wait_min": "0.0",
+      "departure_time": "15:03:00",
+      "travel_time_min": "211.0",
+      "travel_cost_lkr": "14065.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "9551.14",
+    "daily_cost_lkr": "19700.5",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:58:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "15:57:00",
+      "wait_min": "0.0",
+      "departure_time": "16:57:00",
+      "travel_time_min": "239.0",
+      "travel_cost_lkr": "15867.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "10576.24",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D06",
+    "day 3: arrival 17:28 is after closing 16:00"
+   ],
+   [
+    "D05",
+    "day 3: visit would end 19:22, after closing 18:30"
+   ],
+   [
+    "D02",
+    "day 3: visit would end 20:33, after closing 20:00"
+   ],
+   [
+    "D13",
+    "day 3: arrival 19:44 is after closing 18:00"
+   ],
+   [
+    "D11",
+    "day 3: arrival 20:41 is after closing 19:00"
+   ],
+   [
+    "D01",
+    "day 3: arrival 20:49 is after closing 17:30"
+   ],
+   [
+    "D12",
+    "day 3: arrival 20:25 is after closing 18:00"
+   ],
+   [
+    "D14",
+    "day 3: arrival 22:31 is after closing 19:00"
+   ],
+   [
+    "D10",
+    "day 3: arrival 22:41 is after closing 18:00"
+   ],
+   [
+    "D15",
+    "day 3: arrival 03:33 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S08/naive": {
+  "score": 14.2973,
+  "total_cost_lkr": 20087.9,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "3781.74",
+    "daily_cost_lkr": "4220.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:06:00",
+      "wait_min": "0.0",
+      "departure_time": "10:36:00",
+      "travel_time_min": "6.0",
+      "travel_cost_lkr": "387.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     },
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "11:34:00",
+      "wait_min": "0.0",
+      "departure_time": "14:34:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "14218.26",
+    "daily_cost_lkr": "15867.5",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "11:59:00",
+      "wait_min": "0.0",
+      "departure_time": "12:59:00",
+      "travel_time_min": "239.0",
+      "travel_cost_lkr": "15867.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D08",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D07",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S08/sequential": {
+  "score": 7.086,
+  "total_cost_lkr": 32467.8,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "2339.77",
+    "daily_cost_lkr": "4220.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:06:00",
+      "wait_min": "0.0",
+      "departure_time": "10:36:00",
+      "travel_time_min": "6.0",
+      "travel_cost_lkr": "387.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     },
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "11:34:00",
+      "wait_min": "0.0",
+      "departure_time": "14:34:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "15660.23",
+    "daily_cost_lkr": "28247.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "12:04:00",
+      "wait_min": "0.0",
+      "departure_time": "16:04:00",
+      "travel_time_min": "244.0",
+      "travel_cost_lkr": "16247.4",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D04",
+    "day 2: arrival 18:32 is after closing 18:00"
+   ],
+   [
+    "D07",
+    "day 2: arrival 22:24 is after closing 22:00"
+   ]
+  ]
+ },
+ "S08/exact/default": {
+  "score": 14.2973,
+  "total_cost_lkr": 20087.9,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "3781.74",
+    "daily_cost_lkr": "4220.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:06:00",
+      "wait_min": "0.0",
+      "departure_time": "10:36:00",
+      "travel_time_min": "6.0",
+      "travel_cost_lkr": "387.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     },
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "11:34:00",
+      "wait_min": "0.0",
+      "departure_time": "14:34:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "14218.26",
+    "daily_cost_lkr": "15867.5",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "11:59:00",
+      "wait_min": "0.0",
+      "departure_time": "12:59:00",
+      "travel_time_min": "239.0",
+      "travel_cost_lkr": "15867.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D07",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D08",
+    "left out by the exact benchmark: the best plan does not include it"
+   ]
+  ]
+ },
+ "S08/exact/budget": {
+  "score": 9.2672,
+  "total_cost_lkr": 4220.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "18000.0",
+    "daily_cost_lkr": "4220.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:06:00",
+      "wait_min": "0.0",
+      "departure_time": "10:36:00",
+      "travel_time_min": "6.0",
+      "travel_cost_lkr": "387.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     },
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "11:34:00",
+      "wait_min": "0.0",
+      "departure_time": "14:34:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   }
+  ],
+  "unscheduled": [
+   [
+    "D04",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D07",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D08",
+    "left out by the exact benchmark: the best plan does not include it"
+   ]
+  ]
+ },
+ "S09/naive": {
+  "score": 6.2831,
+  "total_cost_lkr": 23528.3,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9000.0",
+    "daily_cost_lkr": "23528.3",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "142.0",
+      "travel_cost_lkr": "9444.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:17:00",
+      "wait_min": "0.0",
+      "departure_time": "14:47:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "16:06:00",
+      "wait_min": "0.0",
+      "departure_time": "17:36:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S09/sequential": {
+  "score": -2.5273,
+  "total_cost_lkr": 20128.8,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9000.0",
+    "daily_cost_lkr": "20128.8",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "142.0",
+      "travel_cost_lkr": "9444.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "14:15:00",
+      "wait_min": "0.0",
+      "departure_time": "15:45:00",
+      "travel_time_min": "113.0",
+      "travel_cost_lkr": "7484.5",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D02",
+    "day 1: visit would end 18:34, after day end 18:00"
+   ],
+   [
+    "D01",
+    "day 1: arrival 19:22 is after closing 17:30"
+   ],
+   [
+    "D15",
+    "day 1: arrival 01:56 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S09/joint/default": {
+  "score": 6.2831,
+  "total_cost_lkr": 23528.3,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9000.0",
+    "daily_cost_lkr": "23528.3",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "142.0",
+      "travel_cost_lkr": "9444.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:17:00",
+      "wait_min": "0.0",
+      "departure_time": "14:47:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "16:06:00",
+      "wait_min": "0.0",
+      "departure_time": "17:36:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "day 1: arrival 19:22 is after closing 17:30"
+   ],
+   [
+    "D15",
+    "day 1: arrival 01:56 (+1 day) is after closing 19:00"
+   ]
+  ]
+ },
+ "S09/exact/default": {
+  "score": 6.2831,
+  "total_cost_lkr": 23528.3,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9000.0",
+    "daily_cost_lkr": "23528.3",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "142.0",
+      "travel_cost_lkr": "9444.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:17:00",
+      "wait_min": "0.0",
+      "departure_time": "14:47:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "16:06:00",
+      "wait_min": "0.0",
+      "departure_time": "17:36:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D15",
+    "left out by the exact benchmark: the best plan does not include it"
+   ]
+  ]
+ },
+ "S09/joint/budget": {
+  "score": -11.323,
+  "total_cost_lkr": 18077.6,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9000.0",
+    "daily_cost_lkr": "18077.6",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "142.0",
+      "travel_cost_lkr": "9444.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:17:00",
+      "wait_min": "0.0",
+      "departure_time": "14:47:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "day 1: arrival 19:22 is after closing 17:30"
+   ],
+   [
+    "D15",
+    "day 1: arrival 01:56 (+1 day) is after closing 19:00"
+   ],
+   [
+    "D05",
+    "dropped by joint optimizer: the plan scores higher without it"
+   ]
+  ]
+ },
+ "S09/exact/budget": {
+  "score": -11.323,
+  "total_cost_lkr": 18077.6,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9000.0",
+    "daily_cost_lkr": "18077.6",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "142.0",
+      "travel_cost_lkr": "9444.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:17:00",
+      "wait_min": "0.0",
+      "departure_time": "14:47:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D01",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D05",
+    "left out by the exact benchmark: the best plan does not include it"
+   ],
+   [
+    "D15",
+    "left out by the exact benchmark: the best plan does not include it"
+   ]
+  ]
+ },
+ "S10/naive": {
+  "score": -9.7255,
+  "total_cost_lkr": 104875.8,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "9972.38",
+    "daily_cost_lkr": "29051.7",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D15",
+      "name": "Nallur Kandaswamy Kovil, Jaffna",
+      "arrival_time": "08:03:00",
+      "wait_min": "0.0",
+      "departure_time": "09:03:00",
+      "travel_time_min": "3.0",
+      "travel_cost_lkr": "199.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.72"
+     },
+     {
+      "destination_id": "D10",
+      "name": "Anuradhapura Sacred City (Ruwanwelisaya)",
+      "arrival_time": "14:01:00",
+      "wait_min": "0.0",
+      "departure_time": "17:01:00",
+      "travel_time_min": "298.0",
+      "travel_cost_lkr": "19852.1",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.87"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "7676.36",
+    "daily_cost_lkr": "22362.9",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "09:56:00",
+      "wait_min": "0.0",
+      "departure_time": "12:56:00",
+      "travel_time_min": "116.0",
+      "travel_cost_lkr": "7706.3",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "13:29:00",
+      "wait_min": "0.0",
+      "departure_time": "14:59:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "8333.43",
+    "daily_cost_lkr": "24277.1",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "09:22:00",
+      "wait_min": "0.0",
+      "departure_time": "12:22:00",
+      "travel_time_min": "82.0",
+      "travel_cost_lkr": "5433.8",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     },
+     {
+      "destination_id": "D14",
+      "name": "Koneswaram Temple, Trincomalee",
+      "arrival_time": "14:50:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9843.3",
+      "entry_cost_lkr": "0.0",
+      "score": "0.74"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "10017.83",
+    "daily_cost_lkr": "29184.1",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:09:00",
+      "wait_min": "0.0",
+      "departure_time": "14:39:00",
+      "travel_time_min": "309.0",
+      "travel_cost_lkr": "20550.8",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "15:34:00",
+      "wait_min": "0.0",
+      "departure_time": "17:34:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D05",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D06",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D04",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D08",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D09",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D03",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D07",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S10/sequential": {
+  "score": -1.4098,
+  "total_cost_lkr": 106349.7,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "8005.8",
+    "daily_cost_lkr": "23650.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D15",
+      "name": "Nallur Kandaswamy Kovil, Jaffna",
+      "arrival_time": "08:03:00",
+      "wait_min": "0.0",
+      "departure_time": "09:03:00",
+      "travel_time_min": "3.0",
+      "travel_cost_lkr": "199.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.72"
+     },
+     {
+      "destination_id": "D14",
+      "name": "Koneswaram Temple, Trincomalee",
+      "arrival_time": "14:55:00",
+      "wait_min": "0.0",
+      "departure_time": "15:55:00",
+      "travel_time_min": "352.0",
+      "travel_cost_lkr": "23450.8",
+      "entry_cost_lkr": "0.0",
+      "score": "0.74"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "11188.3",
+    "daily_cost_lkr": "33052.0",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "13:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9843.3",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     },
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "14:24:00",
+      "wait_min": "0.0",
+      "departure_time": "17:24:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "9038.04",
+    "daily_cost_lkr": "26699.8",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D10",
+      "name": "Anuradhapura Sacred City (Ruwanwelisaya)",
+      "arrival_time": "09:56:00",
+      "wait_min": "0.0",
+      "departure_time": "12:56:00",
+      "travel_time_min": "116.0",
+      "travel_cost_lkr": "7706.3",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.87"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "14:56:00",
+      "wait_min": "0.0",
+      "departure_time": "16:26:00",
+      "travel_time_min": "120.0",
+      "travel_cost_lkr": "7993.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "7767.86",
+    "daily_cost_lkr": "22947.5",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:13:00",
+      "wait_min": "0.0",
+      "departure_time": "12:13:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "13:08:00",
+      "wait_min": "0.0",
+      "departure_time": "14:38:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "15:57:00",
+      "wait_min": "0.0",
+      "departure_time": "17:27:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D06",
+    "day 4: arrival 18:02 is after closing 16:00"
+   ],
+   [
+    "D04",
+    "day 4: arrival 18:31 is after closing 18:00"
+   ],
+   [
+    "D08",
+    "day 4: arrival 20:51 is after closing 18:00"
+   ],
+   [
+    "D09",
+    "day 4: arrival 21:16 is after closing 19:00"
+   ],
+   [
+    "D03",
+    "day 4: visit would end 23:53, after closing 22:00"
+   ],
+   [
+    "D07",
+    "day 4: visit would end 21:48, after day end 18:00"
+   ]
+  ]
+ },
+ "S11/naive": {
+  "score": -149.8479,
+  "total_cost_lkr": 44979.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "47095.4",
+    "daily_cost_lkr": "19614.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "10:27:00",
+      "wait_min": "0.0",
+      "departure_time": "12:27:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "14:40:00",
+      "wait_min": "0.0",
+      "departure_time": "16:10:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "60904.6",
+    "daily_cost_lkr": "25365.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "08:33:00",
+      "wait_min": "0.0",
+      "departure_time": "11:33:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     },
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "12:29:00",
+      "wait_min": "0.0",
+      "departure_time": "15:29:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S11/sequential": {
+  "score": -14.8251,
+  "total_cost_lkr": 8750.6,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "26131.74",
+    "daily_cost_lkr": "2117.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "81868.26",
+    "daily_cost_lkr": "6633.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:55:00",
+      "wait_min": "0.0",
+      "departure_time": "10:55:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D11",
+    "day 2: arrival 13:08 is after closing 12:00"
+   ],
+   [
+    "D01",
+    "day 2: arrival 13:39 is after closing 12:00"
+   ],
+   [
+    "D12",
+    "day 2: arrival 14:09 is after closing 12:00"
+   ],
+   [
+    "D14",
+    "day 2: arrival 16:29 is after closing 12:00"
+   ],
+   [
+    "D10",
+    "day 2: arrival 14:43 is after closing 12:00"
+   ]
+  ]
+ },
+ "S11/joint/default": {
+  "score": -14.8251,
+  "total_cost_lkr": 8750.6,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "26131.74",
+    "daily_cost_lkr": "2117.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "81868.26",
+    "daily_cost_lkr": "6633.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:55:00",
+      "wait_min": "0.0",
+      "departure_time": "10:55:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D11",
+    "day 2: arrival 13:08 is after closing 12:00"
+   ],
+   [
+    "D01",
+    "day 2: arrival 13:39 is after closing 12:00"
+   ],
+   [
+    "D12",
+    "day 2: arrival 14:09 is after closing 12:00"
+   ],
+   [
+    "D14",
+    "day 2: arrival 16:29 is after closing 12:00"
+   ],
+   [
+    "D10",
+    "day 2: arrival 14:43 is after closing 12:00"
+   ]
+  ]
+ },
+ "S11/joint/budget": {
+  "score": -16.5752,
+  "total_cost_lkr": 8750.6,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "26131.74",
+    "daily_cost_lkr": "2117.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:32:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "81868.26",
+    "daily_cost_lkr": "6633.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:55:00",
+      "wait_min": "0.0",
+      "departure_time": "10:55:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D11",
+    "day 2: arrival 13:08 is after closing 12:00"
+   ],
+   [
+    "D01",
+    "day 2: arrival 13:39 is after closing 12:00"
+   ],
+   [
+    "D12",
+    "day 2: arrival 14:09 is after closing 12:00"
+   ],
+   [
+    "D14",
+    "day 2: arrival 16:29 is after closing 12:00"
+   ],
+   [
+    "D10",
+    "day 2: arrival 14:43 is after closing 12:00"
+   ]
+  ]
+ },
+ "S12/naive": {
+  "score": -327.8469,
+  "total_cost_lkr": 75302.0,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "21777.87",
+    "daily_cost_lkr": "18221.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:25:00",
+      "wait_min": "0.0",
+      "departure_time": "13:25:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "14:20:00",
+      "wait_min": "0.0",
+      "departure_time": "15:50:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "22730.55",
+    "daily_cost_lkr": "19018.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:24:00",
+      "wait_min": "0.0",
+      "departure_time": "15:24:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "16:21:00",
+      "wait_min": "0.0",
+      "departure_time": "17:21:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "26072.89",
+    "daily_cost_lkr": "21814.9",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "10:28:00",
+      "wait_min": "0.0",
+      "departure_time": "14:28:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9814.9",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "19418.69",
+    "daily_cost_lkr": "16247.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "12:04:00",
+      "wait_min": "0.0",
+      "departure_time": "15:04:00",
+      "travel_time_min": "244.0",
+      "travel_cost_lkr": "16247.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D03",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D11",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D12",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D14",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S12/sequential": {
+  "score": -101.0443,
+  "total_cost_lkr": 110.1,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "90000.0",
+    "daily_cost_lkr": "110.1",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "08:02:00",
+      "wait_min": "0.0",
+      "departure_time": "09:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "110.1",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   }
+  ],
+  "unscheduled": [
+   [
+    "D03",
+    "day 4: visit would end 14:01, after closing 12:00"
+   ],
+   [
+    "D09",
+    "day 4: arrival 12:12 is after closing 12:00"
+   ],
+   [
+    "D08",
+    "day 4: arrival 14:20 is after closing 12:00"
+   ],
+   [
+    "D04",
+    "day 4: arrival 12:22 is after closing 12:00"
+   ],
+   [
+    "D06",
+    "day 4: visit would end 15:29, after closing 12:00"
+   ],
+   [
+    "D05",
+    "day 4: visit would end 12:51, after closing 12:00"
+   ],
+   [
+    "D02",
+    "day 4: visit would end 12:39, after closing 12:00"
+   ],
+   [
+    "D13",
+    "day 4: visit would end 12:23, after closing 12:00"
+   ],
+   [
+    "D11",
+    "day 4: arrival 12:26 is after closing 12:00"
+   ],
+   [
+    "D01",
+    "day 4: arrival 12:58 is after closing 12:00"
+   ],
+   [
+    "D12",
+    "day 4: arrival 13:35 is after closing 12:00"
+   ],
+   [
+    "D14",
+    "day 4: arrival 15:49 is after closing 12:00"
+   ],
+   [
+    "D10",
+    "day 4: arrival 13:31 is after closing 12:00"
+   ],
+   [
+    "D15",
+    "day 4: arrival 17:58 is after closing 12:00"
+   ]
+  ]
+ },
+ "S13/naive": {
+  "score": -166.8628,
+  "total_cost_lkr": 41295.0,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "12370.5",
+    "daily_cost_lkr": "7568.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "10:32:00",
+      "wait_min": "0.0",
+      "departure_time": "12:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "13:21:00",
+      "wait_min": "0.0",
+      "departure_time": "14:51:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "15968.54",
+    "daily_cost_lkr": "9769.2",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:05:00",
+      "wait_min": "0.0",
+      "departure_time": "15:05:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "39160.96",
+    "daily_cost_lkr": "23957.8",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D08",
+      "name": "Yala National Park",
+      "arrival_time": "13:30:00",
+      "wait_min": "0.0",
+      "departure_time": "17:30:00",
+      "travel_time_min": "180.0",
+      "travel_cost_lkr": "11957.8",
+      "entry_cost_lkr": "12000.0",
+      "score": "0.91"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D09",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D07",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D11",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D01",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D12",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S13/sequential": {
+  "score": -49.045,
+  "total_cost_lkr": 2117.3,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "67500.0",
+    "daily_cost_lkr": "2117.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "10:32:00",
+      "wait_min": "0.0",
+      "departure_time": "12:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   }
+  ],
+  "unscheduled": [
+   [
+    "D05",
+    "day 3: visit would end 13:19, after closing 13:00"
+   ],
+   [
+    "D06",
+    "visit takes 240 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D08",
+    "visit takes 240 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D09",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D07",
+    "day 3: arrival 13:39 is after closing 13:00"
+   ],
+   [
+    "D11",
+    "day 3: visit would end 14:03, after closing 13:00"
+   ],
+   [
+    "D01",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D12",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D10",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ]
+  ]
+ },
+ "S13/joint/default": {
+  "score": -49.045,
+  "total_cost_lkr": 2117.3,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "67500.0",
+    "daily_cost_lkr": "2117.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "10:32:00",
+      "wait_min": "0.0",
+      "departure_time": "12:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   }
+  ],
+  "unscheduled": [
+   [
+    "D05",
+    "day 3: visit would end 13:19, after closing 13:00"
+   ],
+   [
+    "D06",
+    "visit takes 240 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D08",
+    "visit takes 240 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D09",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D07",
+    "day 3: arrival 13:39 is after closing 13:00"
+   ],
+   [
+    "D11",
+    "day 3: visit would end 14:03, after closing 13:00"
+   ],
+   [
+    "D01",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D12",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D10",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ]
+  ]
+ },
+ "S13/joint/budget": {
+  "score": -49.4685,
+  "total_cost_lkr": 2117.3,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "67500.0",
+    "daily_cost_lkr": "2117.3",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "10:32:00",
+      "wait_min": "0.0",
+      "departure_time": "12:02:00",
+      "travel_time_min": "2.0",
+      "travel_cost_lkr": "117.3",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   }
+  ],
+  "unscheduled": [
+   [
+    "D05",
+    "day 3: visit would end 13:19, after closing 13:00"
+   ],
+   [
+    "D06",
+    "visit takes 240 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D08",
+    "visit takes 240 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D09",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D07",
+    "day 3: arrival 13:39 is after closing 13:00"
+   ],
+   [
+    "D11",
+    "day 3: visit would end 14:03, after closing 13:00"
+   ],
+   [
+    "D01",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D12",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ],
+   [
+    "D10",
+    "visit takes 180 min but it is open only 150 min within the day 10:30-18:00"
+   ]
+  ]
+ },
+ "S14/naive": {
+  "score": -146.0674,
+  "total_cost_lkr": 55278.9,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "6847.04",
+    "daily_cost_lkr": "14018.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "08:04:00",
+      "wait_min": "0.0",
+      "departure_time": "09:04:00",
+      "travel_time_min": "4.0",
+      "travel_cost_lkr": "250.7",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     },
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "10:01:00",
+      "wait_min": "0.0",
+      "departure_time": "14:01:00",
+      "travel_time_min": "57.0",
+      "travel_cost_lkr": "3798.5",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "14:36:00",
+      "wait_min": "0.0",
+      "departure_time": "16:06:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "11410.71",
+    "daily_cost_lkr": "23361.9",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "09:19:00",
+      "wait_min": "0.0",
+      "departure_time": "10:49:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "11:44:00",
+      "wait_min": "0.0",
+      "departure_time": "13:44:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "16:07:00",
+      "wait_min": "0.0",
+      "departure_time": "17:07:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "8742.25",
+    "daily_cost_lkr": "17898.6",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "11:31:00",
+      "wait_min": "0.0",
+      "departure_time": "14:01:00",
+      "travel_time_min": "211.0",
+      "travel_cost_lkr": "14065.6",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     },
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "14:59:00",
+      "wait_min": "0.0",
+      "departure_time": "17:59:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D08",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S14/sequential": {
+  "score": 19.5688,
+  "total_cost_lkr": 44802.0,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "11182.26",
+    "daily_cost_lkr": "18555.1",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "08:04:00",
+      "wait_min": "0.0",
+      "departure_time": "09:04:00",
+      "travel_time_min": "4.0",
+      "travel_cost_lkr": "250.7",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "10:08:00",
+      "wait_min": "0.0",
+      "departure_time": "11:38:00",
+      "travel_time_min": "64.0",
+      "travel_cost_lkr": "4220.4",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "12:57:00",
+      "wait_min": "0.0",
+      "departure_time": "14:27:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "15:22:00",
+      "wait_min": "0.0",
+      "departure_time": "17:22:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "5711.87",
+    "daily_cost_lkr": "9477.9",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "10:23:00",
+      "wait_min": "0.0",
+      "departure_time": "11:23:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "10105.87",
+    "daily_cost_lkr": "16769.0",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "12:12:00",
+      "wait_min": "0.0",
+      "departure_time": "15:12:00",
+      "travel_time_min": "252.0",
+      "travel_cost_lkr": "16769.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D06",
+    "day 3: visit would end 15:29, after closing 12:00"
+   ],
+   [
+    "D03",
+    "day 3: visit would end 14:01, after closing 12:00"
+   ],
+   [
+    "D08",
+    "day 3: arrival 19:16 is after closing 12:00"
+   ]
+  ]
+ },
+ "S14/joint/default": {
+  "score": 23.9822,
+  "total_cost_lkr": 41974.3,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "11935.58",
+    "daily_cost_lkr": "18555.1",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "08:04:00",
+      "wait_min": "0.0",
+      "departure_time": "09:04:00",
+      "travel_time_min": "4.0",
+      "travel_cost_lkr": "250.7",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "10:08:00",
+      "wait_min": "0.0",
+      "departure_time": "11:38:00",
+      "travel_time_min": "64.0",
+      "travel_cost_lkr": "4220.4",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "12:57:00",
+      "wait_min": "0.0",
+      "departure_time": "14:27:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "15:22:00",
+      "wait_min": "0.0",
+      "departure_time": "17:22:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "12598.84",
+    "daily_cost_lkr": "19586.2",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "12:54:00",
+      "wait_min": "0.0",
+      "departure_time": "15:54:00",
+      "travel_time_min": "294.0",
+      "travel_cost_lkr": "19586.2",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "2465.58",
+    "daily_cost_lkr": "3833.0",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:28:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D06",
+    "day 3: visit would end 15:19, after closing 12:00"
+   ],
+   [
+    "D08",
+    "day 3: arrival 19:15 is after closing 12:00"
+   ],
+   [
+    "D07",
+    "day 3: visit would end 22:09, after closing 22:00"
+   ]
+  ]
+ },
+ "S14/joint/budget": {
+  "score": 16.5906,
+  "total_cost_lkr": 28033.0,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "11482.49",
+    "daily_cost_lkr": "11921.8",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "08:04:00",
+      "wait_min": "0.0",
+      "departure_time": "09:04:00",
+      "travel_time_min": "4.0",
+      "travel_cost_lkr": "250.7",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "10:08:00",
+      "wait_min": "0.0",
+      "departure_time": "11:38:00",
+      "travel_time_min": "64.0",
+      "travel_cost_lkr": "4220.4",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "12:57:00",
+      "wait_min": "0.0",
+      "departure_time": "14:27:00",
+      "travel_time_min": "79.0",
+      "travel_cost_lkr": "5250.7",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "15517.51",
+    "daily_cost_lkr": "16111.2",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "08:55:00",
+      "wait_min": "0.0",
+      "departure_time": "10:55:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     },
+     {
+      "destination_id": "D07",
+      "name": "Galle Face Green, Colombo",
+      "arrival_time": "13:18:00",
+      "wait_min": "0.0",
+      "departure_time": "14:18:00",
+      "travel_time_min": "143.0",
+      "travel_cost_lkr": "9477.9",
+      "entry_cost_lkr": "0.0",
+      "score": "0.7"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D06",
+    "day 3: visit would end 13:53, after closing 12:00"
+   ],
+   [
+    "D03",
+    "day 3: arrival 12:50 is after closing 12:00"
+   ],
+   [
+    "D08",
+    "day 3: arrival 19:58 is after closing 12:00"
+   ],
+   [
+    "D09",
+    "dropped by joint optimizer: the plan scores higher without it"
+   ]
+  ]
+ },
+ "S15/naive": {
+  "score": -384.6796,
+  "total_cost_lkr": 94882.7,
+  "over_budget": true,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "2001.61",
+    "daily_cost_lkr": "4220.4",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:06:00",
+      "wait_min": "0.0",
+      "departure_time": "10:36:00",
+      "travel_time_min": "6.0",
+      "travel_cost_lkr": "387.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     },
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "11:34:00",
+      "wait_min": "0.0",
+      "departure_time": "14:34:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "11013.02",
+    "daily_cost_lkr": "23221.0",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D06",
+      "name": "Horton Plains National Park",
+      "arrival_time": "11:19:00",
+      "wait_min": "0.0",
+      "departure_time": "15:19:00",
+      "travel_time_min": "199.0",
+      "travel_cost_lkr": "13251.8",
+      "entry_cost_lkr": "7500.0",
+      "score": "0.84"
+     },
+     {
+      "destination_id": "D05",
+      "name": "Gregory Lake, Nuwara Eliya",
+      "arrival_time": "15:54:00",
+      "wait_min": "0.0",
+      "departure_time": "17:24:00",
+      "travel_time_min": "35.0",
+      "travel_cost_lkr": "2269.2",
+      "entry_cost_lkr": "200.0",
+      "score": "0.75"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "10134.77",
+    "daily_cost_lkr": "21369.2",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D04",
+      "name": "Nine Arch Bridge, Ella",
+      "arrival_time": "09:04:00",
+      "wait_min": "0.0",
+      "departure_time": "10:04:00",
+      "travel_time_min": "64.0",
+      "travel_cost_lkr": "4220.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.88"
+     },
+     {
+      "destination_id": "D02",
+      "name": "Temple of the Sacred Tooth Relic, Kandy",
+      "arrival_time": "12:12:00",
+      "wait_min": "0.0",
+      "departure_time": "13:42:00",
+      "travel_time_min": "128.0",
+      "travel_cost_lkr": "8515.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.92"
+     },
+     {
+      "destination_id": "D13",
+      "name": "Pinnawala Elephant Orphanage",
+      "arrival_time": "14:37:00",
+      "wait_min": "0.0",
+      "departure_time": "16:37:00",
+      "travel_time_min": "55.0",
+      "travel_cost_lkr": "3633.3",
+      "entry_cost_lkr": "3000.0",
+      "score": "0.78"
+     }
+    ]
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "11154.87",
+    "daily_cost_lkr": "23520.1",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D11",
+      "name": "Dambulla Cave Temple",
+      "arrival_time": "10:13:00",
+      "wait_min": "0.0",
+      "departure_time": "11:43:00",
+      "travel_time_min": "133.0",
+      "travel_cost_lkr": "8863.5",
+      "entry_cost_lkr": "2000.0",
+      "score": "0.83"
+     },
+     {
+      "destination_id": "D01",
+      "name": "Sigiriya Rock Fortress",
+      "arrival_time": "12:16:00",
+      "wait_min": "0.0",
+      "departure_time": "15:16:00",
+      "travel_time_min": "33.0",
+      "travel_cost_lkr": "2156.6",
+      "entry_cost_lkr": "10500.0",
+      "score": "0.95"
+     }
+    ]
+   },
+   {
+    "day": "5",
+    "daily_budget_lkr": "10695.73",
+    "daily_cost_lkr": "22552.0",
+    "over_budget": "True",
+    "stops": [
+     {
+      "destination_id": "D12",
+      "name": "Polonnaruwa Ancient City",
+      "arrival_time": "08:56:00",
+      "wait_min": "0.0",
+      "departure_time": "11:56:00",
+      "travel_time_min": "56.0",
+      "travel_cost_lkr": "3708.7",
+      "entry_cost_lkr": "9000.0",
+      "score": "0.85"
+     },
+     {
+      "destination_id": "D14",
+      "name": "Koneswaram Temple, Trincomalee",
+      "arrival_time": "14:24:00",
+      "wait_min": "0.0",
+      "departure_time": "15:24:00",
+      "travel_time_min": "148.0",
+      "travel_cost_lkr": "9843.3",
+      "entry_cost_lkr": "0.0",
+      "score": "0.74"
+     }
+    ]
+   }
+  ],
+  "unscheduled": [
+   [
+    "D10",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D15",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D07",
+    "naive: did not fit in the trip's days"
+   ],
+   [
+    "D08",
+    "naive: did not fit in the trip's days"
+   ]
+  ]
+ },
+ "S15/sequential": {
+  "score": -69.8887,
+  "total_cost_lkr": 4220.4,
+  "over_budget": false,
+  "days": [
+   {
+    "day": "1",
+    "daily_budget_lkr": "4130.65",
+    "daily_cost_lkr": "387.4",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D03",
+      "name": "Galle Fort",
+      "arrival_time": "08:06:00",
+      "wait_min": "0.0",
+      "departure_time": "10:36:00",
+      "travel_time_min": "6.0",
+      "travel_cost_lkr": "387.4",
+      "entry_cost_lkr": "0.0",
+      "score": "0.9"
+     }
+    ]
+   },
+   {
+    "day": "2",
+    "daily_budget_lkr": "40869.35",
+    "daily_cost_lkr": "3833.0",
+    "over_budget": "False",
+    "stops": [
+     {
+      "destination_id": "D09",
+      "name": "Mirissa Beach",
+      "arrival_time": "08:58:00",
+      "wait_min": "0.0",
+      "departure_time": "11:58:00",
+      "travel_time_min": "58.0",
+      "travel_cost_lkr": "3833.0",
+      "entry_cost_lkr": "0.0",
+      "score": "0.86"
+     }
+    ]
+   },
+   {
+    "day": "3",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "4",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   },
+   {
+    "day": "5",
+    "daily_budget_lkr": "0.0",
+    "daily_cost_lkr": "0.0",
+    "over_budget": "False",
+    "stops": []
+   }
+  ],
+  "unscheduled": [
+   [
+    "D08",
+    "day 5: arrival 12:04 is after closing 12:00"
+   ],
+   [
+    "D04",
+    "day 5: visit would end 12:59, after closing 12:00"
+   ],
+   [
+    "D06",
+    "day 5: visit would end 15:19, after closing 12:00"
+   ],
+   [
+    "D05",
+    "day 5: visit would end 13:19, after closing 12:00"
+   ],
+   [
+    "D07",
+    "day 5: arrival 12:12 is after closing 12:00"
+   ],
+   [
+    "D13",
+    "day 5: arrival 12:54 is after closing 12:00"
+   ],
+   [
+    "D02",
+    "day 5: arrival 12:54 is after closing 12:00"
+   ],
+   [
+    "D11",
+    "day 5: arrival 14:56 is after closing 12:00"
+   ],
+   [
+    "D01",
+    "day 5: arrival 15:20 is after closing 12:00"
+   ],
+   [
+    "D12",
+    "day 5: arrival 15:28 is after closing 12:00"
+   ],
+   [
+    "D14",
+    "day 5: arrival 17:56 is after closing 12:00"
+   ],
+   [
+    "D10",
+    "day 5: arrival 16:42 is after closing 12:00"
+   ],
+   [
+    "D15",
+    "day 5: arrival 21:34 is after closing 12:00"
+   ]
+  ]
+ }
+}

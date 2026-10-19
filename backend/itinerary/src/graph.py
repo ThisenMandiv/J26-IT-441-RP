@@ -7,6 +7,10 @@ build_graph() turns the distance/time matrix into a NetworkX DiGraph:
 
 edge_weight() folds an edge's time and cost into one number. The weights come
 from src/config.py so Dijkstra/A*/TSP (and a later ML step) change them in one place.
+
+With config.USE_TRANSPORT_MODES on (version 5), every edge uses the car, bus or walking
+option that is best for the traveller's objective weights (src/transport.py), and stores
+its name under "mode". Off = every edge is driven at cost_per_km, as before.
 """
 
 from collections.abc import Mapping, Sequence
@@ -16,6 +20,7 @@ import networkx as nx
 from src import config
 from src.distance import Matrix
 from src.models import Destination, TripRequest
+from src.transport import choose_mode
 
 
 def _destination_attrs(dest: Destination) -> dict:
@@ -48,8 +53,15 @@ def _start_attrs(trip: TripRequest) -> dict:
     }
 
 
-def _edge_attrs(entry: dict, cost_per_km: float) -> dict:
-    """Edge data from one matrix entry. Travel cost = distance x cost per km (APPROX rate)."""
+def _edge_attrs(entry: dict, cost_per_km: float, mode_weights: Mapping[str, float] | None) -> dict:
+    """Edge data from one matrix entry. Travel cost = distance x cost per km (APPROX rate).
+
+    mode_weights given: time and cost of the best transport mode for those weights instead.
+    """
+    if mode_weights is not None:
+        best = choose_mode(entry["distance_km"], entry["duration_min"], mode_weights)
+        return {"distance_km": entry["distance_km"], "duration_min": best.duration_min,
+                "cost_lkr": best.cost_lkr, "source": entry["source"], "mode": best.mode}
     return {
         "distance_km": entry["distance_km"],
         "duration_min": entry["duration_min"],
@@ -63,11 +75,18 @@ def build_graph(
     matrix: Matrix,
     trip_request: TripRequest,
     cost_per_km: float = config.TRAVEL_COST_PER_KM_LKR,
+    mode_weights: Mapping[str, float] | None = None,
 ) -> nx.DiGraph:
     """Directed graph of START + destinations, with travel data on every edge.
 
     The matrix must contain START (use distance.get_matrix_with_start).
+    mode_weights: the traveller's objective weights, used to pick a transport mode per edge
+    when config.USE_TRANSPORT_MODES is on (default: config.OBJECTIVE_WEIGHTS). Ignored when off.
     """
+    if config.USE_TRANSPORT_MODES:
+        mode_weights = config.OBJECTIVE_WEIGHTS if mode_weights is None else mode_weights
+    else:
+        mode_weights = None
     start_id = config.START_NODE_ID
     graph = nx.DiGraph()
     graph.add_node(start_id, **_start_attrs(trip_request))
@@ -84,7 +103,7 @@ def build_graph(
                 entry = matrix[origin][target]
             except KeyError:
                 raise ValueError(f"matrix has no entry for {origin} -> {target}") from None
-            graph.add_edge(origin, target, **_edge_attrs(entry, cost_per_km))
+            graph.add_edge(origin, target, **_edge_attrs(entry, cost_per_km, mode_weights))
     return graph
 
 

@@ -1,0 +1,17 @@
+scenario_id,tags,weights,method,travel_min,travel_min_per_place,within_budget,overrun_lkr,total_cost_lkr,budget_lkr,budget_used_pct,conflicts,conflict_rate,places_scheduled,places_unscheduled,unscheduled_hours,score_collected,wait_min,objective_score,runtime_s,places_in_input,synthetic_places,num_days
+L15-M,"medium budget, scalability",default,sequential,578.0,96.33,yes,0.0,64426.4,75000.0,85.9,0,0.0,6,9,8,4.87,0.0,14.5408,0.01,15,0,3
+L15-M,"medium budget, scalability",default,joint,490.0,81.67,yes,0.0,59239.7,75000.0,79.0,0,0.0,6,9,8,4.87,0.0,16.6093,1.017,15,0,3
+L15-T,"tight budget, scalability",default,sequential,578.0,96.33,no,34426.4,64426.4,30000.0,214.8,0,0.0,6,9,8,4.87,0.0,-4.1724,0.01,15,0,3
+L15-T,"tight budget, scalability",default,joint,490.0,81.67,no,29239.7,59239.7,30000.0,197.5,0,0.0,6,9,8,4.87,0.0,0.4895,1.044,15,0,3
+L20-M,"medium budget, scalability, synthetic",default,sequential,933.0,93.3,no,6025.2,106025.2,100000.0,106.0,0,0.0,10,10,9,8.06,0.0,25.1516,0.024,20,5,4
+L20-M,"medium budget, scalability, synthetic",default,joint,933.0,93.3,no,6025.2,106025.2,100000.0,106.0,0,0.0,10,10,9,8.06,0.0,25.1516,1.45,20,5,4
+L20-T,"tight budget, scalability, synthetic",default,sequential,933.0,93.3,no,66025.2,106025.2,40000.0,265.1,0,0.0,10,10,9,8.06,0.0,-1.8484,0.021,20,5,4
+L20-T,"tight budget, scalability, synthetic",default,joint,933.0,93.3,no,66025.2,106025.2,40000.0,265.1,0,0.0,10,10,9,8.06,0.0,-1.8484,1.598,20,5,4
+L30-M,"medium budget, scalability, synthetic",default,sequential,1097.0,99.73,no,5642.3,155642.3,150000.0,103.8,0,0.0,11,19,19,8.84,0.0,5.0647,0.081,30,15,6
+L30-M,"medium budget, scalability, synthetic",default,joint,1280.0,98.46,no,15460.2,165460.2,150000.0,110.3,0,0.0,13,17,14,9.84,61.0,9.5573,2.253,30,15,6
+L30-T,"tight budget, scalability, synthetic",default,sequential,1097.0,99.73,no,95642.3,155642.3,60000.0,259.4,0,0.0,11,19,19,8.84,0.0,-35.4354,0.076,30,15,6
+L30-T,"tight budget, scalability, synthetic",default,joint,1280.0,98.46,no,105460.2,165460.2,60000.0,275.8,0,0.0,13,17,14,9.84,61.0,-30.9427,2.359,30,15,6
+L50-M,"medium budget, scalability, synthetic",default,sequential,1801.0,85.76,yes,0.0,235410.2,250000.0,94.2,0,0.0,21,29,28,14.5,0.0,26.5872,0.534,50,35,10
+L50-M,"medium budget, scalability, synthetic",default,joint,1408.0,70.4,yes,0.0,213255.7,250000.0,85.3,0,0.0,20,30,28,14.1,0.0,36.2077,5.786,50,35,10
+L50-T,"tight budget, scalability, synthetic",default,sequential,1801.0,85.76,no,135410.2,235410.2,100000.0,235.4,0,0.0,21,29,28,14.5,0.0,-40.9128,0.409,50,35,10
+L50-T,"tight budget, scalability, synthetic",default,joint,1077.0,59.83,no,88354.8,188354.8,100000.0,188.4,0,0.0,18,32,28,12.98,11.0,-22.6296,5.41,50,35,10

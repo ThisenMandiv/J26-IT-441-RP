@@ -1,0 +1,9 @@
+scenario_id,places,synthetic,days,budget,seq_runtime_s,joint_runtime_s,seq_places_sched,joint_places_sched,seq_score_coll,joint_score_coll,travel_reduction_pct,seq_in_budget,joint_in_budget,seq_obj,joint_obj,obj_gain,joint_improves_obj,verdict
+L15-M,15,0,3,medium budget,0.01,1.017,6,6,4.87,4.87,15.22,yes,yes,14.5408,16.6093,2.0685,yes,better
+L15-T,15,0,3,tight budget,0.01,1.044,6,6,4.87,4.87,15.22,no,no,-4.1724,0.4895,4.6619,yes,better
+L20-M,20,5,4,medium budget,0.024,1.45,10,10,8.06,8.06,0.0,no,no,25.1516,25.1516,0.0,no (tie),same
+L20-T,20,5,4,tight budget,0.021,1.598,10,10,8.06,8.06,0.0,no,no,-1.8484,-1.8484,0.0,no (tie),same
+L30-M,30,15,6,medium budget,0.081,2.253,11,13,8.84,9.84,-16.68,no,no,5.0647,9.5573,4.4926,yes,mixed
+L30-T,30,15,6,tight budget,0.076,2.359,11,13,8.84,9.84,-16.68,no,no,-35.4354,-30.9427,4.4927,yes,mixed
+L50-M,50,35,10,medium budget,0.534,5.786,21,20,14.5,14.1,21.82,yes,yes,26.5872,36.2077,9.6205,yes,mixed
+L50-T,50,35,10,tight budget,0.409,5.41,21,18,14.5,12.98,40.2,no,no,-40.9128,-22.6296,18.2832,yes,mixed

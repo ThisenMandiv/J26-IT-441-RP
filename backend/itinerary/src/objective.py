@@ -64,7 +64,8 @@ def plan_totals(
         "score_sum": round(sum(s.score for s in stops), 4),
         "travel_min": round(sum(s.travel_time_min for s in stops), 2),
         "spend_lkr": round(sum(planned_cost(d) for d in day_plans), 2),
-        "wait_min": round(sum(s.wait_min for s in stops), 2),
+        # idle time before a lunch stop also counts as waiting (0 when the lunch flag is off)
+        "wait_min": round(sum(s.wait_min for s in stops) + sum(d.lunch.wait_min for d in day_plans if d.lunch), 2),
         "unscheduled": len(unscheduled),
         "coverage_shortfall": coverage_shortfall(len(stops), len(stops) + len(unscheduled)),
         # Sum of per-day overruns, so a badly split budget is penalised even if the trip total fits.

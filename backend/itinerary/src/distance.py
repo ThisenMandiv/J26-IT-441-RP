@@ -4,6 +4,7 @@ get_matrix() tries three sources in this order:
 1. JSON cache in data/cache/      - free and instant
 2. Google Distance Matrix API     - real road data, costs money, needs a key
 3. Haversine "fake" matrix        - straight line x road factor, offline, APPROX
+   (with config.USE_REGION_SPEEDS on, hill-country legs are driven slower; see road_speed_kmh)
 
 Matrix shape (same for every source):
     matrix[origin_id][dest_id] = {"distance_km": ..., "duration_min": ..., "source": ...}
@@ -56,12 +57,28 @@ def _entry(distance_km: float, duration_min: float, source: str) -> dict:
     }
 
 
+def road_speed_kmh(place: Location, fallback_kmh: float = config.AVG_ROAD_SPEED_KMH) -> float:
+    """Road speed around a place: its region's speed, or the fallback average outside every region."""
+    for _name, lat_min, lat_max, lng_min, lng_max, speed in config.ROAD_SPEED_REGIONS:
+        if lat_min <= place.lat <= lat_max and lng_min <= place.lng <= lng_max:
+            return speed
+    return fallback_kmh
+
+
+def _driving_min(a: Location, b: Location, km: float, avg_speed_kmh: float) -> float:
+    """Driving time for km of road: one average speed, or half the road in each end's region."""
+    if not config.USE_REGION_SPEEDS:
+        return km / avg_speed_kmh * 60
+    half = km / 2
+    return (half / road_speed_kmh(a, avg_speed_kmh) + half / road_speed_kmh(b, avg_speed_kmh)) * 60
+
+
 def _fake_entry(a: Location, b: Location, avg_speed_kmh: float, road_factor: float) -> dict:
     """Estimated road distance and driving time between two places."""
     if a.id == b.id:
         return _entry(0.0, 0.0, "haversine")
     km = haversine_km(a.lat, a.lng, b.lat, b.lng) * road_factor
-    return _entry(km, km / avg_speed_kmh * 60, "haversine")
+    return _entry(km, _driving_min(a, b, km, avg_speed_kmh), "haversine")
 
 
 def build_fake_matrix(
@@ -140,7 +157,11 @@ def get_google_matrix(destinations: Sequence[Location], api_key: str | None = No
 
 def _fake_tag() -> str:
     """Fake results depend on the config estimates, so they are part of the cache key."""
-    return f"haversine-speed{config.AVG_ROAD_SPEED_KMH}-factor{config.ROAD_DISTANCE_FACTOR}"
+    tag = f"haversine-speed{config.AVG_ROAD_SPEED_KMH}-factor{config.ROAD_DISTANCE_FACTOR}"
+    if config.USE_REGION_SPEEDS:  # flag off keeps the old tag, so old cache files still match
+        regions = hashlib.sha256(repr(config.ROAD_SPEED_REGIONS).encode()).hexdigest()[:8]
+        tag += f"-regions{regions}"
+    return tag
 
 
 def _place_keys(places: Sequence[Location]) -> list[str]:

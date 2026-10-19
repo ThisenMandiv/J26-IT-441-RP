@@ -22,6 +22,7 @@ import networkx as nx
 from src import config
 from src.distance import haversine_km
 from src.graph import edge_weight
+from src import transport
 
 Weights = Mapping[str, float]
 Heuristic = Callable[[Hashable], float]
@@ -122,7 +123,7 @@ def haversine_heuristic(
     target: Hashable,
     weights: Weights = config.EDGE_WEIGHTS,
     max_speed_kmh: float = config.MAX_PLAUSIBLE_SPEED_KMH,
-    min_cost_per_km: float = config.MIN_TRAVEL_COST_PER_KM_LKR,
+    min_cost_per_km: float | None = None,
 ) -> Heuristic:
     """Lower bound on the weight left from a node to the target.
 
@@ -130,7 +131,10 @@ def haversine_heuristic(
     and no km is cheaper than min_cost_per_km, so this best-case "edge" can only
     be cheaper than the real route: the heuristic never overestimates.
     It goes through edge_weight() so it is in exactly the same units.
+    min_cost_per_km=None: the cheapest rate in use right now (car only, or the cheapest
+    transport mode when config.USE_TRANSPORT_MODES is on), see transport.min_cost_per_km.
     """
+    min_cost_per_km = transport.min_cost_per_km() if min_cost_per_km is None else min_cost_per_km
     goal = graph.nodes[target]
 
     def h(node: Hashable) -> float:

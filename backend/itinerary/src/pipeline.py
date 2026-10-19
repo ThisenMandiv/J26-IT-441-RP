@@ -21,20 +21,22 @@ All plans are scored with the same objective (src/objective.py) and metrics (src
 """
 
 import math
-from collections.abc import Hashable, Sequence
+from collections.abc import Hashable, Mapping, Sequence
 from pathlib import Path
 from typing import NamedTuple
 
 import networkx as nx
 
 from src import config
-from src.budget import OverrunReport, allocate_budget, check_overruns
+from src.budget import OverrunReport, allocate_budget, check_overruns, cost_breakdown
 from src.distance import get_matrix_with_start
 from src.graph import build_graph
-from src.models import DayPlan, Destination, Itinerary, Stop, TripRequest, UnscheduledStop
+from src.models import DayPlan, Destination, Itinerary, TripRequest, UnscheduledStop
 from src.objective import PlanScore, score_plan
 from src.routing import shortest_path_matrix
-from src.scheduler import ScheduleResult, schedule_days, to_minutes, to_time, validate_opening_hours
+from src.scheduler import (DAY_END, Attempt, Leg, ScheduleResult, _hhmm, _make_stop, activity_end, attempt,
+                           close_day, day_window, make_day_plan, make_lunch, schedule_days,
+                           validate_opening_hours)
 from src.tsp import nearest_neighbor_order, two_opt
 
 
@@ -73,6 +75,7 @@ def _finish(days: list[DayPlan], unscheduled: list[UnscheduledStop], trip_reques
         total_cost_lkr=report.trip.total_planned_lkr,
         over_budget=report.trip.over_budget,
         unscheduled=unscheduled,
+        cost_breakdown=cost_breakdown(days),
     )
     return itinerary, score_plan(itinerary.days, itinerary.unscheduled, report, graph=graph), report
 
@@ -82,11 +85,16 @@ def run_sequential(
     trip_request: TripRequest,
     use_google: bool = False,
     cache_dir: str | Path = config.CACHE_DIR,
+    mode_weights: Mapping[str, float] | None = None,
 ) -> PipelineResult:
-    """Sequential baseline: route by travel weight first, then check hours, then budget."""
+    """Sequential baseline: route by travel weight first, then check hours, then budget.
+
+    mode_weights: the traveller's objective weights, only used to pick a transport mode
+    per leg when config.USE_TRANSPORT_MODES is on (see graph.build_graph).
+    """
     matrix = get_matrix_with_start(destinations, trip_request,
                                    use_google=use_google, cache_dir=cache_dir)
-    graph = build_graph(destinations, matrix, trip_request)
+    graph = build_graph(destinations, matrix, trip_request, mode_weights=mode_weights)
 
     # Travel weight only (time + cost of driving, config.EDGE_WEIGHTS): no hours, no budget.
     costs = shortest_path_matrix(graph, config.EDGE_WEIGHTS)
@@ -106,6 +114,15 @@ def distance_matrix(graph: nx.DiGraph) -> dict:
             for u in graph.nodes}
 
 
+def _try_ignoring_hours(node: dict, leg: Leg, clock: int, day_end: int, max_wait: int) -> Attempt:
+    """Naive stop check: only the day length. The visit starts on arrival; hours are ignored."""
+    arrival = clock + leg.duration_min
+    departure = arrival + node["visit_duration_min"]
+    if departure > day_end:
+        return Attempt(False, DAY_END, f"visit would end {_hhmm(departure)}, after day end {_hhmm(day_end)}")
+    return Attempt(True, None, "", arrival, 0, departure, leg)
+
+
 def schedule_ignoring_hours(order: Sequence[Hashable], graph: nx.DiGraph,
                             trip_request: TripRequest) -> ScheduleResult:
     """Fill days in visit order, checking only the day length. Opening hours are ignored.
@@ -113,30 +130,37 @@ def schedule_ignoring_hours(order: Sequence[Hashable], graph: nx.DiGraph,
     The visit starts the moment the traveller arrives (no waiting). A stop that would end
     after day_end moves to the next day, where the traveller starts from where they slept.
     Stops still left after the last day are unscheduled.
+    The version 5 traveller rules (lunch break, per-day start, evening drive) apply here
+    too, through scheduler.day_window and scheduler.attempt.
     """
-    day_start, day_end = to_minutes(trip_request.day_start), to_minutes(trip_request.day_end)
     queue, location = list(order[1:]), order[0]
     days: list[DayPlan] = []
     too_long: list[Hashable] = []  # do not fit even as the first stop of a fresh day
+    prev_end = None
     for day in range(1, trip_request.num_days + 1):
-        clock, stops = day_start, []
+        window = day_window(trip_request, day, prev_end)
+        clock, day_end, stops, lunch = window.start, window.end, [], None
         while queue:
             stop_id, node = queue[0], graph.nodes[queue[0]]
-            edge = graph.edges[location, stop_id]
-            arrival = clock + math.ceil(edge["duration_min"])
-            departure = arrival + node["visit_duration_min"]
-            if departure > day_end and not stops:
+            edge = graph.edges[location, stop_id]  # direct road, no shortest-path search
+            leg = Leg(math.ceil(edge["duration_min"]), edge["cost_lkr"], edge.get("mode"))
+            # max wait only limits idle time before lunch here: the naive check itself never waits
+            result = attempt(node, leg, clock, day_end, config.MAX_WAIT_MIN, lunch is not None,
+                             try_fn=_try_ignoring_hours, evening_min=-1 if stops else window.evening_min)
+            if not result.ok and not stops:
                 too_long.append(queue.pop(0))  # would block every later day
                 continue
-            if departure > day_end:
+            if not result.ok:
                 break  # try again tomorrow, keeping the order
-            stops.append(Stop(destination_id=stop_id, name=node["name"], arrival_time=to_time(arrival),
-                              departure_time=to_time(departure), travel_time_min=math.ceil(edge["duration_min"]),
-                              travel_cost_lkr=edge["cost_lkr"], entry_cost_lkr=node["cost_lkr"],
-                              score=node["score"]))
-            clock, location = departure, queue.pop(0)
-        cost = sum(s.travel_cost_lkr + s.entry_cost_lkr for s in stops)
-        days.append(DayPlan(day=day, stops=stops, daily_cost_lkr=round(cost, 2)))
+            if result.lunch:
+                lunch = make_lunch(len(stops), result.lunch)
+            stops.append(_make_stop(stop_id, node, result))
+            clock, location = result.departure, queue.pop(0)
+        late_lunch = close_day(clock, bool(stops), lunch is not None, day_end)
+        if late_lunch:
+            lunch = make_lunch(len(stops), late_lunch)
+        days.append(make_day_plan(day, stops, lunch, trip_request.num_days))
+        prev_end = activity_end(clock, late_lunch)
     reasons = {**{s: "naive: drive + visit longer than the day" for s in too_long},
                **{s: "naive: did not fit in the trip's days" for s in queue}}
     unscheduled = [UnscheduledStop(destination_id=s, name=graph.nodes[s]["name"], reason=reason)
@@ -149,11 +173,15 @@ def run_naive(
     trip_request: TripRequest,
     use_google: bool = False,
     cache_dir: str | Path = config.CACHE_DIR,
+    mode_weights: Mapping[str, float] | None = None,
 ) -> NaiveResult:
-    """Naive baseline: nearest neighbour by distance, days filled in order, hours never checked."""
+    """Naive baseline: nearest neighbour by distance, days filled in order, hours never checked.
+
+    mode_weights: as in run_sequential (transport mode per leg, only when the flag is on).
+    """
     matrix = get_matrix_with_start(destinations, trip_request,
                                    use_google=use_google, cache_dir=cache_dir)
-    graph = build_graph(destinations, matrix, trip_request)
+    graph = build_graph(destinations, matrix, trip_request, mode_weights=mode_weights)
     order = nearest_neighbor_order(distance_matrix(graph))
     schedule = schedule_ignoring_hours(order, graph, trip_request)
     itinerary, score, report = _finish(schedule.days, schedule.unscheduled, trip_request, graph)

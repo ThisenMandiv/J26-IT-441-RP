@@ -1,0 +1,13 @@
+weights,method,legs_car,legs_bus,legs_walk,lunch_stops,lunch_wait_min,evening_drives,places_scheduled,bus_share_pct
+default,naive,72,0,0,22,270.0,10,72,0.0
+default,sequential,65,0,0,18,220.0,12,65,0.0
+default,joint,69,0,0,18,186.0,11,69,0.0
+budget,naive,26,21,0,12,314.0,9,47,44.7
+budget,sequential,20,26,0,8,30.0,20,46,56.5
+budget,joint,26,27,0,7,0.0,22,53,50.9
+time,naive,72,0,0,22,270.0,10,72,0.0
+time,sequential,65,0,0,18,220.0,12,65,0.0
+time,joint,62,0,0,13,8.0,7,62,0.0
+default,exact,21,0,0,6,86.0,1,21,0.0
+budget,exact,7,7,0,4,0.0,2,14,50.0
+time,exact,19,0,0,4,8.0,1,19,0.0
