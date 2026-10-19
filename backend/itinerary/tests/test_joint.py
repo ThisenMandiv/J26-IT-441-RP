@@ -200,3 +200,32 @@ def test_restart_from_random_order_can_win(mock_destinations, cache_dir):
                for s in range(4)]
     assert all(r.score.total >= r.baseline.score.total for r in results)
     assert any(r.restart > 0 for r in results)
+
+
+# ---------- Search log (RestartStats) ----------
+
+def test_search_log_has_one_entry_per_restart(mock_runs):
+    for result in mock_runs.values():
+        assert [s.restart for s in result.stats] == list(range(config.JOINT_RESTARTS))
+        assert all(s.iterations == ITERATIONS for s in result.stats)
+
+
+def test_search_log_counts_add_up(mock_runs):
+    for result in mock_runs.values():
+        for s in result.stats:
+            assert s.tried <= s.iterations
+            assert s.infeasible + s.accepted <= s.tried  # accepted ones were feasible
+            assert s.accepted_worse <= s.accepted and s.improvements <= s.accepted
+            assert 0 <= s.last_improvement <= s.iterations
+            assert (s.last_improvement == 0) == (s.improvements == 0)
+            assert s.best_score >= s.start_score
+            per_kind = [sum(c[k] for c in s.by_kind.values()) for k in range(4)]
+            assert per_kind == [s.tried, s.tried - s.infeasible, s.accepted, s.improvements]
+
+
+def test_search_log_of_winner_matches_move_log(mock_runs):
+    for result in mock_runs.values():
+        won = next(s for s in result.stats if s.restart == result.restart)
+        assert won.improvements == len(result.moves)
+        assert won.last_improvement == (result.moves[-1].iteration if result.moves else 0)
+        assert won.start_score == result.start_score

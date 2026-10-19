@@ -47,6 +47,30 @@ class Move(NamedTuple):
     score_after: float
 
 
+class RestartStats(NamedTuple):
+    """What one restart's search did, to tell "ran out of budget" from "got stuck".
+
+    tried = changes generated; infeasible = rejected by the scheduler or hours check;
+    accepted = became the current plan (better, or worse via annealing);
+    improvements = new best plans of this restart; last_improvement = iteration of the
+    last new best (0 = never beat its starting plan). If last_improvement is close to
+    `iterations`, the search was still improving when the budget ran out.
+    by_kind maps a change kind ("swap", "move", ...) to [tried, feasible, accepted, improved].
+    """
+
+    restart: int
+    iterations: int  # budget of this restart
+    start_score: float
+    best_score: float
+    tried: int
+    infeasible: int
+    accepted: int
+    accepted_worse: int
+    improvements: int
+    last_improvement: int
+    by_kind: dict
+
+
 class JointResult(NamedTuple):
     itinerary: Itinerary
     score: PlanScore
@@ -56,6 +80,7 @@ class JointResult(NamedTuple):
     baseline: PipelineResult  # the sequential plan (restart 0 starts from it)
     restart: int  # which restart produced the plan (0 = from sequential)
     start_score: float  # score of that restart's starting plan
+    stats: tuple[RestartStats, ...] = ()  # one entry per restart that ran
 
 
 class Candidate(NamedTuple):
@@ -170,27 +195,47 @@ def _accept(delta: float, iteration: int, iterations: int, anneal: bool, rng: ra
     return anneal and rng.random() < math.exp(delta / _temperature(iteration, iterations))
 
 
-def _search(start: Candidate, reasons, graph, trip, weights, iterations, anneal, rng, cache):
-    """One local-search run from `start`. Returns (best candidate seen, changes that improved it)."""
+def _search(start: Candidate, reasons, graph, trip, weights, iterations, anneal, rng, cache,
+            restart: int = 0):
+    """One local-search run from `start`.
+
+    Returns (best candidate seen, changes that improved it, RestartStats).
+    The counters never touch rng, so they do not change which plan is found.
+    """
     current = best = start
     reasons = dict(reasons)  # drops add reasons; keep each restart separate
     moves: list[Move] = []
+    tried = infeasible = accepted = accepted_worse = 0
+    by_kind: dict[str, list[int]] = {}
     for iteration in range(1, iterations + 1):
         change = _random_change(current.day_orders, current.pool, rng, graph, weights)
         if change is None:
             break  # nothing scheduled and nothing to insert
         day_orders, pool, description = change
+        kind = by_kind.setdefault(description.split()[0], [0, 0, 0, 0])
+        tried += 1
+        kind[0] += 1
         if description.startswith("drop"):
             reasons[pool[-1]] = DROPPED_REASON  # the dropped stop is appended to the pool
         candidate = _evaluate(day_orders, pool, reasons, graph, trip, weights, cache)
         if candidate is None:
+            infeasible += 1
             continue
-        if _accept(candidate.score.total - current.score.total, iteration, iterations, anneal, rng):
+        kind[1] += 1
+        delta = candidate.score.total - current.score.total
+        if _accept(delta, iteration, iterations, anneal, rng):
             current = candidate
+            accepted += 1
+            kind[2] += 1
+            accepted_worse += delta <= IMPROVEMENT_EPS
             if current.score.total > best.score.total + IMPROVEMENT_EPS:
                 best = current
+                kind[3] += 1
                 moves.append(Move(iteration, description, best.score.total))
-    return best, moves
+    stats = RestartStats(restart, iterations, start.score.total, best.score.total, tried, infeasible,
+                         accepted, accepted_worse, len(moves), moves[-1].iteration if moves else 0,
+                         by_kind)
+    return best, moves, stats
 
 
 def _random_start(graph, trip, weights, rng, cache) -> tuple[Candidate, dict] | None:
@@ -236,6 +281,7 @@ def optimize_joint(
                            score_plan(baseline.itinerary.days, baseline.itinerary.unscheduled,
                                       baseline.budget_report, weights, graph))
     best, best_moves, best_restart, best_start = sequential, [], 0, sequential.score.total
+    all_stats: list[RestartStats] = []
 
     for restart in range(max(1, restarts)):
         if restart == 0:
@@ -244,8 +290,9 @@ def optimize_joint(
             start = _random_start(graph, trip_request, weights, rng, cache)
             if start is None:
                 continue
-        found, moves = _search(start[0], start[1], graph, trip_request, weights,
-                               max_iterations, anneal, rng, cache)
+        found, moves, stats = _search(start[0], start[1], graph, trip_request, weights,
+                                      max_iterations, anneal, rng, cache, restart)
+        all_stats.append(stats)
         if found.score.total > best.score.total + IMPROVEMENT_EPS:  # strictly better only
             best, best_moves, best_restart, best_start = found, moves, restart, start[0].score.total
 
@@ -257,4 +304,4 @@ def optimize_joint(
         unscheduled=best.unscheduled,
     )
     return JointResult(itinerary, best.score, best.report, graph, best_moves, baseline,
-                       best_restart, best_start)
+                       best_restart, best_start, tuple(all_stats))
