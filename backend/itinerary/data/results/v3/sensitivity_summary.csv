@@ -1,0 +1,6 @@
+setting,parameter,runs,better,same,mixed,worse,obj_improved,obj_ties,mean_obj_gain,mean_diff_score_coll,mean_diff_places,travel_reduction_of_totals_pct,seq_adherence,joint_adherence,naive_obj_above_joint,joint_improves_obj_in_most_runs,no_worse_verdicts,joint_adherence_not_lower,joint_collects_more_score,joint_less_total_travel,naive_never_beats_joint_obj,changed_conclusions,conclusions_same
+"default (coverage 20, T 2->0.01)",-,18,8,3,7,0,15,3,17.917,0.278,0.333,15.65,0.5,0.722,1,True,True,True,True,True,False,none,True
+coverage 10,COVERAGE_PENALTY,18,8,3,7,0,15,3,18.415,0.183,0.222,18.93,0.5,0.722,0,True,True,True,True,True,True,naive_never_beats_joint_obj,False
+coverage 40,COVERAGE_PENALTY,18,9,3,6,0,15,3,17.909,0.188,0.222,17.59,0.5,0.722,1,True,True,True,True,True,False,none,True
+T 0.5->0.0025,anneal temperature,18,9,3,6,0,15,3,17.753,0.252,0.278,16.06,0.5,0.667,0,True,True,True,True,True,True,naive_never_beats_joint_obj,False
+T 8->0.04,anneal temperature,18,9,3,6,0,15,3,17.652,0.138,0.167,18.51,0.5,0.722,0,True,True,True,True,True,True,naive_never_beats_joint_obj,False
