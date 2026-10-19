@@ -4,3 +4,7 @@ __pycache__/
 .pytest_cache/
 .env
 data/cache/
+CLAUDE.md
+data/results/results.csv
+data/results/*/results.csv
+data/results/*/*search_log.csv
