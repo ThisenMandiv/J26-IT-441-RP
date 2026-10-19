@@ -86,10 +86,30 @@ EVALUATION_WEIGHT_SETTINGS = {
 OBJECTIVE_TIME_SCALE_MIN = 60.0  # 1 hour = 1.0
 OBJECTIVE_MONEY_SCALE_LKR = 10_000.0  # 10,000 LKR = 1.0
 
+# Coverage floor: a plan should visit at least this share of the input places.
+# Every place short of the floor costs COVERAGE_PENALTY extra (on top of "unscheduled"),
+# so a plan that visits (almost) nothing can never win just by avoiding all costs.
+# The same under every weight setting: it is a sanity rule, not a traveller preference.
+# APPROX: chosen so the sequential plan beats the empty plan in all 15 scenarios x
+# 3 weight settings (worst case S10 "budget": empty was 63 points ahead without the floor).
+COVERAGE_FLOOR = 0.3  # share of input places
+COVERAGE_PENALTY = 20.0  # per place below the floor
+
 # --- Joint optimizer (src/joint.py) ---
-JOINT_MAX_ITERATIONS = 2000  # candidate changes tried by hill climbing
+JOINT_MAX_ITERATIONS = 2000  # candidate changes tried per restart
 JOINT_SEED = 42  # fixed random seed, so results are repeatable
 JOINT_DROP_POOL = 3  # "drop" picks among this many lowest-value scheduled stops
+JOINT_RESTARTS = 5  # restart 0 starts from the sequential plan, the others from random visit orders
+# Simulated annealing: sometimes accept a worse change to escape local optima.
+# Probability of accepting a change that lowers the score by d: exp(-d / T).
+# T falls geometrically from START to END over each restart. Set USE_ANNEALING = False
+# for plain hill climbing (only strictly better changes are kept).
+JOINT_USE_ANNEALING = True
+JOINT_ANNEAL_START_TEMP = 2.0  # APPROX: a 2-point loss is accepted ~37% of the time at the start
+JOINT_ANNEAL_END_TEMP = 0.01  # near the end it is effectively hill climbing
+
+# --- Exact benchmark (src/exact.py) ---
+EXACT_MAX_PLACES = 8  # exhaustive search is only run on trips this small
 
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging

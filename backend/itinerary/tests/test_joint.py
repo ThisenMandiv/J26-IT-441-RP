@@ -63,15 +63,19 @@ def test_joint_improves_on_mock_data(mock_runs):
 
 
 def test_move_log_scores_strictly_increase(mock_runs):
+    """The log is the winning restart's improvements, starting from that restart's start plan."""
     result = mock_runs[3]
-    scores = [result.baseline.score.total] + [m.score_after for m in result.moves]
+    scores = [result.start_score] + [m.score_after for m in result.moves]
     assert scores == sorted(scores) and len(set(scores)) == len(scores)
     assert scores[-1] == result.score.total
     assert all(1 <= m.iteration <= ITERATIONS for m in result.moves)
+    assert 0 <= result.restart < config.JOINT_RESTARTS
+    if result.restart == 0:
+        assert result.start_score == result.baseline.score.total
 
 
 def test_zero_iterations_returns_sequential_plan(mock_destinations, cache_dir):
-    result = optimize_joint(mock_destinations, trip(3), max_iterations=0, cache_dir=cache_dir)
+    result = optimize_joint(mock_destinations, trip(3), max_iterations=0, restarts=1, cache_dir=cache_dir)
     assert result.itinerary == result.baseline.itinerary
     assert result.score == result.baseline.score
     assert result.moves == []
@@ -151,3 +155,48 @@ def test_unscheduled_place_is_inserted_when_it_helps(mock_runs):
     result = mock_runs[3]
     assert any(m.description.startswith("insert") for m in result.moves)
     assert len(ids(result.itinerary)) > len(ids(result.baseline.itinerary))
+
+
+# ---------- Restarts and simulated annealing ----------
+
+def test_more_restarts_never_score_lower(mock_destinations, cache_dir):
+    """Restart 0 uses the random stream first, so it is identical in both runs; extra
+    restarts can only replace its result with a strictly better one."""
+    one = optimize_joint(mock_destinations, trip(3), max_iterations=300, restarts=1, cache_dir=cache_dir)
+    many = optimize_joint(mock_destinations, trip(3), max_iterations=300, restarts=4, cache_dir=cache_dir)
+    assert many.score.total >= one.score.total
+
+
+@pytest.mark.parametrize("anneal", [False, True])
+def test_hill_climbing_and_annealing_both_valid(mock_destinations, cache_dir, anneal):
+    result = optimize_joint(mock_destinations, trip(3), max_iterations=300, anneal=anneal,
+                            cache_dir=cache_dir)
+    assert result.score.total >= result.baseline.score.total
+    assert validate_opening_hours(result.itinerary.days, result.graph) == []
+    assert result.score == score_plan(result.itinerary.days, result.itinerary.unscheduled,
+                                      result.budget_report)
+
+
+def test_accept_rule():
+    import random
+
+    from src.joint import _accept, _temperature
+    rng = random.Random(0)
+    assert _accept(0.5, 1, 100, anneal=False, rng=rng)  # better: always
+    assert not _accept(-0.5, 1, 100, anneal=False, rng=rng)  # hill climbing: never worse
+    assert not _accept(0.0, 1, 100, anneal=False, rng=rng)  # ... nor equal
+    assert _temperature(1, 100) == pytest.approx(config.JOINT_ANNEAL_START_TEMP)
+    assert _temperature(100, 100) == pytest.approx(config.JOINT_ANNEAL_END_TEMP)
+    # annealing: a small loss is often accepted early, a big loss almost never late
+    early = sum(_accept(-0.5, 1, 100, True, rng) for _ in range(1000))
+    late = sum(_accept(-0.5, 100, 100, True, rng) for _ in range(1000))
+    assert early > 600 and late == 0
+
+
+def test_restart_from_random_order_can_win(mock_destinations, cache_dir):
+    """Across a few seeds at least one winning plan comes from a random restart,
+    so the restarts do real work (and joint still never drops below sequential)."""
+    results = [optimize_joint(mock_destinations, trip(3), max_iterations=200, seed=s, cache_dir=cache_dir)
+               for s in range(4)]
+    assert all(r.score.total >= r.baseline.score.total for r in results)
+    assert any(r.restart > 0 for r in results)

@@ -96,6 +96,7 @@ def test_breakdown_values_and_total():
         "wait": -w["wait"] * 0.25,
         "unscheduled": -w["unscheduled"],
         "overrun": 0.0,
+        "coverage": 0.0,  # 2 of 3 places visited, floor needs ceil(0.3 x 3) = 1
     })
     assert result.total == pytest.approx(sum(b["terms"].values()))
     assert b["total"] == result.total
@@ -109,3 +110,87 @@ def test_missing_weight_raises():
     weights = {k: v for k, v in config.OBJECTIVE_WEIGHTS.items() if k != "overrun"}
     with pytest.raises(KeyError, match="overrun"):
         score(two_stop_day(), weights=weights)
+
+
+# ---------- Coverage floor: an (almost) empty plan never wins ----------
+
+def five_places_trip_plan(entry=3000.0, travel_cost=6000.0) -> list[DayPlan]:
+    """A modest real plan: 2 of 5 places, 1 hour drive each, 18,000 LKR in total."""
+    return [DayPlan(day=1, stops=[stop("A", travel_min=60, entry=entry, travel_cost=travel_cost),
+                                  stop("B", travel_min=60, entry=entry, travel_cost=travel_cost)])]
+
+
+def left_out(*ids) -> list[UnscheduledStop]:
+    return [UnscheduledStop(destination_id=i, name=f"Place {i}", reason="test") for i in ids]
+
+
+def test_coverage_shortfall():
+    from src.objective import coverage_shortfall
+    assert coverage_shortfall(0, 5, floor=0.3) == 2  # ceil(1.5)
+    assert coverage_shortfall(2, 5, floor=0.3) == 0
+    assert coverage_shortfall(1, 10, floor=0.3) == 2  # 0.3 x 10 is exactly 3, not 4
+    assert coverage_shortfall(0, 0, floor=0.3) == 0  # nothing to visit, nothing missing
+    assert coverage_shortfall(9, 10, floor=0.5) == 0
+
+
+@pytest.mark.parametrize("weight_name", list(config.EVALUATION_WEIGHT_SETTINGS))
+@pytest.mark.parametrize("budget", [50_000.0, 10_000.0])  # within budget, and 8,000 LKR over
+def test_empty_plan_scores_below_plan_with_places(weight_name, budget):
+    weights = config.EVALUATION_WEIGHT_SETTINGS[weight_name]
+    real = score(five_places_trip_plan(), budget=budget, unscheduled=left_out("C", "D", "E"),
+                 weights=weights)
+    empty = score([DayPlan(day=1)], budget=budget, unscheduled=left_out("A", "B", "C", "D", "E"),
+                  weights=weights)
+    assert empty.breakdown["coverage_shortfall"] == 2 and real.breakdown["coverage_shortfall"] == 0
+    assert empty.total < real.total
+
+
+def test_coverage_term_in_breakdown():
+    empty = score([DayPlan(day=1)], unscheduled=left_out("A", "B", "C", "D", "E"))
+    assert empty.breakdown["terms"]["coverage"] == -config.COVERAGE_PENALTY * 2
+    assert empty.total == pytest.approx(-config.OBJECTIVE_WEIGHTS["unscheduled"] * 5
+                                        - config.COVERAGE_PENALTY * 2)
+
+
+@pytest.fixture(scope="module")
+def sequential_runs(tmp_path_factory):
+    from src.pipeline import run_sequential
+    from src.scenarios import build_scenarios
+    cache = tmp_path_factory.mktemp("cache")
+    return [(sc, run_sequential(sc.destinations, sc.trip, cache_dir=cache)) for sc in build_scenarios()]
+
+
+@pytest.mark.parametrize("weight_name", list(config.EVALUATION_WEIGHT_SETTINGS))
+def test_sequential_beats_empty_plan_in_every_scenario(sequential_runs, weight_name):
+    """Before the floor, the empty plan won 6 of these 45 cases (S07-S10, tight budgets)."""
+    weights = config.EVALUATION_WEIGHT_SETTINGS[weight_name]
+    for sc, seq in sequential_runs:
+        it = seq.itinerary
+        empty_days = [DayPlan(day=d + 1) for d in range(sc.trip.num_days)]
+        empty_left = left_out(*(d.id for d in sc.destinations))
+        empty = score_plan(empty_days, empty_left,
+                           check_overruns(empty_days, allocate_budget(empty_days, sc.trip)), weights)
+        real = score_plan(it.days, it.unscheduled, seq.budget_report, weights)
+        assert empty.total < real.total, sc.id
+
+
+@pytest.mark.parametrize("weight_name", list(config.EVALUATION_WEIGHT_SETTINGS))
+def test_sequential_beats_best_one_place_plan_in_every_scenario(sequential_runs, weight_name):
+    """'Almost nothing': the best plan that visits a single place still scores below sequential
+    (in scenarios where sequential itself visits more than one place)."""
+    from src.scheduler import schedule_fixed
+    weights = config.EVALUATION_WEIGHT_SETTINGS[weight_name]
+    for sc, seq in sequential_runs:
+        it = seq.itinerary
+        if sum(len(d.stops) for d in it.days) <= 1:
+            continue
+        best_one = -float("inf")
+        for d in sc.destinations:
+            days = schedule_fixed([[d.id]] + [[]] * (sc.trip.num_days - 1), seq.graph, sc.trip)
+            if days is None:
+                continue  # this place cannot be visited first thing on day 1
+            left = left_out(*(x.id for x in sc.destinations if x.id != d.id))
+            report = check_overruns(days, allocate_budget(days, sc.trip))
+            best_one = max(best_one, score_plan(days, left, report, weights).total)
+        real = score_plan(it.days, it.unscheduled, seq.budget_report, weights)
+        assert best_one < real.total, sc.id

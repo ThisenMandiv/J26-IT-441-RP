@@ -95,3 +95,76 @@ def test_metrics_on_baseline(run):
     assert m.num_scheduled + m.num_unscheduled == 15
     assert m.travel_time_min == result.score.breakdown["travel_min"]
     assert m.within_budget == (not it.over_budget)
+
+
+# ---------- Naive baseline (distance only, no opening-hours check) ----------
+
+from datetime import time  # noqa: E402
+
+from src.models import Destination  # noqa: E402
+from src.pipeline import run_naive  # noqa: E402
+
+
+def place(id, km_north, opening=time(6, 0), closing=time(20, 0), visit=60) -> Destination:
+    """Invented place a short drive north of Colombo."""
+    return Destination(id=id, name=f"Place {id}", lat=COLOMBO[0] + km_north / 111, lng=COLOMBO[1],
+                       category="test", cost_lkr=0, visit_duration_min=visit,
+                       opening_time=opening, closing_time=closing, score=0.5)
+
+
+def ids(itinerary) -> list[str]:
+    return [s.destination_id for d in itinerary.days for s in d.stops]
+
+
+def test_naive_visits_nearest_first(tmp_path):
+    dests = [place("FAR", 30), place("NEAR", 5), place("MID", 15)]
+    result = run_naive(dests, trip(1), cache_dir=tmp_path)
+    assert ids(result.itinerary) == ["NEAR", "MID", "FAR"]
+    assert result.conflicts == []  # all open all day, so no conflicts
+
+
+def test_naive_ignores_opening_hours_and_counts_conflicts(tmp_path):
+    """NEAR only opens at 14:00 but is nearest, so naive goes there first at ~08:10."""
+    dests = [place("NEAR", 5, opening=time(14, 0)), place("FAR", 20, closing=time(9, 0))]
+    result = run_naive(dests, trip(1), cache_dir=tmp_path)
+    assert ids(result.itinerary) == ["NEAR", "FAR"]  # scheduled anyway
+    assert all(s.wait_min == 0 for d in result.itinerary.days for s in d.stops)
+    assert len(result.conflicts) == 2
+    assert "before opening" in result.conflicts[0] and "after closing" in result.conflicts[1]
+    # the sequential baseline checks hours, so it has no conflicts on the same input
+    seq = run_sequential(dests, trip(1), cache_dir=tmp_path)
+    assert validate_opening_hours(seq.itinerary.days, seq.graph) == []
+
+
+def test_naive_fills_days_in_order(tmp_path):
+    """Four 4-hour visits: two fit per 10-hour day, the rest are left over."""
+    dests = [place(f"P{i}", 2 * i, visit=240) for i in range(1, 6)]
+    result = run_naive(dests, trip(2), cache_dir=tmp_path)
+    days = [[s.destination_id for s in d.stops] for d in result.itinerary.days]
+    assert days == [["P1", "P2"], ["P3", "P4"]]
+    assert [u.destination_id for u in result.itinerary.unscheduled] == ["P5"]
+
+
+def test_naive_skips_a_visit_longer_than_the_day(tmp_path):
+    dests = [place("LONG", 2, visit=11 * 60), place("OK", 4)]
+    result = run_naive(dests, trip(1), cache_dir=tmp_path)
+    assert ids(result.itinerary) == ["OK"]
+    (left,) = result.itinerary.unscheduled
+    assert left.destination_id == "LONG" and "longer than the day" in left.reason
+
+
+@pytest.mark.parametrize("num_days", [1, 3, 7])
+def test_naive_on_mock_data(destinations, tmp_path, num_days):
+    result = run_naive(destinations, trip(num_days), cache_dir=tmp_path)
+    it = result.itinerary
+    assert sorted(ids(it) + [u.destination_id for u in it.unscheduled]) == sorted(d.id for d in destinations)
+    assert result.conflicts == validate_opening_hours(it.days, result.graph)
+    assert result.score == score_plan(it.days, it.unscheduled, result.budget_report)
+    assert all(s.departure_time <= config.DEFAULT_DAY_END for d in it.days for s in d.stops)
+
+
+def test_naive_budget_does_not_change_the_route(destinations, tmp_path):
+    rich = run_naive(destinations, trip(3, 1_000_000), cache_dir=tmp_path)
+    poor = run_naive(destinations, trip(3, 10_000), cache_dir=tmp_path)
+    assert ids(rich.itinerary) == ids(poor.itinerary)
+    assert poor.itinerary.over_budget and not rich.itinerary.over_budget
