@@ -1,4 +1,4 @@
-"""Evaluate the joint optimizer against the baselines on every scenario (version 2).
+"""Evaluate the joint optimizer against the baselines on every scenario (versions 2 and 3).
 
     python scripts/evaluate.py                # all scenarios, all weight settings
     python scripts/evaluate.py --scenarios S01 S07 --iterations 500
@@ -12,7 +12,10 @@ For every scenario (src/scenarios.py) and every weight setting
     exact       the best possible plan under the objective (exact_benchmark),
                 only for scenarios with <= config.EXACT_MAX_PLACES places
 
-and writes to data/results/v2/ (version 1 results in data/results/ are left untouched):
+and writes to data/results/v3/ by default. Earlier results are left untouched:
+data/results/ (version 1) and data/results/v2/ (version 2, made BEFORE the opening-hour
+conflict penalty was added to the objective, so its naive objective scores are higher).
+scripts/evaluate_v3.py runs this plus the scalability and sensitivity checks.
 
     results.csv             one row per scenario x weight setting x method
     summary.csv             joint minus sequential per scenario, plus MEAN rows (as in v1)
@@ -49,7 +52,7 @@ from src.objective import score_plan  # noqa: E402
 from src.pipeline import run_naive, run_sequential  # noqa: E402
 from src.scenarios import Scenario, build_scenarios  # noqa: E402
 
-RESULTS_DIR = config.DATA_DIR / "results" / "v2"  # v1 files stay in data/results/
+RESULTS_DIR = config.DATA_DIR / "results" / "v3"  # v1 (data/results/) and v2 files are never overwritten
 NAIVE, SEQ, JOINT, EXACT = "naive", "sequential", "joint", "exact"
 HOURS_WORDS = ("closing", "opens", "open only")  # unscheduled reasons that are about opening hours
 EPS = 0.01  # differences smaller than this count as "equal"
@@ -98,7 +101,7 @@ def _timed(fn, *args, **kwargs):
 def _rescore(result, weights) -> float:
     """Objective of a plan under the given weights (naive and sequential plans ignore weights)."""
     it = result.itinerary
-    return score_plan(it.days, it.unscheduled, result.budget_report, weights).total
+    return score_plan(it.days, it.unscheduled, result.budget_report, weights, result.graph).total
 
 
 def evaluate_scenario(scenario: Scenario, weight_settings: Mapping[str, Mapping[str, float]],

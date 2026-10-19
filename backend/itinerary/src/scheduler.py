@@ -248,24 +248,35 @@ def validate_opening_hours(day_plans: Sequence[DayPlan], graph: nx.DiGraph) -> l
     Checks: the place exists, the visit starts at or after opening, lasts the full
     visit duration, and ends by closing.
     """
-    conflicts = []
-    for plan in day_plans:
-        for stop in plan.stops:
-            label = f"day {plan.day}, {stop.destination_id}"
-            if stop.destination_id not in graph:
-                conflicts.append(f"{label}: not in the graph")
-                continue
-            node = graph.nodes[stop.destination_id]
-            opening, closing = to_minutes(node["opening_time"]), to_minutes(node["closing_time"])
-            visit_start = to_minutes(stop.arrival_time) + stop.wait_min
-            departure = to_minutes(stop.departure_time)
+    return [c for plan in day_plans for stop in plan.stops for c in _stop_conflicts(plan.day, stop, graph)]
 
-            if visit_start < opening:
-                conflicts.append(f"{label}: visit starts {_hhmm(int(visit_start))}, "
-                                 f"before opening {_hhmm(opening)}")
-            if departure > closing:
-                conflicts.append(f"{label}: leaves {_hhmm(departure)}, after closing {_hhmm(closing)}")
-            if departure - visit_start < node["visit_duration_min"]:
-                conflicts.append(f"{label}: visit is {departure - visit_start:g} min, "
-                                 f"needs {node['visit_duration_min']} min")
+
+def count_conflicting_stops(day_plans: Sequence[DayPlan], graph: nx.DiGraph) -> int:
+    """How many scheduled stops have at least one opening-hour conflict (used by the objective).
+
+    Counted per stop, not per message: a visit that both starts too early and is too
+    short is still one bad visit.
+    """
+    return sum(bool(_stop_conflicts(plan.day, stop, graph)) for plan in day_plans for stop in plan.stops)
+
+
+def _stop_conflicts(day: int, stop: Stop, graph: nx.DiGraph) -> list[str]:
+    """Conflict messages for one stop (empty list = the visit fits the opening hours)."""
+    label = f"day {day}, {stop.destination_id}"
+    if stop.destination_id not in graph:
+        return [f"{label}: not in the graph"]
+    node = graph.nodes[stop.destination_id]
+    opening, closing = to_minutes(node["opening_time"]), to_minutes(node["closing_time"])
+    visit_start = to_minutes(stop.arrival_time) + stop.wait_min
+    departure = to_minutes(stop.departure_time)
+
+    conflicts = []
+    if visit_start < opening:
+        conflicts.append(f"{label}: visit starts {_hhmm(int(visit_start))}, "
+                         f"before opening {_hhmm(opening)}")
+    if departure > closing:
+        conflicts.append(f"{label}: leaves {_hhmm(departure)}, after closing {_hhmm(closing)}")
+    if departure - visit_start < node["visit_duration_min"]:
+        conflicts.append(f"{label}: visit is {departure - visit_start:g} min, "
+                         f"needs {node['visit_duration_min']} min")
     return conflicts

@@ -91,3 +91,20 @@ def test_with_early_closing_keeps_visit_possible(places):
     # untouched place, and the originals are not modified
     assert by_id["D02"].closing_time == places[1].closing_time
     assert places[0].closing_time == time(17, 30)
+
+
+# ---------- Scalability scenarios (version 3) ----------
+
+def test_scalability_scenarios(places):
+    from src.scenarios import SCALE_SIZES, build_scalability_scenarios
+    from src.synthetic import is_synthetic
+    scale = build_scalability_scenarios(places)
+    assert [len(s.destinations) for s in scale] == [n for n in SCALE_SIZES for _ in range(2)]
+    for s in scale:
+        n_synth = sum(is_synthetic(d) for d in s.destinations)
+        assert n_synth == len(s.destinations) - len(places)
+        assert ("synthetic" in s.tags) == (n_synth > 0)  # synthetic runs are always marked
+        assert s.trip.num_days == len(s.destinations) // 5
+        assert all(_check_rules(d) == [] for d in s.destinations)
+    assert len({s.id for s in scale}) == len(scale)
+    assert [s.id for s in build_scalability_scenarios()] == [s.id for s in scale]  # repeatable

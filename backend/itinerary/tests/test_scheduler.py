@@ -11,7 +11,8 @@ from src.graph import build_graph
 from src.loader import load_destinations
 from src.models import DayPlan, Destination, Stop, TripRequest
 from src.routing import shortest_path_matrix
-from src.scheduler import schedule_days, schedule_fixed, to_minutes, validate_opening_hours
+from src.scheduler import (count_conflicting_stops, schedule_days, schedule_fixed, to_minutes,
+                           validate_opening_hours)
 from src.tsp import nearest_neighbor_order, two_opt
 
 START = config.START_NODE_ID
@@ -289,6 +290,16 @@ def test_validate_flags_short_visit(one_place_graph):
 def test_validate_flags_unknown_place(one_place_graph):
     (conflict,) = validate_opening_hours(_plan(time(10, 0), time(11, 0), stop_id="Z"), one_place_graph)
     assert "not in the graph" in conflict
+
+
+def test_count_conflicting_stops_counts_stops_not_messages(one_place_graph):
+    assert count_conflicting_stops(_plan(time(8, 50), time(10, 0), wait=10), one_place_graph) == 0
+    # starts before opening AND is too short: two messages, but one bad visit
+    bad = _plan(time(8, 30), time(9, 0))
+    assert len(validate_opening_hours(bad, one_place_graph)) == 2
+    assert count_conflicting_stops(bad, one_place_graph) == 1
+    two_bad_days = [*bad, DayPlan(day=2, stops=_plan(time(11, 30), time(12, 30))[0].stops)]
+    assert count_conflicting_stops(two_bad_days, one_place_graph) == 2
 
 
 # ---------- schedule_fixed (used by the joint optimizer) ----------

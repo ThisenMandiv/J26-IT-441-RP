@@ -140,3 +140,33 @@ def build_scenarios(destinations: Sequence[Destination] | None = None) -> list[S
         sc("S15", "all 15 close 12:00, 5 days, tight, from Galle", ALL, 5, "tight", "Galle",
            ("hard",), early=True),
     ]
+
+
+# ---------- Scalability scenarios (version 3): real + SYNTHETIC places ----------
+
+SCALE_SIZES = (15, 20, 30, 50)  # 15 = the real places only (reference point)
+SCALE_PLACES_PER_DAY = 5  # num_days = places / 5, so every size has about the same pressure
+SCALE_BUDGETS = ("medium", "tight")
+
+
+def build_scalability_scenarios(destinations: Sequence[Destination] | None = None) -> list[Scenario]:
+    """Larger trips: the 15 real places plus seeded SYNTHETIC ones (src/synthetic.py).
+
+    Fixed before any run: from Colombo, num_days = size / 5, medium and tight budgets.
+    Too many places for the exact benchmark, so only naive/sequential/joint can run.
+    """
+    from src.synthetic import is_synthetic, scaled_destinations  # local: synthetic imports loader too
+
+    real = load_destinations(config.DESTINATIONS_FILE) if destinations is None else list(destinations)
+    scenarios = []
+    for size in SCALE_SIZES:
+        places = scaled_destinations(real, size)
+        n_synth = sum(is_synthetic(p) for p in places)
+        days = size // SCALE_PLACES_PER_DAY
+        for budget in SCALE_BUDGETS:
+            tags = (f"{budget} budget", "scalability") + (("synthetic",) if n_synth else ())
+            description = (f"{size} places ({len(real)} real + {n_synth} SYNTHETIC), {days} days, "
+                           f"{budget}, from Colombo")
+            scenarios.append(Scenario(f"L{size}-{budget[0].upper()}", description, places,
+                                      make_trip(days, budget, "Colombo"), tags))
+    return scenarios

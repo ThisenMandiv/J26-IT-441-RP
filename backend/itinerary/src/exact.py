@@ -93,7 +93,7 @@ class _Search:
             return None
         unscheduled = _unscheduled(self.graph, day_orders)
         report = check_overruns(days, allocate_budget(days, self.trip))
-        return score_plan(days, unscheduled, report, self.weights), days, unscheduled, report
+        return score_plan(days, unscheduled, report, self.weights, self.graph), days, unscheduled, report
 
     def _hopeless(self, optimistic: float) -> bool:
         return optimistic + BOUND_TOL <= self.best_score + EPS

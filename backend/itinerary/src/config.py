@@ -95,6 +95,17 @@ OBJECTIVE_MONEY_SCALE_LKR = 10_000.0  # 10,000 LKR = 1.0
 COVERAGE_FLOOR = 0.3  # share of input places
 COVERAGE_PENALTY = 20.0  # per place below the floor
 
+# Opening-hour conflicts: every scheduled stop that breaks its place's opening hours
+# (starts before opening, ends after closing, or is cut short) costs CONFLICT_PENALTY.
+# Only plans built WITHOUT the hours check (the naive baseline) can have such stops, so
+# this stops them from earning reward for visiting a closed place.
+# Rule for the value: one visit can add at most w_score x 1.0 + w_unscheduled + COVERAGE_PENALTY
+# (= 10 + 2 + 20 = 32 under every evaluation weight setting, 52 with COVERAGE_PENALTY = 40 in
+# the sensitivity check), so a penalty above that means a conflicting visit can never raise
+# the score. APPROX: 60 was picked from that rule, not tuned on results.
+# Same under every weight setting: like the coverage floor, it is a sanity rule, not a preference.
+CONFLICT_PENALTY = 60.0  # per scheduled stop with at least one opening-hour conflict
+
 # --- Joint optimizer (src/joint.py) ---
 JOINT_MAX_ITERATIONS = 2000  # candidate changes tried per restart
 JOINT_SEED = 42  # fixed random seed, so results are repeatable

@@ -63,8 +63,9 @@ def apply_budget(day_plans: Sequence[DayPlan], report: OverrunReport) -> list[Da
     ]
 
 
-def _finish(days: list[DayPlan], unscheduled: list[UnscheduledStop], trip_request: TripRequest):
-    """Allocate the budget, check overruns, build the Itinerary and score it."""
+def _finish(days: list[DayPlan], unscheduled: list[UnscheduledStop], trip_request: TripRequest,
+            graph: nx.DiGraph):
+    """Allocate the budget, check overruns, build the Itinerary and score it (incl. hour conflicts)."""
     report = check_overruns(days, allocate_budget(days, trip_request))
     itinerary = Itinerary(
         days=apply_budget(days, report),
@@ -73,7 +74,7 @@ def _finish(days: list[DayPlan], unscheduled: list[UnscheduledStop], trip_reques
         over_budget=report.trip.over_budget,
         unscheduled=unscheduled,
     )
-    return itinerary, score_plan(itinerary.days, itinerary.unscheduled, report), report
+    return itinerary, score_plan(itinerary.days, itinerary.unscheduled, report, graph=graph), report
 
 
 def run_sequential(
@@ -93,7 +94,7 @@ def run_sequential(
 
     schedule = schedule_days(order, graph, trip_request, config.EDGE_WEIGHTS)
 
-    itinerary, score, report = _finish(schedule.days, schedule.unscheduled, trip_request)
+    itinerary, score, report = _finish(schedule.days, schedule.unscheduled, trip_request, graph)
     return PipelineResult(itinerary, score, report, graph)
 
 
@@ -155,5 +156,5 @@ def run_naive(
     graph = build_graph(destinations, matrix, trip_request)
     order = nearest_neighbor_order(distance_matrix(graph))
     schedule = schedule_ignoring_hours(order, graph, trip_request)
-    itinerary, score, report = _finish(schedule.days, schedule.unscheduled, trip_request)
+    itinerary, score, report = _finish(schedule.days, schedule.unscheduled, trip_request, graph)
     return NaiveResult(itinerary, score, report, graph, validate_opening_hours(itinerary.days, graph))

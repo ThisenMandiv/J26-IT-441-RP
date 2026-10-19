@@ -97,6 +97,7 @@ def test_breakdown_values_and_total():
         "unscheduled": -w["unscheduled"],
         "overrun": 0.0,
         "coverage": 0.0,  # 2 of 3 places visited, floor needs ceil(0.3 x 3) = 1
+        "conflict": 0.0,  # no graph given, so opening hours are not checked
     })
     assert result.total == pytest.approx(sum(b["terms"].values()))
     assert b["total"] == result.total

@@ -20,8 +20,8 @@ def run(tmp_path_factory):
     return out, tables, small
 
 
-def test_default_output_is_v2_folder():
-    assert RESULTS_DIR == config.DATA_DIR / "results" / "v2"  # v1 results are never overwritten
+def test_default_output_is_v3_folder():
+    assert RESULTS_DIR == config.DATA_DIR / "results" / "v3"  # v1 and v2 results are never overwritten
 
 
 def test_writes_all_files(run):

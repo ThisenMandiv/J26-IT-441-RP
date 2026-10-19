@@ -159,7 +159,7 @@ def test_naive_on_mock_data(destinations, tmp_path, num_days):
     it = result.itinerary
     assert sorted(ids(it) + [u.destination_id for u in it.unscheduled]) == sorted(d.id for d in destinations)
     assert result.conflicts == validate_opening_hours(it.days, result.graph)
-    assert result.score == score_plan(it.days, it.unscheduled, result.budget_report)
+    assert result.score == score_plan(it.days, it.unscheduled, result.budget_report, graph=result.graph)
     assert all(s.departure_time <= config.DEFAULT_DAY_END for d in it.days for s in d.stops)
 
 

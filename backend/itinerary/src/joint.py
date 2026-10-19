@@ -80,7 +80,7 @@ def _evaluate(day_orders, pool, reasons, graph, trip, weights, cache) -> Candida
                    for s in pool]
     report = check_overruns(days, allocate_budget(days, trip))
     return Candidate(day_orders, pool, days, unscheduled, report,
-                     score_plan(days, unscheduled, report, weights))
+                     score_plan(days, unscheduled, report, weights, graph))
 
 
 # ---------- Random changes (each returns new day orders, pool and a description) ----------
@@ -234,7 +234,7 @@ def optimize_joint(
     sequential = Candidate(seq_orders, list(seq_reasons), baseline.itinerary.days,
                            baseline.itinerary.unscheduled, baseline.budget_report,
                            score_plan(baseline.itinerary.days, baseline.itinerary.unscheduled,
-                                      baseline.budget_report, weights))
+                                      baseline.budget_report, weights, graph))
     best, best_moves, best_restart, best_start = sequential, [], 0, sequential.score.total
 
     for restart in range(max(1, restarts)):
