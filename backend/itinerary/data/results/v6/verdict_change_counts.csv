@@ -1,0 +1,9 @@
+setting,runs,better_v5_rule,same_v5_rule,mixed_v5_rule,worse_v5_rule,better_total_wait,same_total_wait,mixed_total_wait,worse_total_wait,changed,changes
+transport modes,45,13,23,9,0,13,23,9,0,0,none
+hill speeds,45,15,21,9,0,15,21,9,0,0,none
+lunch break,45,6,30,7,2,7,29,9,0,3,worse->mixed: 2; same->better: 1
+evening drive,45,19,11,15,0,19,11,15,0,0,none
+daily costs,45,14,18,13,0,14,18,13,0,0,none
+early start days 2+,45,14,9,22,0,14,9,22,0,0,none
+all rules on,45,11,20,14,0,11,20,14,0,2,better->mixed: 1; mixed->better: 1
+TOTAL,315,92,132,89,2,93,131,91,0,5,worse->mixed: 2; same->better: 1; better->mixed: 1; mixed->better: 1

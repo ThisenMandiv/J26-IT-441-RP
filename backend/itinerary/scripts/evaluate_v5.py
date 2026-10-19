@@ -160,7 +160,7 @@ MEAN_COLS = ["places_scheduled", "score_collected", "travel_min", "travel_min_pe
 
 
 def run_ablation(scenarios: Sequence[Scenario], weight_settings, max_iterations: int, cache_dir: Path,
-                 out_dir: Path, settings=ABLATION) -> pd.DataFrame:
+                 out_dir: Path, settings=ABLATION, row_fn=_row_v5) -> pd.DataFrame:
     """Each setting's full tables and charts go to out_dir/ablation/<setting>/."""
     rows = []
     for label, overrides, change in settings:
@@ -168,7 +168,7 @@ def run_ablation(scenarios: Sequence[Scenario], weight_settings, max_iterations:
         chosen = [change(sc) for sc in scenarios] if change else list(scenarios)
         with overridden(**{**ALL_OFF, **overrides}):
             table = run_evaluation(chosen, weight_settings, out_dir=out_dir / "ablation" / label.replace(" ", "_"),
-                                   cache_dir=cache_dir, max_iterations=max_iterations, row_fn=_row_v5)["results"]
+                                   cache_dir=cache_dir, max_iterations=max_iterations, row_fn=row_fn)["results"]
         rows.append(table.assign(setting=label))
     return pd.concat(rows, ignore_index=True)
 

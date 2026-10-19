@@ -1,0 +1,316 @@
+setting,scenario_id,weights,verdict_v5_rule,seq_wait_min,joint_wait_min,seq_total_wait_min,joint_total_wait_min,verdict_total_wait,changed
+transport modes,S01,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S01,budget,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S01,time,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S02,default,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S02,budget,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S02,time,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S03,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S03,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S03,time,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S04,default,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S04,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S04,time,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S05,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S05,budget,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S05,time,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S06,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S06,time,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S07,default,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S07,budget,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S07,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S08,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S08,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S08,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S09,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S09,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S09,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S10,default,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S10,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S10,time,better,0.0,0.0,0.0,0.0,better,False
+transport modes,S11,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S11,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S11,time,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S12,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S12,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S12,time,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S13,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S13,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S13,time,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S14,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S14,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S14,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+transport modes,S15,default,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S15,budget,same,0.0,0.0,0.0,0.0,same,False
+transport modes,S15,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S01,default,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S01,budget,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S01,time,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S02,default,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S02,budget,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S02,time,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S03,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S03,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S03,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S04,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S04,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S04,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S05,default,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S05,budget,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S05,time,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S06,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S06,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S07,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S07,budget,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S07,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S08,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S08,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S08,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S09,default,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S09,budget,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S09,time,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S10,default,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S10,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S10,time,better,0.0,0.0,0.0,0.0,better,False
+hill speeds,S11,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S11,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S11,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S12,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S12,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S12,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S13,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S13,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S13,time,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S14,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S14,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S14,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+hill speeds,S15,default,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S15,budget,same,0.0,0.0,0.0,0.0,same,False
+hill speeds,S15,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S01,default,worse,0.0,0.0,91.0,8.0,mixed,True
+lunch break,S01,budget,better,0.0,0.0,91.0,86.0,better,False
+lunch break,S01,time,mixed,0.0,0.0,91.0,0.0,mixed,False
+lunch break,S02,default,worse,0.0,0.0,91.0,8.0,mixed,True
+lunch break,S02,budget,better,0.0,0.0,91.0,86.0,better,False
+lunch break,S02,time,mixed,0.0,0.0,91.0,0.0,mixed,False
+lunch break,S03,default,same,0.0,0.0,60.0,60.0,same,False
+lunch break,S03,budget,mixed,0.0,0.0,60.0,3.0,mixed,False
+lunch break,S03,time,same,0.0,0.0,60.0,60.0,same,False
+lunch break,S04,default,same,0.0,0.0,3.0,3.0,same,False
+lunch break,S04,budget,same,0.0,0.0,3.0,3.0,same,False
+lunch break,S04,time,same,0.0,0.0,3.0,3.0,same,False
+lunch break,S05,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S05,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S05,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S06,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S06,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S07,default,better,0.0,0.0,0.0,0.0,better,False
+lunch break,S07,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+lunch break,S07,time,better,0.0,0.0,0.0,0.0,better,False
+lunch break,S08,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S08,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S08,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S09,default,mixed,0.0,0.0,8.0,0.0,mixed,False
+lunch break,S09,budget,better,0.0,0.0,8.0,8.0,better,False
+lunch break,S09,time,better,0.0,0.0,8.0,8.0,better,False
+lunch break,S10,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S10,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S10,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S11,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S11,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S11,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S12,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S12,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S12,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S13,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S13,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S13,time,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S14,default,same,0.0,0.0,52.0,0.0,better,True
+lunch break,S14,budget,mixed,0.0,0.0,52.0,0.0,mixed,False
+lunch break,S14,time,mixed,0.0,0.0,52.0,0.0,mixed,False
+lunch break,S15,default,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S15,budget,same,0.0,0.0,0.0,0.0,same,False
+lunch break,S15,time,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S01,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S01,budget,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S01,time,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S02,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S02,budget,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S02,time,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S03,default,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S03,budget,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S03,time,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S04,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S04,budget,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S04,time,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S05,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S05,budget,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S05,time,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S06,default,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S06,time,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S07,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S07,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S07,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S08,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S08,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S08,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S09,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S09,budget,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S09,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S10,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S10,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S10,time,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S11,default,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S11,budget,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S11,time,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S12,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S12,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S12,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S13,default,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S13,budget,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S13,time,same,0.0,0.0,0.0,0.0,same,False
+evening drive,S14,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S14,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S14,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S15,default,better,0.0,0.0,0.0,0.0,better,False
+evening drive,S15,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+evening drive,S15,time,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S01,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S01,budget,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S01,time,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S02,default,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S02,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S02,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S03,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S03,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S03,time,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S04,default,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S04,budget,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S04,time,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S05,default,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S05,budget,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S05,time,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S06,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S06,time,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S07,default,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S07,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S07,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S08,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S08,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S08,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S09,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S09,budget,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S09,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S10,default,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S10,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S10,time,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S11,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S11,budget,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S11,time,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S12,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S12,budget,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S12,time,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S13,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S13,budget,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S13,time,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S14,default,better,0.0,0.0,0.0,0.0,better,False
+daily costs,S14,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S14,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+daily costs,S15,default,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S15,budget,same,0.0,0.0,0.0,0.0,same,False
+daily costs,S15,time,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S01,default,mixed,0.0,27.0,0.0,27.0,mixed,False
+early start days 2+,S01,budget,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S01,time,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S02,default,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S02,budget,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S02,time,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S03,default,same,27.0,27.0,27.0,27.0,same,False
+early start days 2+,S03,budget,mixed,27.0,0.0,27.0,0.0,mixed,False
+early start days 2+,S03,time,mixed,27.0,0.0,27.0,0.0,mixed,False
+early start days 2+,S04,default,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S04,budget,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S04,time,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S05,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S05,budget,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S05,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S06,default,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S06,time,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S07,default,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S07,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S07,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S08,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S08,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S08,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S09,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S09,budget,better,0.0,0.0,0.0,0.0,better,False
+early start days 2+,S09,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S10,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S10,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S10,time,mixed,0.0,17.0,0.0,17.0,mixed,False
+early start days 2+,S11,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S11,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S11,time,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S12,default,better,25.0,25.0,25.0,25.0,better,False
+early start days 2+,S12,budget,better,25.0,25.0,25.0,25.0,better,False
+early start days 2+,S12,time,better,25.0,0.0,25.0,0.0,better,False
+early start days 2+,S13,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S13,budget,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S13,time,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S14,default,same,0.0,0.0,0.0,0.0,same,False
+early start days 2+,S14,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+early start days 2+,S14,time,mixed,0.0,25.0,0.0,25.0,mixed,False
+early start days 2+,S15,default,same,25.0,25.0,25.0,25.0,same,False
+early start days 2+,S15,budget,mixed,25.0,0.0,25.0,0.0,mixed,False
+early start days 2+,S15,time,same,25.0,25.0,25.0,25.0,same,False
+all rules on,S01,default,mixed,0.0,0.0,5.0,0.0,mixed,False
+all rules on,S01,budget,better,0.0,0.0,0.0,0.0,better,False
+all rules on,S01,time,better,0.0,0.0,5.0,0.0,better,False
+all rules on,S02,default,better,0.0,0.0,5.0,47.0,mixed,True
+all rules on,S02,budget,better,0.0,0.0,0.0,0.0,better,False
+all rules on,S02,time,better,0.0,0.0,5.0,0.0,better,False
+all rules on,S03,default,same,0.0,0.0,57.0,57.0,same,False
+all rules on,S03,budget,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S03,time,mixed,0.0,0.0,57.0,0.0,mixed,False
+all rules on,S04,default,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S04,budget,better,0.0,0.0,0.0,0.0,better,False
+all rules on,S04,time,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S05,default,mixed,0.0,0.0,0.0,21.0,mixed,False
+all rules on,S05,budget,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S05,time,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S06,default,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S06,budget,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S06,time,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S07,default,better,0.0,0.0,5.0,0.0,better,False
+all rules on,S07,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+all rules on,S07,time,better,0.0,0.0,5.0,0.0,better,False
+all rules on,S08,default,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S08,budget,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S08,time,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S09,default,better,0.0,0.0,8.0,8.0,better,False
+all rules on,S09,budget,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S09,time,better,0.0,0.0,8.0,8.0,better,False
+all rules on,S10,default,mixed,0.0,30.0,57.0,30.0,better,True
+all rules on,S10,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+all rules on,S10,time,mixed,0.0,0.0,57.0,0.0,mixed,False
+all rules on,S11,default,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S11,budget,same,30.0,30.0,30.0,30.0,same,False
+all rules on,S11,time,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S12,default,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S12,budget,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S12,time,mixed,0.0,30.0,0.0,30.0,mixed,False
+all rules on,S13,default,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S13,budget,better,0.0,0.0,0.0,0.0,better,False
+all rules on,S13,time,same,0.0,0.0,0.0,0.0,same,False
+all rules on,S14,default,mixed,0.0,0.0,83.0,53.0,mixed,False
+all rules on,S14,budget,mixed,0.0,0.0,30.0,0.0,mixed,False
+all rules on,S14,time,mixed,0.0,0.0,83.0,0.0,mixed,False
+all rules on,S15,default,mixed,0.0,0.0,0.0,0.0,mixed,False
+all rules on,S15,budget,mixed,0.0,0.0,0.0,0.0,mixed,False
+all rules on,S15,time,mixed,0.0,30.0,0.0,30.0,mixed,False

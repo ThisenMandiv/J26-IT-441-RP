@@ -129,6 +129,13 @@ LUNCH_COST_LKR = 1500.0  # APPROX: rice and curry at a local restaurant, one tra
 USE_EVENING_DRIVE = False
 EVENING_DRIVE_LIMIT_MIN = 120  # APPROX: at most 2 hours of driving after day_end
 
+# --- Evaluation verdict (version 6, scripts/evaluate.py) ---
+# Off = the joint-vs-sequential verdict judges waiting by wait_min (waiting for places to
+# open only), as in v1-v5. On = it uses total_wait_min instead (that plus idle time before
+# lunch), which is the waiting the objective counts. Only the verdict changes, never a plan.
+# Needs rows with total_wait_min (scripts/evaluate_v5.py adds it).
+VERDICT_USE_TOTAL_WAIT = False
+
 # --- Plan objective (src/objective.py) ---
 # One number per complete itinerary: reward minus penalties (higher is better).
 # Each raw total is divided by its scale first, so the weights compare like with like.

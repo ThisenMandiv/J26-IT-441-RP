@@ -145,12 +145,25 @@ VERDICT_METRICS = [
     ("places_scheduled", True), ("score_collected", True),
     ("travel_min_per_place", False), ("wait_min", False),
 ]
+TOTAL_WAIT = "total_wait_min"  # waiting incl. idle before lunch (rows from scripts/evaluate_v5.py)
+
+
+def verdict_metrics() -> list[tuple[str, bool]]:
+    """VERDICT_METRICS, with wait_min swapped for total_wait_min when config.VERDICT_USE_TOTAL_WAIT is on.
+
+    Swapped, not added: total_wait_min already contains wait_min, so adding it would count it twice.
+    """
+    if not config.VERDICT_USE_TOTAL_WAIT:
+        return VERDICT_METRICS
+    return [(TOTAL_WAIT if col == "wait_min" else col, hib) for col, hib in VERDICT_METRICS]
 
 
 def verdict(seq: pd.Series, jnt: pd.Series) -> str:
-    """'better' / 'worse' / 'mixed' / 'same' for joint, judged on VERDICT_METRICS only."""
+    """'better' / 'worse' / 'mixed' / 'same' for joint, judged on verdict_metrics() only."""
     better = worse = 0
-    for col, higher_is_better in VERDICT_METRICS:
+    for col, higher_is_better in verdict_metrics():
+        if col not in seq.index or col not in jnt.index:
+            raise KeyError(f"verdict needs column {col!r} (VERDICT_USE_TOTAL_WAIT needs the v5 rows)")
         diff = float(jnt[col]) - float(seq[col])
         if pd.isna(diff) or abs(diff) < EPS:  # NaN: a plan with no places has no per-place value
             continue
@@ -172,8 +185,9 @@ def summarise(results: pd.DataFrame) -> pd.DataFrame:
         j = group[group["method"] == JOINT].iloc[0]
         row = {"scenario_id": sid, "weights": wname,
                "travel_reduction_pct": travel_time_reduction_pct(s["travel_min"], j["travel_min"])}
+        extra = (TOTAL_WAIT,) if config.VERDICT_USE_TOTAL_WAIT else ()  # flag off: columns as in v1-v5
         for col in ("travel_min_per_place", "within_budget", "overrun_lkr", "conflict_rate",
-                    "places_scheduled", "score_collected", "wait_min"):
+                    "places_scheduled", "score_collected", "wait_min", *extra):
             row[f"seq_{col}"], row[f"joint_{col}"] = s[col], j[col]
             row[f"diff_{col}"] = round(j[col] - s[col], 4)
         row["verdict"] = verdict(s, j)

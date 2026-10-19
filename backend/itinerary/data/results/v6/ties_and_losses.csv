@@ -1,0 +1,224 @@
+part,setting,scenario_id,weights,verdict,objective_tie,naive_obj_above_joint,seq_obj,joint_obj,description,wait_weight,seq_wait_obj_min,joint_wait_obj_min,wait_breakeven,seq_scores_higher_if
+v6,transport modes,S01,default,same,yes,no,44.4634,44.4634,"all 15 places, 5 days, generous, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S03,default,same,yes,no,30.1521,30.1521,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S03,budget,same,yes,no,16.6283,16.6283,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S03,time,same,yes,no,20.8521,20.8521,"cultural triangle, 2 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S04,budget,same,yes,no,29.647,29.647,"hill country, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S05,default,mixed,no,no,11.9372,26.5462,"8 random places (seed 7), 3 days, medium, from Negombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S06,default,same,yes,no,1.3378,1.3378,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S06,budget,same,yes,no,-24.8196,-24.8196,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S06,time,same,yes,no,-6.8955,-6.8955,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S07,budget,better,no,yes,-23.4395,5.8433,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S07,time,mixed,no,yes,-30.3146,-6.9014,"all 15 places, 3 days, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S08,default,mixed,no,no,7.086,14.2973,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S08,budget,same,yes,no,13.505,13.505,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S08,time,mixed,no,no,-3.1807,7.978,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S09,default,mixed,no,no,-2.5273,6.2831,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S09,budget,same,yes,no,3.5538,3.5538,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S09,time,mixed,no,no,-11.0273,-2.9169,"5 random places (seed 23), 1 day, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S10,budget,same,yes,no,-100.9099,-100.9099,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S11,default,same,yes,no,-14.8251,-14.8251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S11,budget,same,yes,no,-16.3397,-16.3397,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S11,time,same,yes,no,-16.7251,-16.7251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S12,default,same,yes,no,-101.0443,-101.0443,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S12,budget,same,yes,no,-101.0663,-101.0663,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S12,time,same,yes,no,-101.111,-101.111,"all 15 close 12:00, 4 days, medium, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S13,default,same,yes,no,-49.045,-49.045,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S13,budget,same,yes,no,-49.4685,-49.4685,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S13,time,same,yes,no,-49.1117,-49.1117,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S14,default,mixed,no,no,19.5688,23.2302,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S14,budget,mixed,no,no,14.7822,20.1761,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S14,time,mixed,no,no,-0.3312,11.7302,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,0.0,0.0,,never: same waiting
+v6,transport modes,S15,default,same,yes,no,-69.8887,-69.8887,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S15,budget,same,yes,no,-99.2162,-99.2162,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,transport modes,S15,time,same,yes,no,-72.022,-72.022,"all 15 close 12:00, 5 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S03,default,same,yes,no,29.8688,29.8688,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S03,budget,same,yes,no,20.8729,20.8729,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S03,time,same,yes,no,20.0021,20.0021,"cultural triangle, 2 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S04,default,same,yes,no,32.583,32.583,"hill country, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S04,budget,same,yes,no,26.5825,26.5825,"hill country, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S04,time,same,yes,no,20.3497,20.3497,"hill country, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S06,default,same,yes,no,1.0712,1.0712,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S06,budget,same,yes,no,-4.6198,-4.6198,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S06,time,same,yes,no,-7.6955,-7.6955,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S07,default,mixed,no,no,-31.1369,6.3826,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S07,time,mixed,no,no,-48.3036,-9.6363,"all 15 places, 3 days, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S08,default,mixed,no,no,7.086,13.114,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S08,budget,mixed,no,no,-13.8753,9.2672,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S08,time,mixed,no,no,-3.1807,7.978,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S10,budget,mixed,no,no,-91.6682,-27.9816,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S11,default,same,yes,no,-15.1084,-15.1084,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S11,budget,same,yes,no,-16.8585,-16.8585,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S11,time,same,yes,no,-17.5751,-17.5751,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S12,default,same,yes,no,-101.0443,-101.0443,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S12,budget,same,yes,no,-101.0663,-101.0663,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S12,time,same,yes,no,-101.111,-101.111,"all 15 close 12:00, 4 days, medium, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S13,default,same,yes,no,-49.0617,-49.0617,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S13,budget,same,yes,no,-49.4852,-49.4852,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S13,time,same,yes,no,-49.1617,-49.1617,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S14,default,mixed,no,no,7.5355,21.4802,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S14,budget,mixed,no,no,-31.7601,14.8406,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S14,time,mixed,no,no,-23.8978,6.4802,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S15,default,same,yes,no,-69.8887,-69.8887,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S15,budget,same,yes,no,-70.7328,-70.7328,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,hill speeds,S15,time,same,yes,no,-72.022,-72.022,"all 15 close 12:00, 5 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S01,default,mixed,no,no,47.0203,47.5637,"all 15 places, 5 days, generous, from Colombo",1.0,91.0,8.0,0.607,wait weight < 0.607
+v6,lunch break,S01,time,mixed,no,no,15.587,19.0988,"all 15 places, 5 days, generous, from Colombo",3.0,91.0,0.0,0.685,wait weight < 0.685
+v6,lunch break,S02,default,mixed,no,no,47.0203,47.5637,"all 15 places, 5 days, medium, from Colombo",1.0,91.0,8.0,0.607,wait weight < 0.607
+v6,lunch break,S02,time,mixed,no,no,15.587,19.0988,"all 15 places, 5 days, medium, from Colombo",3.0,91.0,0.0,0.685,wait weight < 0.685
+v6,lunch break,S03,default,same,yes,no,27.3624,27.3624,"cultural triangle, 2 days, medium, from Kandy",1.0,60.0,60.0,,never: same waiting
+v6,lunch break,S03,budget,mixed,no,no,14.7871,14.9021,"cultural triangle, 2 days, medium, from Kandy",1.0,60.0,3.0,0.879,wait weight < 0.879
+v6,lunch break,S03,time,same,yes,no,16.0624,16.0624,"cultural triangle, 2 days, medium, from Kandy",3.0,60.0,60.0,,never: same waiting
+v6,lunch break,S04,default,same,yes,no,33.983,33.983,"hill country, 2 days, generous, from Kandy",1.0,3.0,3.0,,never: same waiting
+v6,lunch break,S04,budget,same,yes,no,27.3825,27.3825,"hill country, 2 days, generous, from Kandy",1.0,3.0,3.0,,never: same waiting
+v6,lunch break,S04,time,same,yes,no,25.1497,25.1497,"hill country, 2 days, generous, from Kandy",3.0,3.0,3.0,,never: same waiting
+v6,lunch break,S05,default,same,yes,no,14.9634,14.9634,"8 random places (seed 7), 3 days, medium, from Negombo",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S05,budget,same,yes,no,6.3902,6.3902,"8 random places (seed 7), 3 days, medium, from Negombo",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S05,time,same,yes,no,1.4634,1.4634,"8 random places (seed 7), 3 days, medium, from Negombo",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S06,default,same,yes,no,-23.7359,-23.7359,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S06,budget,same,yes,no,-25.0411,-25.0411,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S06,time,same,yes,no,-25.5026,-25.5026,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S07,budget,mixed,no,no,-23.9051,2.177,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S08,default,same,yes,no,10.1113,10.1113,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S08,budget,same,yes,no,9.2672,9.2672,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S08,time,same,yes,no,7.978,7.978,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S09,default,mixed,no,yes,-3.5606,-2.1825,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,8.0,0.0,-9.336,never: needs a negative wait weight
+v6,lunch break,S10,default,same,yes,no,-100.87,-100.87,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S10,budget,same,yes,no,-100.9099,-100.9099,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S10,time,same,yes,no,-100.97,-100.97,"all 15 places, 4 days, tight, from Jaffna (far north)",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S11,default,same,yes,no,-14.8251,-14.8251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S11,budget,same,yes,no,-16.5752,-16.5752,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S11,time,same,yes,no,-16.7251,-16.7251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S12,default,same,yes,no,-101.0443,-101.0443,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S12,budget,same,yes,no,-101.0663,-101.0663,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S12,time,same,yes,no,-101.111,-101.111,"all 15 close 12:00, 4 days, medium, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S13,default,same,yes,no,-49.045,-49.045,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S13,budget,same,yes,no,-49.4685,-49.4685,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S13,time,same,yes,no,-49.1117,-49.1117,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,lunch break,S14,budget,mixed,no,no,13.0239,14.3668,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,52.0,0.0,-0.55,never: needs a negative wait weight
+v6,lunch break,S14,time,mixed,no,no,8.2302,11.3445,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,52.0,0.0,-0.593,never: needs a negative wait weight
+v6,lunch break,S15,default,same,yes,no,-69.8887,-69.8887,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S15,budget,same,yes,no,-70.7328,-70.7328,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,lunch break,S15,time,same,yes,no,-72.022,-72.022,"all 15 close 12:00, 5 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S03,default,same,yes,no,30.1521,30.1521,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S03,budget,same,yes,no,21.1562,21.1562,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S03,time,same,yes,no,20.8521,20.8521,"cultural triangle, 2 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S06,default,same,yes,no,1.3378,1.3378,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S06,budget,same,yes,no,-4.3532,-4.3532,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S06,time,same,yes,no,-6.8955,-6.8955,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S07,budget,mixed,no,no,-48.2107,4.877,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S07,time,mixed,no,yes,-30.3146,-6.9014,"all 15 places, 3 days, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S08,default,mixed,no,no,7.086,14.2973,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S08,budget,mixed,no,no,-13.8753,9.2672,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S08,time,mixed,no,no,-3.1807,7.978,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S09,default,mixed,no,no,-2.5273,6.2831,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S09,time,mixed,no,no,-11.0273,-2.9169,"5 random places (seed 23), 1 day, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S10,budget,mixed,no,no,-93.0295,-25.9483,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S11,default,same,yes,no,-14.8251,-14.8251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S11,budget,same,yes,no,-16.5752,-16.5752,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S11,time,same,yes,no,-16.7251,-16.7251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S12,default,mixed,no,no,-21.5089,4.7345,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S12,budget,mixed,no,no,-30.7601,-10.8304,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S12,time,mixed,no,no,-38.6756,-21.8233,"all 15 close 12:00, 4 days, medium, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S13,default,same,yes,no,2.9039,2.9039,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S13,time,same,yes,no,-6.4961,-6.4961,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S14,default,mixed,no,no,23.7606,29.6077,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S14,budget,mixed,no,no,-29.9517,20.1424,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,evening drive,S14,time,mixed,no,no,-3.6061,18.9586,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,0.0,0.0,,never: same waiting
+v6,evening drive,S15,budget,mixed,no,no,-13.5962,6.7682,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S01,default,same,yes,no,40.2134,40.2134,"all 15 places, 5 days, generous, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S02,budget,mixed,no,no,-37.3081,11.4416,"all 15 places, 5 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S02,time,mixed,no,no,-13.9694,11.2288,"all 15 places, 5 days, medium, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S03,default,same,yes,no,21.7624,21.7624,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S03,budget,mixed,no,no,-4.0129,9.296,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S03,time,same,yes,no,12.4624,12.4624,"cultural triangle, 2 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S06,default,same,yes,no,0.8878,0.8878,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S06,budget,same,yes,no,-5.7032,-5.7032,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S06,time,same,yes,no,-7.3455,-7.3455,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S07,budget,mixed,no,no,-90.5106,-37.423,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S07,time,mixed,no,yes,-44.4146,-21.0014,"all 15 places, 3 days, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S08,default,mixed,no,no,-1.314,8.6011,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S08,budget,mixed,no,no,-39.0753,4.7366,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S08,time,mixed,no,no,-11.5807,6.4678,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S09,default,mixed,no,no,-5.2273,3.583,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S09,time,mixed,no,no,-13.7273,-5.617,"5 random places (seed 23), 1 day, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S10,budget,mixed,no,no,-152.4295,-85.3483,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S11,default,same,yes,no,-16.2251,-16.2251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S11,budget,same,yes,no,-20.7752,-20.7752,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S11,time,same,yes,no,-18.1251,-18.1251,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S12,default,same,yes,no,-104.3443,-104.3443,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S12,budget,same,yes,no,-110.9663,-110.9663,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S12,time,same,yes,no,-104.411,-104.411,"all 15 close 12:00, 4 days, medium, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S13,default,same,yes,no,-51.395,-51.395,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S13,budget,same,yes,no,-56.5185,-56.5185,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S13,time,same,yes,no,-51.4617,-51.4617,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S14,budget,mixed,no,no,-49.4936,-12.2092,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S14,time,mixed,no,no,-14.4312,1.467,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,0.0,0.0,,never: same waiting
+v6,daily costs,S15,default,same,yes,no,-74.9989,-74.9989,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S15,budget,same,yes,no,-86.0634,-86.0634,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,daily costs,S15,time,same,yes,no,-77.1322,-77.1322,"all 15 close 12:00, 5 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S01,default,mixed,no,no,40.1008,65.8469,"all 15 places, 5 days, generous, from Colombo",1.0,0.0,27.0,58.214,wait weight > 58.214
+v6,early start days 2+,S03,default,same,yes,no,30.7397,30.7397,"cultural triangle, 2 days, medium, from Kandy",1.0,27.0,27.0,,never: same waiting
+v6,early start days 2+,S03,budget,mixed,no,no,9.9525,21.1562,"cultural triangle, 2 days, medium, from Kandy",1.0,27.0,0.0,-23.897,never: needs a negative wait weight
+v6,early start days 2+,S03,time,mixed,no,no,15.6064,20.8521,"cultural triangle, 2 days, medium, from Kandy",3.0,27.0,0.0,-8.657,never: needs a negative wait weight
+v6,early start days 2+,S05,default,mixed,no,no,18.5923,22.2095,"8 random places (seed 7), 3 days, medium, from Negombo",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S05,time,mixed,no,no,-13.6744,4.8428,"8 random places (seed 7), 3 days, medium, from Negombo",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S06,default,same,yes,no,1.3378,1.3378,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S06,budget,same,yes,no,-4.3532,-4.3532,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S06,time,same,yes,no,-6.8955,-6.8955,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S07,budget,mixed,no,no,-55.4406,4.877,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S07,time,mixed,no,no,-31.7246,-5.57,"all 15 places, 3 days, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S08,default,mixed,no,no,9.5304,14.2973,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S08,budget,mixed,no,no,-23.2089,9.2672,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S08,time,mixed,no,no,-5.6696,7.978,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S09,default,mixed,no,no,-2.5273,6.2831,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S09,time,mixed,no,no,-11.0273,-2.9169,"5 random places (seed 23), 1 day, tight, from Colombo",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S10,default,mixed,no,no,9.463,16.2676,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S10,budget,mixed,no,no,-99.3442,-25.9483,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S10,time,mixed,no,no,-29.4037,-12.6579,"all 15 places, 4 days, tight, from Jaffna (far north)",3.0,0.0,17.0,62.103,wait weight > 62.103
+v6,early start days 2+,S11,default,mixed,no,no,-15.8091,11.22,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S11,budget,mixed,no,no,-18.2606,6.7601,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S11,time,mixed,no,no,-19.9758,3.52,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S13,default,mixed,no,no,7.433,12.3352,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S13,budget,same,yes,no,3.9655,3.9655,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S13,time,same,yes,no,3.5663,3.5663,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S14,default,same,yes,no,27.3023,27.3023,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S14,budget,mixed,no,no,-4.0597,16.5906,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,0.0,0.0,,never: same waiting
+v6,early start days 2+,S14,time,mixed,no,no,5.469,17.7086,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,0.0,25.0,32.375,wait weight > 32.375
+v6,early start days 2+,S15,default,same,yes,no,21.0727,21.0727,"all 15 close 12:00, 5 days, tight, from Galle",1.0,25.0,25.0,,never: same waiting
+v6,early start days 2+,S15,budget,mixed,no,no,12.8514,13.0323,"all 15 close 12:00, 5 days, tight, from Galle",1.0,25.0,0.0,0.566,wait weight < 0.566
+v6,early start days 2+,S15,time,same,yes,no,4.4394,4.4394,"all 15 close 12:00, 5 days, tight, from Galle",3.0,25.0,25.0,,never: same waiting
+v6,all rules on,S01,default,mixed,no,no,27.219,37.0565,"all 15 places, 5 days, generous, from Colombo",1.0,5.0,0.0,-117.05,never: needs a negative wait weight
+v6,all rules on,S02,default,mixed,no,no,27.219,31.2855,"all 15 places, 5 days, medium, from Colombo",1.0,5.0,47.0,6.809,wait weight > 6.809
+v6,all rules on,S03,default,same,yes,no,20.5291,20.5291,"cultural triangle, 2 days, medium, from Kandy",1.0,57.0,57.0,,never: same waiting
+v6,all rules on,S03,budget,same,yes,no,-20.0897,-20.0897,"cultural triangle, 2 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S03,time,mixed,no,no,8.7624,12.3229,"cultural triangle, 2 days, medium, from Kandy",3.0,57.0,0.0,-0.748,never: needs a negative wait weight
+v6,all rules on,S04,default,same,yes,no,31.183,31.183,"hill country, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S04,time,same,yes,no,18.9497,18.9497,"hill country, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,all rules on,S05,default,mixed,no,no,5.0291,11.1634,"8 random places (seed 7), 3 days, medium, from Negombo",1.0,0.0,21.0,18.527,wait weight > 18.527
+v6,all rules on,S05,budget,same,yes,no,-1.3948,-1.3948,"8 random places (seed 7), 3 days, medium, from Negombo",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S05,time,same,yes,no,-5.9376,-5.9376,"8 random places (seed 7), 3 days, medium, from Negombo",3.0,0.0,0.0,,never: same waiting
+v6,all rules on,S06,default,same,yes,no,-24.3026,-24.3026,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S06,budget,same,yes,no,-26.1529,-26.1529,"6 random places (seed 11), 1 day, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S06,time,same,yes,no,-26.6026,-26.6026,"6 random places (seed 11), 1 day, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,all rules on,S07,budget,mixed,no,no,-53.5515,-18.3986,"all 15 places, 3 days, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S08,default,same,yes,no,9.0113,9.0113,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S08,budget,same,yes,no,5.793,5.793,"south coast, 2 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S08,time,same,yes,no,6.878,6.878,"south coast, 2 days, tight, from Galle",3.0,0.0,0.0,,never: same waiting
+v6,all rules on,S09,budget,same,yes,no,-50.9,-50.9,"5 random places (seed 23), 1 day, tight, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S10,budget,mixed,no,no,-35.7337,-18.3008,"all 15 places, 4 days, tight, from Jaffna (far north)",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S10,time,mixed,no,no,-57.1308,-46.6504,"all 15 places, 4 days, tight, from Jaffna (far north)",3.0,57.0,0.0,-8.032,never: needs a negative wait weight
+v6,all rules on,S11,default,same,yes,no,-16.2084,-16.2084,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S11,budget,same,yes,no,-20.5897,-20.5897,"cultural triangle closes 12:00, 2 days, generous, from Kandy",1.0,30.0,30.0,,never: same waiting
+v6,all rules on,S11,time,same,yes,no,-18.6751,-18.6751,"cultural triangle closes 12:00, 2 days, generous, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,all rules on,S12,default,same,yes,no,-24.2089,-24.2089,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S12,budget,same,yes,no,-34.9952,-34.9952,"all 15 close 12:00, 4 days, medium, from Colombo",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S12,time,mixed,no,no,-41.3756,-35.8042,"all 15 close 12:00, 4 days, medium, from Colombo",3.0,0.0,30.0,14.143,wait weight > 14.143
+v6,all rules on,S13,default,same,yes,no,-0.8294,-0.8294,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S13,time,same,yes,no,-13.8961,-13.8961,"10 random (seed 5), close 13:00, start 10:30, 3 days, medium, from Kandy",3.0,0.0,0.0,,never: same waiting
+v6,all rules on,S14,default,mixed,no,no,1.2325,7.367,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,83.0,53.0,-11.269,never: needs a negative wait weight
+v6,all rules on,S14,budget,mixed,no,no,-27.5189,-1.6241,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",1.0,30.0,0.0,-50.79,never: needs a negative wait weight
+v6,all rules on,S14,time,mixed,no,no,-19.9342,-3.3531,"south coast + hill country, half close 12:00, 3 days, tight, from Ella",3.0,83.0,0.0,-8.986,never: needs a negative wait weight
+v6,all rules on,S15,default,mixed,no,no,-16.6154,-15.0681,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S15,budget,mixed,no,no,-32.4585,-14.7054,"all 15 close 12:00, 5 days, tight, from Galle",1.0,0.0,0.0,,never: same waiting
+v6,all rules on,S15,time,mixed,no,no,-36.3487,-33.1961,"all 15 close 12:00, 5 days, tight, from Galle",3.0,0.0,30.0,9.305,wait weight > 9.305

@@ -1,0 +1,1093 @@
+scenario_id,weights,method,matches,differing_columns,setting
+S01,default,naive,True,,all rules on
+S01,default,sequential,True,,all rules on
+S01,default,joint,True,,all rules on
+S01,budget,naive,True,,all rules on
+S01,budget,sequential,True,,all rules on
+S01,budget,joint,True,,all rules on
+S01,time,naive,True,,all rules on
+S01,time,sequential,True,,all rules on
+S01,time,joint,True,,all rules on
+S02,default,naive,True,,all rules on
+S02,default,sequential,True,,all rules on
+S02,default,joint,True,,all rules on
+S02,budget,naive,True,,all rules on
+S02,budget,sequential,True,,all rules on
+S02,budget,joint,True,,all rules on
+S02,time,naive,True,,all rules on
+S02,time,sequential,True,,all rules on
+S02,time,joint,True,,all rules on
+S03,default,naive,True,,all rules on
+S03,default,sequential,True,,all rules on
+S03,default,joint,True,,all rules on
+S03,default,exact,True,,all rules on
+S03,budget,naive,True,,all rules on
+S03,budget,sequential,True,,all rules on
+S03,budget,joint,True,,all rules on
+S03,budget,exact,True,,all rules on
+S03,time,naive,True,,all rules on
+S03,time,sequential,True,,all rules on
+S03,time,joint,True,,all rules on
+S03,time,exact,True,,all rules on
+S04,default,naive,True,,all rules on
+S04,default,sequential,True,,all rules on
+S04,default,joint,True,,all rules on
+S04,default,exact,True,,all rules on
+S04,budget,naive,True,,all rules on
+S04,budget,sequential,True,,all rules on
+S04,budget,joint,True,,all rules on
+S04,budget,exact,True,,all rules on
+S04,time,naive,True,,all rules on
+S04,time,sequential,True,,all rules on
+S04,time,joint,True,,all rules on
+S04,time,exact,True,,all rules on
+S05,default,naive,True,,all rules on
+S05,default,sequential,True,,all rules on
+S05,default,joint,True,,all rules on
+S05,default,exact,True,,all rules on
+S05,budget,naive,True,,all rules on
+S05,budget,sequential,True,,all rules on
+S05,budget,joint,True,,all rules on
+S05,budget,exact,True,,all rules on
+S05,time,naive,True,,all rules on
+S05,time,sequential,True,,all rules on
+S05,time,joint,True,,all rules on
+S05,time,exact,True,,all rules on
+S06,default,naive,True,,all rules on
+S06,default,sequential,True,,all rules on
+S06,default,joint,True,,all rules on
+S06,default,exact,True,,all rules on
+S06,budget,naive,True,,all rules on
+S06,budget,sequential,True,,all rules on
+S06,budget,joint,True,,all rules on
+S06,budget,exact,True,,all rules on
+S06,time,naive,True,,all rules on
+S06,time,sequential,True,,all rules on
+S06,time,joint,True,,all rules on
+S06,time,exact,True,,all rules on
+S07,default,naive,True,,all rules on
+S07,default,sequential,True,,all rules on
+S07,default,joint,True,,all rules on
+S07,budget,naive,True,,all rules on
+S07,budget,sequential,True,,all rules on
+S07,budget,joint,True,,all rules on
+S07,time,naive,True,,all rules on
+S07,time,sequential,True,,all rules on
+S07,time,joint,True,,all rules on
+S08,default,naive,True,,all rules on
+S08,default,sequential,True,,all rules on
+S08,default,joint,True,,all rules on
+S08,default,exact,True,,all rules on
+S08,budget,naive,True,,all rules on
+S08,budget,sequential,True,,all rules on
+S08,budget,joint,True,,all rules on
+S08,budget,exact,True,,all rules on
+S08,time,naive,True,,all rules on
+S08,time,sequential,True,,all rules on
+S08,time,joint,True,,all rules on
+S08,time,exact,True,,all rules on
+S09,default,naive,True,,all rules on
+S09,default,sequential,True,,all rules on
+S09,default,joint,True,,all rules on
+S09,default,exact,True,,all rules on
+S09,budget,naive,True,,all rules on
+S09,budget,sequential,True,,all rules on
+S09,budget,joint,True,,all rules on
+S09,budget,exact,True,,all rules on
+S09,time,naive,True,,all rules on
+S09,time,sequential,True,,all rules on
+S09,time,joint,True,,all rules on
+S09,time,exact,True,,all rules on
+S10,default,naive,True,,all rules on
+S10,default,sequential,True,,all rules on
+S10,default,joint,True,,all rules on
+S10,budget,naive,True,,all rules on
+S10,budget,sequential,True,,all rules on
+S10,budget,joint,True,,all rules on
+S10,time,naive,True,,all rules on
+S10,time,sequential,True,,all rules on
+S10,time,joint,True,,all rules on
+S11,default,naive,True,,all rules on
+S11,default,sequential,True,,all rules on
+S11,default,joint,True,,all rules on
+S11,default,exact,True,,all rules on
+S11,budget,naive,True,,all rules on
+S11,budget,sequential,True,,all rules on
+S11,budget,joint,True,,all rules on
+S11,budget,exact,True,,all rules on
+S11,time,naive,True,,all rules on
+S11,time,sequential,True,,all rules on
+S11,time,joint,True,,all rules on
+S11,time,exact,True,,all rules on
+S12,default,naive,True,,all rules on
+S12,default,sequential,True,,all rules on
+S12,default,joint,True,,all rules on
+S12,budget,naive,True,,all rules on
+S12,budget,sequential,True,,all rules on
+S12,budget,joint,True,,all rules on
+S12,time,naive,True,,all rules on
+S12,time,sequential,True,,all rules on
+S12,time,joint,True,,all rules on
+S13,default,naive,True,,all rules on
+S13,default,sequential,True,,all rules on
+S13,default,joint,True,,all rules on
+S13,budget,naive,True,,all rules on
+S13,budget,sequential,True,,all rules on
+S13,budget,joint,True,,all rules on
+S13,time,naive,True,,all rules on
+S13,time,sequential,True,,all rules on
+S13,time,joint,True,,all rules on
+S14,default,naive,True,,all rules on
+S14,default,sequential,True,,all rules on
+S14,default,joint,True,,all rules on
+S14,budget,naive,True,,all rules on
+S14,budget,sequential,True,,all rules on
+S14,budget,joint,True,,all rules on
+S14,time,naive,True,,all rules on
+S14,time,sequential,True,,all rules on
+S14,time,joint,True,,all rules on
+S15,default,naive,True,,all rules on
+S15,default,sequential,True,,all rules on
+S15,default,joint,True,,all rules on
+S15,budget,naive,True,,all rules on
+S15,budget,sequential,True,,all rules on
+S15,budget,joint,True,,all rules on
+S15,time,naive,True,,all rules on
+S15,time,sequential,True,,all rules on
+S15,time,joint,True,,all rules on
+S01,default,naive,True,,transport modes
+S01,default,sequential,True,,transport modes
+S01,default,joint,True,,transport modes
+S01,budget,naive,True,,transport modes
+S01,budget,sequential,True,,transport modes
+S01,budget,joint,True,,transport modes
+S01,time,naive,True,,transport modes
+S01,time,sequential,True,,transport modes
+S01,time,joint,True,,transport modes
+S02,default,naive,True,,transport modes
+S02,default,sequential,True,,transport modes
+S02,default,joint,True,,transport modes
+S02,budget,naive,True,,transport modes
+S02,budget,sequential,True,,transport modes
+S02,budget,joint,True,,transport modes
+S02,time,naive,True,,transport modes
+S02,time,sequential,True,,transport modes
+S02,time,joint,True,,transport modes
+S03,default,naive,True,,transport modes
+S03,default,sequential,True,,transport modes
+S03,default,joint,True,,transport modes
+S03,default,exact,True,,transport modes
+S03,budget,naive,True,,transport modes
+S03,budget,sequential,True,,transport modes
+S03,budget,joint,True,,transport modes
+S03,budget,exact,True,,transport modes
+S03,time,naive,True,,transport modes
+S03,time,sequential,True,,transport modes
+S03,time,joint,True,,transport modes
+S03,time,exact,True,,transport modes
+S04,default,naive,True,,transport modes
+S04,default,sequential,True,,transport modes
+S04,default,joint,True,,transport modes
+S04,default,exact,True,,transport modes
+S04,budget,naive,True,,transport modes
+S04,budget,sequential,True,,transport modes
+S04,budget,joint,True,,transport modes
+S04,budget,exact,True,,transport modes
+S04,time,naive,True,,transport modes
+S04,time,sequential,True,,transport modes
+S04,time,joint,True,,transport modes
+S04,time,exact,True,,transport modes
+S05,default,naive,True,,transport modes
+S05,default,sequential,True,,transport modes
+S05,default,joint,True,,transport modes
+S05,default,exact,True,,transport modes
+S05,budget,naive,True,,transport modes
+S05,budget,sequential,True,,transport modes
+S05,budget,joint,True,,transport modes
+S05,budget,exact,True,,transport modes
+S05,time,naive,True,,transport modes
+S05,time,sequential,True,,transport modes
+S05,time,joint,True,,transport modes
+S05,time,exact,True,,transport modes
+S06,default,naive,True,,transport modes
+S06,default,sequential,True,,transport modes
+S06,default,joint,True,,transport modes
+S06,default,exact,True,,transport modes
+S06,budget,naive,True,,transport modes
+S06,budget,sequential,True,,transport modes
+S06,budget,joint,True,,transport modes
+S06,budget,exact,True,,transport modes
+S06,time,naive,True,,transport modes
+S06,time,sequential,True,,transport modes
+S06,time,joint,True,,transport modes
+S06,time,exact,True,,transport modes
+S07,default,naive,True,,transport modes
+S07,default,sequential,True,,transport modes
+S07,default,joint,True,,transport modes
+S07,budget,naive,True,,transport modes
+S07,budget,sequential,True,,transport modes
+S07,budget,joint,True,,transport modes
+S07,time,naive,True,,transport modes
+S07,time,sequential,True,,transport modes
+S07,time,joint,True,,transport modes
+S08,default,naive,True,,transport modes
+S08,default,sequential,True,,transport modes
+S08,default,joint,True,,transport modes
+S08,default,exact,True,,transport modes
+S08,budget,naive,True,,transport modes
+S08,budget,sequential,True,,transport modes
+S08,budget,joint,True,,transport modes
+S08,budget,exact,True,,transport modes
+S08,time,naive,True,,transport modes
+S08,time,sequential,True,,transport modes
+S08,time,joint,True,,transport modes
+S08,time,exact,True,,transport modes
+S09,default,naive,True,,transport modes
+S09,default,sequential,True,,transport modes
+S09,default,joint,True,,transport modes
+S09,default,exact,True,,transport modes
+S09,budget,naive,True,,transport modes
+S09,budget,sequential,True,,transport modes
+S09,budget,joint,True,,transport modes
+S09,budget,exact,True,,transport modes
+S09,time,naive,True,,transport modes
+S09,time,sequential,True,,transport modes
+S09,time,joint,True,,transport modes
+S09,time,exact,True,,transport modes
+S10,default,naive,True,,transport modes
+S10,default,sequential,True,,transport modes
+S10,default,joint,True,,transport modes
+S10,budget,naive,True,,transport modes
+S10,budget,sequential,True,,transport modes
+S10,budget,joint,True,,transport modes
+S10,time,naive,True,,transport modes
+S10,time,sequential,True,,transport modes
+S10,time,joint,True,,transport modes
+S11,default,naive,True,,transport modes
+S11,default,sequential,True,,transport modes
+S11,default,joint,True,,transport modes
+S11,default,exact,True,,transport modes
+S11,budget,naive,True,,transport modes
+S11,budget,sequential,True,,transport modes
+S11,budget,joint,True,,transport modes
+S11,budget,exact,True,,transport modes
+S11,time,naive,True,,transport modes
+S11,time,sequential,True,,transport modes
+S11,time,joint,True,,transport modes
+S11,time,exact,True,,transport modes
+S12,default,naive,True,,transport modes
+S12,default,sequential,True,,transport modes
+S12,default,joint,True,,transport modes
+S12,budget,naive,True,,transport modes
+S12,budget,sequential,True,,transport modes
+S12,budget,joint,True,,transport modes
+S12,time,naive,True,,transport modes
+S12,time,sequential,True,,transport modes
+S12,time,joint,True,,transport modes
+S13,default,naive,True,,transport modes
+S13,default,sequential,True,,transport modes
+S13,default,joint,True,,transport modes
+S13,budget,naive,True,,transport modes
+S13,budget,sequential,True,,transport modes
+S13,budget,joint,True,,transport modes
+S13,time,naive,True,,transport modes
+S13,time,sequential,True,,transport modes
+S13,time,joint,True,,transport modes
+S14,default,naive,True,,transport modes
+S14,default,sequential,True,,transport modes
+S14,default,joint,True,,transport modes
+S14,budget,naive,True,,transport modes
+S14,budget,sequential,True,,transport modes
+S14,budget,joint,True,,transport modes
+S14,time,naive,True,,transport modes
+S14,time,sequential,True,,transport modes
+S14,time,joint,True,,transport modes
+S15,default,naive,True,,transport modes
+S15,default,sequential,True,,transport modes
+S15,default,joint,True,,transport modes
+S15,budget,naive,True,,transport modes
+S15,budget,sequential,True,,transport modes
+S15,budget,joint,True,,transport modes
+S15,time,naive,True,,transport modes
+S15,time,sequential,True,,transport modes
+S15,time,joint,True,,transport modes
+S01,default,naive,True,,hill speeds
+S01,default,sequential,True,,hill speeds
+S01,default,joint,True,,hill speeds
+S01,budget,naive,True,,hill speeds
+S01,budget,sequential,True,,hill speeds
+S01,budget,joint,True,,hill speeds
+S01,time,naive,True,,hill speeds
+S01,time,sequential,True,,hill speeds
+S01,time,joint,True,,hill speeds
+S02,default,naive,True,,hill speeds
+S02,default,sequential,True,,hill speeds
+S02,default,joint,True,,hill speeds
+S02,budget,naive,True,,hill speeds
+S02,budget,sequential,True,,hill speeds
+S02,budget,joint,True,,hill speeds
+S02,time,naive,True,,hill speeds
+S02,time,sequential,True,,hill speeds
+S02,time,joint,True,,hill speeds
+S03,default,naive,True,,hill speeds
+S03,default,sequential,True,,hill speeds
+S03,default,joint,True,,hill speeds
+S03,default,exact,True,,hill speeds
+S03,budget,naive,True,,hill speeds
+S03,budget,sequential,True,,hill speeds
+S03,budget,joint,True,,hill speeds
+S03,budget,exact,True,,hill speeds
+S03,time,naive,True,,hill speeds
+S03,time,sequential,True,,hill speeds
+S03,time,joint,True,,hill speeds
+S03,time,exact,True,,hill speeds
+S04,default,naive,True,,hill speeds
+S04,default,sequential,True,,hill speeds
+S04,default,joint,True,,hill speeds
+S04,default,exact,True,,hill speeds
+S04,budget,naive,True,,hill speeds
+S04,budget,sequential,True,,hill speeds
+S04,budget,joint,True,,hill speeds
+S04,budget,exact,True,,hill speeds
+S04,time,naive,True,,hill speeds
+S04,time,sequential,True,,hill speeds
+S04,time,joint,True,,hill speeds
+S04,time,exact,True,,hill speeds
+S05,default,naive,True,,hill speeds
+S05,default,sequential,True,,hill speeds
+S05,default,joint,True,,hill speeds
+S05,default,exact,True,,hill speeds
+S05,budget,naive,True,,hill speeds
+S05,budget,sequential,True,,hill speeds
+S05,budget,joint,True,,hill speeds
+S05,budget,exact,True,,hill speeds
+S05,time,naive,True,,hill speeds
+S05,time,sequential,True,,hill speeds
+S05,time,joint,True,,hill speeds
+S05,time,exact,True,,hill speeds
+S06,default,naive,True,,hill speeds
+S06,default,sequential,True,,hill speeds
+S06,default,joint,True,,hill speeds
+S06,default,exact,True,,hill speeds
+S06,budget,naive,True,,hill speeds
+S06,budget,sequential,True,,hill speeds
+S06,budget,joint,True,,hill speeds
+S06,budget,exact,True,,hill speeds
+S06,time,naive,True,,hill speeds
+S06,time,sequential,True,,hill speeds
+S06,time,joint,True,,hill speeds
+S06,time,exact,True,,hill speeds
+S07,default,naive,True,,hill speeds
+S07,default,sequential,True,,hill speeds
+S07,default,joint,True,,hill speeds
+S07,budget,naive,True,,hill speeds
+S07,budget,sequential,True,,hill speeds
+S07,budget,joint,True,,hill speeds
+S07,time,naive,True,,hill speeds
+S07,time,sequential,True,,hill speeds
+S07,time,joint,True,,hill speeds
+S08,default,naive,True,,hill speeds
+S08,default,sequential,True,,hill speeds
+S08,default,joint,True,,hill speeds
+S08,default,exact,True,,hill speeds
+S08,budget,naive,True,,hill speeds
+S08,budget,sequential,True,,hill speeds
+S08,budget,joint,True,,hill speeds
+S08,budget,exact,True,,hill speeds
+S08,time,naive,True,,hill speeds
+S08,time,sequential,True,,hill speeds
+S08,time,joint,True,,hill speeds
+S08,time,exact,True,,hill speeds
+S09,default,naive,True,,hill speeds
+S09,default,sequential,True,,hill speeds
+S09,default,joint,True,,hill speeds
+S09,default,exact,True,,hill speeds
+S09,budget,naive,True,,hill speeds
+S09,budget,sequential,True,,hill speeds
+S09,budget,joint,True,,hill speeds
+S09,budget,exact,True,,hill speeds
+S09,time,naive,True,,hill speeds
+S09,time,sequential,True,,hill speeds
+S09,time,joint,True,,hill speeds
+S09,time,exact,True,,hill speeds
+S10,default,naive,True,,hill speeds
+S10,default,sequential,True,,hill speeds
+S10,default,joint,True,,hill speeds
+S10,budget,naive,True,,hill speeds
+S10,budget,sequential,True,,hill speeds
+S10,budget,joint,True,,hill speeds
+S10,time,naive,True,,hill speeds
+S10,time,sequential,True,,hill speeds
+S10,time,joint,True,,hill speeds
+S11,default,naive,True,,hill speeds
+S11,default,sequential,True,,hill speeds
+S11,default,joint,True,,hill speeds
+S11,default,exact,True,,hill speeds
+S11,budget,naive,True,,hill speeds
+S11,budget,sequential,True,,hill speeds
+S11,budget,joint,True,,hill speeds
+S11,budget,exact,True,,hill speeds
+S11,time,naive,True,,hill speeds
+S11,time,sequential,True,,hill speeds
+S11,time,joint,True,,hill speeds
+S11,time,exact,True,,hill speeds
+S12,default,naive,True,,hill speeds
+S12,default,sequential,True,,hill speeds
+S12,default,joint,True,,hill speeds
+S12,budget,naive,True,,hill speeds
+S12,budget,sequential,True,,hill speeds
+S12,budget,joint,True,,hill speeds
+S12,time,naive,True,,hill speeds
+S12,time,sequential,True,,hill speeds
+S12,time,joint,True,,hill speeds
+S13,default,naive,True,,hill speeds
+S13,default,sequential,True,,hill speeds
+S13,default,joint,True,,hill speeds
+S13,budget,naive,True,,hill speeds
+S13,budget,sequential,True,,hill speeds
+S13,budget,joint,True,,hill speeds
+S13,time,naive,True,,hill speeds
+S13,time,sequential,True,,hill speeds
+S13,time,joint,True,,hill speeds
+S14,default,naive,True,,hill speeds
+S14,default,sequential,True,,hill speeds
+S14,default,joint,True,,hill speeds
+S14,budget,naive,True,,hill speeds
+S14,budget,sequential,True,,hill speeds
+S14,budget,joint,True,,hill speeds
+S14,time,naive,True,,hill speeds
+S14,time,sequential,True,,hill speeds
+S14,time,joint,True,,hill speeds
+S15,default,naive,True,,hill speeds
+S15,default,sequential,True,,hill speeds
+S15,default,joint,True,,hill speeds
+S15,budget,naive,True,,hill speeds
+S15,budget,sequential,True,,hill speeds
+S15,budget,joint,True,,hill speeds
+S15,time,naive,True,,hill speeds
+S15,time,sequential,True,,hill speeds
+S15,time,joint,True,,hill speeds
+S01,default,naive,True,,lunch break
+S01,default,sequential,True,,lunch break
+S01,default,joint,True,,lunch break
+S01,budget,naive,True,,lunch break
+S01,budget,sequential,True,,lunch break
+S01,budget,joint,True,,lunch break
+S01,time,naive,True,,lunch break
+S01,time,sequential,True,,lunch break
+S01,time,joint,True,,lunch break
+S02,default,naive,True,,lunch break
+S02,default,sequential,True,,lunch break
+S02,default,joint,True,,lunch break
+S02,budget,naive,True,,lunch break
+S02,budget,sequential,True,,lunch break
+S02,budget,joint,True,,lunch break
+S02,time,naive,True,,lunch break
+S02,time,sequential,True,,lunch break
+S02,time,joint,True,,lunch break
+S03,default,naive,True,,lunch break
+S03,default,sequential,True,,lunch break
+S03,default,joint,True,,lunch break
+S03,default,exact,True,,lunch break
+S03,budget,naive,True,,lunch break
+S03,budget,sequential,True,,lunch break
+S03,budget,joint,True,,lunch break
+S03,budget,exact,True,,lunch break
+S03,time,naive,True,,lunch break
+S03,time,sequential,True,,lunch break
+S03,time,joint,True,,lunch break
+S03,time,exact,True,,lunch break
+S04,default,naive,True,,lunch break
+S04,default,sequential,True,,lunch break
+S04,default,joint,True,,lunch break
+S04,default,exact,True,,lunch break
+S04,budget,naive,True,,lunch break
+S04,budget,sequential,True,,lunch break
+S04,budget,joint,True,,lunch break
+S04,budget,exact,True,,lunch break
+S04,time,naive,True,,lunch break
+S04,time,sequential,True,,lunch break
+S04,time,joint,True,,lunch break
+S04,time,exact,True,,lunch break
+S05,default,naive,True,,lunch break
+S05,default,sequential,True,,lunch break
+S05,default,joint,True,,lunch break
+S05,default,exact,True,,lunch break
+S05,budget,naive,True,,lunch break
+S05,budget,sequential,True,,lunch break
+S05,budget,joint,True,,lunch break
+S05,budget,exact,True,,lunch break
+S05,time,naive,True,,lunch break
+S05,time,sequential,True,,lunch break
+S05,time,joint,True,,lunch break
+S05,time,exact,True,,lunch break
+S06,default,naive,True,,lunch break
+S06,default,sequential,True,,lunch break
+S06,default,joint,True,,lunch break
+S06,default,exact,True,,lunch break
+S06,budget,naive,True,,lunch break
+S06,budget,sequential,True,,lunch break
+S06,budget,joint,True,,lunch break
+S06,budget,exact,True,,lunch break
+S06,time,naive,True,,lunch break
+S06,time,sequential,True,,lunch break
+S06,time,joint,True,,lunch break
+S06,time,exact,True,,lunch break
+S07,default,naive,True,,lunch break
+S07,default,sequential,True,,lunch break
+S07,default,joint,True,,lunch break
+S07,budget,naive,True,,lunch break
+S07,budget,sequential,True,,lunch break
+S07,budget,joint,True,,lunch break
+S07,time,naive,True,,lunch break
+S07,time,sequential,True,,lunch break
+S07,time,joint,True,,lunch break
+S08,default,naive,True,,lunch break
+S08,default,sequential,True,,lunch break
+S08,default,joint,True,,lunch break
+S08,default,exact,True,,lunch break
+S08,budget,naive,True,,lunch break
+S08,budget,sequential,True,,lunch break
+S08,budget,joint,True,,lunch break
+S08,budget,exact,True,,lunch break
+S08,time,naive,True,,lunch break
+S08,time,sequential,True,,lunch break
+S08,time,joint,True,,lunch break
+S08,time,exact,True,,lunch break
+S09,default,naive,True,,lunch break
+S09,default,sequential,True,,lunch break
+S09,default,joint,True,,lunch break
+S09,default,exact,True,,lunch break
+S09,budget,naive,True,,lunch break
+S09,budget,sequential,True,,lunch break
+S09,budget,joint,True,,lunch break
+S09,budget,exact,True,,lunch break
+S09,time,naive,True,,lunch break
+S09,time,sequential,True,,lunch break
+S09,time,joint,True,,lunch break
+S09,time,exact,True,,lunch break
+S10,default,naive,True,,lunch break
+S10,default,sequential,True,,lunch break
+S10,default,joint,True,,lunch break
+S10,budget,naive,True,,lunch break
+S10,budget,sequential,True,,lunch break
+S10,budget,joint,True,,lunch break
+S10,time,naive,True,,lunch break
+S10,time,sequential,True,,lunch break
+S10,time,joint,True,,lunch break
+S11,default,naive,True,,lunch break
+S11,default,sequential,True,,lunch break
+S11,default,joint,True,,lunch break
+S11,default,exact,True,,lunch break
+S11,budget,naive,True,,lunch break
+S11,budget,sequential,True,,lunch break
+S11,budget,joint,True,,lunch break
+S11,budget,exact,True,,lunch break
+S11,time,naive,True,,lunch break
+S11,time,sequential,True,,lunch break
+S11,time,joint,True,,lunch break
+S11,time,exact,True,,lunch break
+S12,default,naive,True,,lunch break
+S12,default,sequential,True,,lunch break
+S12,default,joint,True,,lunch break
+S12,budget,naive,True,,lunch break
+S12,budget,sequential,True,,lunch break
+S12,budget,joint,True,,lunch break
+S12,time,naive,True,,lunch break
+S12,time,sequential,True,,lunch break
+S12,time,joint,True,,lunch break
+S13,default,naive,True,,lunch break
+S13,default,sequential,True,,lunch break
+S13,default,joint,True,,lunch break
+S13,budget,naive,True,,lunch break
+S13,budget,sequential,True,,lunch break
+S13,budget,joint,True,,lunch break
+S13,time,naive,True,,lunch break
+S13,time,sequential,True,,lunch break
+S13,time,joint,True,,lunch break
+S14,default,naive,True,,lunch break
+S14,default,sequential,True,,lunch break
+S14,default,joint,True,,lunch break
+S14,budget,naive,True,,lunch break
+S14,budget,sequential,True,,lunch break
+S14,budget,joint,True,,lunch break
+S14,time,naive,True,,lunch break
+S14,time,sequential,True,,lunch break
+S14,time,joint,True,,lunch break
+S15,default,naive,True,,lunch break
+S15,default,sequential,True,,lunch break
+S15,default,joint,True,,lunch break
+S15,budget,naive,True,,lunch break
+S15,budget,sequential,True,,lunch break
+S15,budget,joint,True,,lunch break
+S15,time,naive,True,,lunch break
+S15,time,sequential,True,,lunch break
+S15,time,joint,True,,lunch break
+S01,default,naive,True,,evening drive
+S01,default,sequential,True,,evening drive
+S01,default,joint,True,,evening drive
+S01,budget,naive,True,,evening drive
+S01,budget,sequential,True,,evening drive
+S01,budget,joint,True,,evening drive
+S01,time,naive,True,,evening drive
+S01,time,sequential,True,,evening drive
+S01,time,joint,True,,evening drive
+S02,default,naive,True,,evening drive
+S02,default,sequential,True,,evening drive
+S02,default,joint,True,,evening drive
+S02,budget,naive,True,,evening drive
+S02,budget,sequential,True,,evening drive
+S02,budget,joint,True,,evening drive
+S02,time,naive,True,,evening drive
+S02,time,sequential,True,,evening drive
+S02,time,joint,True,,evening drive
+S03,default,naive,True,,evening drive
+S03,default,sequential,True,,evening drive
+S03,default,joint,True,,evening drive
+S03,default,exact,True,,evening drive
+S03,budget,naive,True,,evening drive
+S03,budget,sequential,True,,evening drive
+S03,budget,joint,True,,evening drive
+S03,budget,exact,True,,evening drive
+S03,time,naive,True,,evening drive
+S03,time,sequential,True,,evening drive
+S03,time,joint,True,,evening drive
+S03,time,exact,True,,evening drive
+S04,default,naive,True,,evening drive
+S04,default,sequential,True,,evening drive
+S04,default,joint,True,,evening drive
+S04,default,exact,True,,evening drive
+S04,budget,naive,True,,evening drive
+S04,budget,sequential,True,,evening drive
+S04,budget,joint,True,,evening drive
+S04,budget,exact,True,,evening drive
+S04,time,naive,True,,evening drive
+S04,time,sequential,True,,evening drive
+S04,time,joint,True,,evening drive
+S04,time,exact,True,,evening drive
+S05,default,naive,True,,evening drive
+S05,default,sequential,True,,evening drive
+S05,default,joint,True,,evening drive
+S05,default,exact,True,,evening drive
+S05,budget,naive,True,,evening drive
+S05,budget,sequential,True,,evening drive
+S05,budget,joint,True,,evening drive
+S05,budget,exact,True,,evening drive
+S05,time,naive,True,,evening drive
+S05,time,sequential,True,,evening drive
+S05,time,joint,True,,evening drive
+S05,time,exact,True,,evening drive
+S06,default,naive,True,,evening drive
+S06,default,sequential,True,,evening drive
+S06,default,joint,True,,evening drive
+S06,default,exact,True,,evening drive
+S06,budget,naive,True,,evening drive
+S06,budget,sequential,True,,evening drive
+S06,budget,joint,True,,evening drive
+S06,budget,exact,True,,evening drive
+S06,time,naive,True,,evening drive
+S06,time,sequential,True,,evening drive
+S06,time,joint,True,,evening drive
+S06,time,exact,True,,evening drive
+S07,default,naive,True,,evening drive
+S07,default,sequential,True,,evening drive
+S07,default,joint,True,,evening drive
+S07,budget,naive,True,,evening drive
+S07,budget,sequential,True,,evening drive
+S07,budget,joint,True,,evening drive
+S07,time,naive,True,,evening drive
+S07,time,sequential,True,,evening drive
+S07,time,joint,True,,evening drive
+S08,default,naive,True,,evening drive
+S08,default,sequential,True,,evening drive
+S08,default,joint,True,,evening drive
+S08,default,exact,True,,evening drive
+S08,budget,naive,True,,evening drive
+S08,budget,sequential,True,,evening drive
+S08,budget,joint,True,,evening drive
+S08,budget,exact,True,,evening drive
+S08,time,naive,True,,evening drive
+S08,time,sequential,True,,evening drive
+S08,time,joint,True,,evening drive
+S08,time,exact,True,,evening drive
+S09,default,naive,True,,evening drive
+S09,default,sequential,True,,evening drive
+S09,default,joint,True,,evening drive
+S09,default,exact,True,,evening drive
+S09,budget,naive,True,,evening drive
+S09,budget,sequential,True,,evening drive
+S09,budget,joint,True,,evening drive
+S09,budget,exact,True,,evening drive
+S09,time,naive,True,,evening drive
+S09,time,sequential,True,,evening drive
+S09,time,joint,True,,evening drive
+S09,time,exact,True,,evening drive
+S10,default,naive,True,,evening drive
+S10,default,sequential,True,,evening drive
+S10,default,joint,True,,evening drive
+S10,budget,naive,True,,evening drive
+S10,budget,sequential,True,,evening drive
+S10,budget,joint,True,,evening drive
+S10,time,naive,True,,evening drive
+S10,time,sequential,True,,evening drive
+S10,time,joint,True,,evening drive
+S11,default,naive,True,,evening drive
+S11,default,sequential,True,,evening drive
+S11,default,joint,True,,evening drive
+S11,default,exact,True,,evening drive
+S11,budget,naive,True,,evening drive
+S11,budget,sequential,True,,evening drive
+S11,budget,joint,True,,evening drive
+S11,budget,exact,True,,evening drive
+S11,time,naive,True,,evening drive
+S11,time,sequential,True,,evening drive
+S11,time,joint,True,,evening drive
+S11,time,exact,True,,evening drive
+S12,default,naive,True,,evening drive
+S12,default,sequential,True,,evening drive
+S12,default,joint,True,,evening drive
+S12,budget,naive,True,,evening drive
+S12,budget,sequential,True,,evening drive
+S12,budget,joint,True,,evening drive
+S12,time,naive,True,,evening drive
+S12,time,sequential,True,,evening drive
+S12,time,joint,True,,evening drive
+S13,default,naive,True,,evening drive
+S13,default,sequential,True,,evening drive
+S13,default,joint,True,,evening drive
+S13,budget,naive,True,,evening drive
+S13,budget,sequential,True,,evening drive
+S13,budget,joint,True,,evening drive
+S13,time,naive,True,,evening drive
+S13,time,sequential,True,,evening drive
+S13,time,joint,True,,evening drive
+S14,default,naive,True,,evening drive
+S14,default,sequential,True,,evening drive
+S14,default,joint,True,,evening drive
+S14,budget,naive,True,,evening drive
+S14,budget,sequential,True,,evening drive
+S14,budget,joint,True,,evening drive
+S14,time,naive,True,,evening drive
+S14,time,sequential,True,,evening drive
+S14,time,joint,True,,evening drive
+S15,default,naive,True,,evening drive
+S15,default,sequential,True,,evening drive
+S15,default,joint,True,,evening drive
+S15,budget,naive,True,,evening drive
+S15,budget,sequential,True,,evening drive
+S15,budget,joint,True,,evening drive
+S15,time,naive,True,,evening drive
+S15,time,sequential,True,,evening drive
+S15,time,joint,True,,evening drive
+S01,default,naive,True,,daily costs
+S01,default,sequential,True,,daily costs
+S01,default,joint,True,,daily costs
+S01,budget,naive,True,,daily costs
+S01,budget,sequential,True,,daily costs
+S01,budget,joint,True,,daily costs
+S01,time,naive,True,,daily costs
+S01,time,sequential,True,,daily costs
+S01,time,joint,True,,daily costs
+S02,default,naive,True,,daily costs
+S02,default,sequential,True,,daily costs
+S02,default,joint,True,,daily costs
+S02,budget,naive,True,,daily costs
+S02,budget,sequential,True,,daily costs
+S02,budget,joint,True,,daily costs
+S02,time,naive,True,,daily costs
+S02,time,sequential,True,,daily costs
+S02,time,joint,True,,daily costs
+S03,default,naive,True,,daily costs
+S03,default,sequential,True,,daily costs
+S03,default,joint,True,,daily costs
+S03,default,exact,True,,daily costs
+S03,budget,naive,True,,daily costs
+S03,budget,sequential,True,,daily costs
+S03,budget,joint,True,,daily costs
+S03,budget,exact,True,,daily costs
+S03,time,naive,True,,daily costs
+S03,time,sequential,True,,daily costs
+S03,time,joint,True,,daily costs
+S03,time,exact,True,,daily costs
+S04,default,naive,True,,daily costs
+S04,default,sequential,True,,daily costs
+S04,default,joint,True,,daily costs
+S04,default,exact,True,,daily costs
+S04,budget,naive,True,,daily costs
+S04,budget,sequential,True,,daily costs
+S04,budget,joint,True,,daily costs
+S04,budget,exact,True,,daily costs
+S04,time,naive,True,,daily costs
+S04,time,sequential,True,,daily costs
+S04,time,joint,True,,daily costs
+S04,time,exact,True,,daily costs
+S05,default,naive,True,,daily costs
+S05,default,sequential,True,,daily costs
+S05,default,joint,True,,daily costs
+S05,default,exact,True,,daily costs
+S05,budget,naive,True,,daily costs
+S05,budget,sequential,True,,daily costs
+S05,budget,joint,True,,daily costs
+S05,budget,exact,True,,daily costs
+S05,time,naive,True,,daily costs
+S05,time,sequential,True,,daily costs
+S05,time,joint,True,,daily costs
+S05,time,exact,True,,daily costs
+S06,default,naive,True,,daily costs
+S06,default,sequential,True,,daily costs
+S06,default,joint,True,,daily costs
+S06,default,exact,True,,daily costs
+S06,budget,naive,True,,daily costs
+S06,budget,sequential,True,,daily costs
+S06,budget,joint,True,,daily costs
+S06,budget,exact,True,,daily costs
+S06,time,naive,True,,daily costs
+S06,time,sequential,True,,daily costs
+S06,time,joint,True,,daily costs
+S06,time,exact,True,,daily costs
+S07,default,naive,True,,daily costs
+S07,default,sequential,True,,daily costs
+S07,default,joint,True,,daily costs
+S07,budget,naive,True,,daily costs
+S07,budget,sequential,True,,daily costs
+S07,budget,joint,True,,daily costs
+S07,time,naive,True,,daily costs
+S07,time,sequential,True,,daily costs
+S07,time,joint,True,,daily costs
+S08,default,naive,True,,daily costs
+S08,default,sequential,True,,daily costs
+S08,default,joint,True,,daily costs
+S08,default,exact,True,,daily costs
+S08,budget,naive,True,,daily costs
+S08,budget,sequential,True,,daily costs
+S08,budget,joint,True,,daily costs
+S08,budget,exact,True,,daily costs
+S08,time,naive,True,,daily costs
+S08,time,sequential,True,,daily costs
+S08,time,joint,True,,daily costs
+S08,time,exact,True,,daily costs
+S09,default,naive,True,,daily costs
+S09,default,sequential,True,,daily costs
+S09,default,joint,True,,daily costs
+S09,default,exact,True,,daily costs
+S09,budget,naive,True,,daily costs
+S09,budget,sequential,True,,daily costs
+S09,budget,joint,True,,daily costs
+S09,budget,exact,True,,daily costs
+S09,time,naive,True,,daily costs
+S09,time,sequential,True,,daily costs
+S09,time,joint,True,,daily costs
+S09,time,exact,True,,daily costs
+S10,default,naive,True,,daily costs
+S10,default,sequential,True,,daily costs
+S10,default,joint,True,,daily costs
+S10,budget,naive,True,,daily costs
+S10,budget,sequential,True,,daily costs
+S10,budget,joint,True,,daily costs
+S10,time,naive,True,,daily costs
+S10,time,sequential,True,,daily costs
+S10,time,joint,True,,daily costs
+S11,default,naive,True,,daily costs
+S11,default,sequential,True,,daily costs
+S11,default,joint,True,,daily costs
+S11,default,exact,True,,daily costs
+S11,budget,naive,True,,daily costs
+S11,budget,sequential,True,,daily costs
+S11,budget,joint,True,,daily costs
+S11,budget,exact,True,,daily costs
+S11,time,naive,True,,daily costs
+S11,time,sequential,True,,daily costs
+S11,time,joint,True,,daily costs
+S11,time,exact,True,,daily costs
+S12,default,naive,True,,daily costs
+S12,default,sequential,True,,daily costs
+S12,default,joint,True,,daily costs
+S12,budget,naive,True,,daily costs
+S12,budget,sequential,True,,daily costs
+S12,budget,joint,True,,daily costs
+S12,time,naive,True,,daily costs
+S12,time,sequential,True,,daily costs
+S12,time,joint,True,,daily costs
+S13,default,naive,True,,daily costs
+S13,default,sequential,True,,daily costs
+S13,default,joint,True,,daily costs
+S13,budget,naive,True,,daily costs
+S13,budget,sequential,True,,daily costs
+S13,budget,joint,True,,daily costs
+S13,time,naive,True,,daily costs
+S13,time,sequential,True,,daily costs
+S13,time,joint,True,,daily costs
+S14,default,naive,True,,daily costs
+S14,default,sequential,True,,daily costs
+S14,default,joint,True,,daily costs
+S14,budget,naive,True,,daily costs
+S14,budget,sequential,True,,daily costs
+S14,budget,joint,True,,daily costs
+S14,time,naive,True,,daily costs
+S14,time,sequential,True,,daily costs
+S14,time,joint,True,,daily costs
+S15,default,naive,True,,daily costs
+S15,default,sequential,True,,daily costs
+S15,default,joint,True,,daily costs
+S15,budget,naive,True,,daily costs
+S15,budget,sequential,True,,daily costs
+S15,budget,joint,True,,daily costs
+S15,time,naive,True,,daily costs
+S15,time,sequential,True,,daily costs
+S15,time,joint,True,,daily costs
+S01,default,naive,True,,early start days 2+
+S01,default,sequential,True,,early start days 2+
+S01,default,joint,True,,early start days 2+
+S01,budget,naive,True,,early start days 2+
+S01,budget,sequential,True,,early start days 2+
+S01,budget,joint,True,,early start days 2+
+S01,time,naive,True,,early start days 2+
+S01,time,sequential,True,,early start days 2+
+S01,time,joint,True,,early start days 2+
+S02,default,naive,True,,early start days 2+
+S02,default,sequential,True,,early start days 2+
+S02,default,joint,True,,early start days 2+
+S02,budget,naive,True,,early start days 2+
+S02,budget,sequential,True,,early start days 2+
+S02,budget,joint,True,,early start days 2+
+S02,time,naive,True,,early start days 2+
+S02,time,sequential,True,,early start days 2+
+S02,time,joint,True,,early start days 2+
+S03,default,naive,True,,early start days 2+
+S03,default,sequential,True,,early start days 2+
+S03,default,joint,True,,early start days 2+
+S03,default,exact,True,,early start days 2+
+S03,budget,naive,True,,early start days 2+
+S03,budget,sequential,True,,early start days 2+
+S03,budget,joint,True,,early start days 2+
+S03,budget,exact,True,,early start days 2+
+S03,time,naive,True,,early start days 2+
+S03,time,sequential,True,,early start days 2+
+S03,time,joint,True,,early start days 2+
+S03,time,exact,True,,early start days 2+
+S04,default,naive,True,,early start days 2+
+S04,default,sequential,True,,early start days 2+
+S04,default,joint,True,,early start days 2+
+S04,default,exact,True,,early start days 2+
+S04,budget,naive,True,,early start days 2+
+S04,budget,sequential,True,,early start days 2+
+S04,budget,joint,True,,early start days 2+
+S04,budget,exact,True,,early start days 2+
+S04,time,naive,True,,early start days 2+
+S04,time,sequential,True,,early start days 2+
+S04,time,joint,True,,early start days 2+
+S04,time,exact,True,,early start days 2+
+S05,default,naive,True,,early start days 2+
+S05,default,sequential,True,,early start days 2+
+S05,default,joint,True,,early start days 2+
+S05,default,exact,True,,early start days 2+
+S05,budget,naive,True,,early start days 2+
+S05,budget,sequential,True,,early start days 2+
+S05,budget,joint,True,,early start days 2+
+S05,budget,exact,True,,early start days 2+
+S05,time,naive,True,,early start days 2+
+S05,time,sequential,True,,early start days 2+
+S05,time,joint,True,,early start days 2+
+S05,time,exact,True,,early start days 2+
+S06,default,naive,True,,early start days 2+
+S06,default,sequential,True,,early start days 2+
+S06,default,joint,True,,early start days 2+
+S06,default,exact,True,,early start days 2+
+S06,budget,naive,True,,early start days 2+
+S06,budget,sequential,True,,early start days 2+
+S06,budget,joint,True,,early start days 2+
+S06,budget,exact,True,,early start days 2+
+S06,time,naive,True,,early start days 2+
+S06,time,sequential,True,,early start days 2+
+S06,time,joint,True,,early start days 2+
+S06,time,exact,True,,early start days 2+
+S07,default,naive,True,,early start days 2+
+S07,default,sequential,True,,early start days 2+
+S07,default,joint,True,,early start days 2+
+S07,budget,naive,True,,early start days 2+
+S07,budget,sequential,True,,early start days 2+
+S07,budget,joint,True,,early start days 2+
+S07,time,naive,True,,early start days 2+
+S07,time,sequential,True,,early start days 2+
+S07,time,joint,True,,early start days 2+
+S08,default,naive,True,,early start days 2+
+S08,default,sequential,True,,early start days 2+
+S08,default,joint,True,,early start days 2+
+S08,default,exact,True,,early start days 2+
+S08,budget,naive,True,,early start days 2+
+S08,budget,sequential,True,,early start days 2+
+S08,budget,joint,True,,early start days 2+
+S08,budget,exact,True,,early start days 2+
+S08,time,naive,True,,early start days 2+
+S08,time,sequential,True,,early start days 2+
+S08,time,joint,True,,early start days 2+
+S08,time,exact,True,,early start days 2+
+S09,default,naive,True,,early start days 2+
+S09,default,sequential,True,,early start days 2+
+S09,default,joint,True,,early start days 2+
+S09,default,exact,True,,early start days 2+
+S09,budget,naive,True,,early start days 2+
+S09,budget,sequential,True,,early start days 2+
+S09,budget,joint,True,,early start days 2+
+S09,budget,exact,True,,early start days 2+
+S09,time,naive,True,,early start days 2+
+S09,time,sequential,True,,early start days 2+
+S09,time,joint,True,,early start days 2+
+S09,time,exact,True,,early start days 2+
+S10,default,naive,True,,early start days 2+
+S10,default,sequential,True,,early start days 2+
+S10,default,joint,True,,early start days 2+
+S10,budget,naive,True,,early start days 2+
+S10,budget,sequential,True,,early start days 2+
+S10,budget,joint,True,,early start days 2+
+S10,time,naive,True,,early start days 2+
+S10,time,sequential,True,,early start days 2+
+S10,time,joint,True,,early start days 2+
+S11,default,naive,True,,early start days 2+
+S11,default,sequential,True,,early start days 2+
+S11,default,joint,True,,early start days 2+
+S11,default,exact,True,,early start days 2+
+S11,budget,naive,True,,early start days 2+
+S11,budget,sequential,True,,early start days 2+
+S11,budget,joint,True,,early start days 2+
+S11,budget,exact,True,,early start days 2+
+S11,time,naive,True,,early start days 2+
+S11,time,sequential,True,,early start days 2+
+S11,time,joint,True,,early start days 2+
+S11,time,exact,True,,early start days 2+
+S12,default,naive,True,,early start days 2+
+S12,default,sequential,True,,early start days 2+
+S12,default,joint,True,,early start days 2+
+S12,budget,naive,True,,early start days 2+
+S12,budget,sequential,True,,early start days 2+
+S12,budget,joint,True,,early start days 2+
+S12,time,naive,True,,early start days 2+
+S12,time,sequential,True,,early start days 2+
+S12,time,joint,True,,early start days 2+
+S13,default,naive,True,,early start days 2+
+S13,default,sequential,True,,early start days 2+
+S13,default,joint,True,,early start days 2+
+S13,budget,naive,True,,early start days 2+
+S13,budget,sequential,True,,early start days 2+
+S13,budget,joint,True,,early start days 2+
+S13,time,naive,True,,early start days 2+
+S13,time,sequential,True,,early start days 2+
+S13,time,joint,True,,early start days 2+
+S14,default,naive,True,,early start days 2+
+S14,default,sequential,True,,early start days 2+
+S14,default,joint,True,,early start days 2+
+S14,budget,naive,True,,early start days 2+
+S14,budget,sequential,True,,early start days 2+
+S14,budget,joint,True,,early start days 2+
+S14,time,naive,True,,early start days 2+
+S14,time,sequential,True,,early start days 2+
+S14,time,joint,True,,early start days 2+
+S15,default,naive,True,,early start days 2+
+S15,default,sequential,True,,early start days 2+
+S15,default,joint,True,,early start days 2+
+S15,budget,naive,True,,early start days 2+
+S15,budget,sequential,True,,early start days 2+
+S15,budget,joint,True,,early start days 2+
+S15,time,naive,True,,early start days 2+
+S15,time,sequential,True,,early start days 2+
+S15,time,joint,True,,early start days 2+
