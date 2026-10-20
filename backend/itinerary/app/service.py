@@ -11,7 +11,10 @@ Profiles: a request's profile switches config flags only while that request runs
 lock (two requests never see each other's flags), and restores them afterwards.
 """
 
+import logging
+import os
 import random
+import tempfile
 import threading
 import time as clock
 from collections.abc import Callable, Hashable, Iterator, Mapping, Sequence
@@ -39,8 +42,10 @@ from src.scheduler import (_hhmm, _leg, day_window, living_costs, make_day_plan,
                            validate_opening_hours)
 
 CACHE_DIR: Path = config.CACHE_DIR  # tests point this at a temporary folder
+FALLBACK_CACHE_DIR = Path(tempfile.gettempdir()) / "itinerary-cache"  # read-only CACHE_DIR
 NOT_IN_PLAN_REASON = "not in your edited plan; the search found no better plan that includes it"
 _RUN_LOCK = threading.Lock()
+log = logging.getLogger("itinerary.api")
 
 
 class InputError(ValueError):
@@ -69,9 +74,37 @@ def profile_flags(profile: str) -> Iterator[None]:
 
 
 def google_key_available() -> bool:
-    """True if the server's .env holds a Google key. The key itself never leaves src/distance.py."""
+    """True if the server has a Google key: in its .env file, or (deployed, with
+    config.API_GOOGLE_KEY_FROM_ENV on) in the environment. The key itself never leaves src/distance.py."""
+    if config.API_GOOGLE_KEY_FROM_ENV and os.getenv(config.GOOGLE_API_KEY_ENV):
+        return True
     env_file = config.BASE_DIR / ".env"
     return env_file.exists() and bool(dotenv_values(env_file).get(config.GOOGLE_API_KEY_ENV))
+
+
+# ---------- Matrix cache folder ----------
+
+def _writable(folder: Path) -> bool:
+    """Create the folder if missing and prove a file can be written in it."""
+    try:
+        folder.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryFile(dir=folder):
+            return True
+    except OSError:
+        return False
+
+
+def cache_dir() -> Path:
+    """Where this request caches travel matrices: CACHE_DIR, or a temp folder if CACHE_DIR cannot
+    be written (read-only image). Checked per request, so a deleted folder is simply made again.
+    The cache only saves time: on an ephemeral disk it starts empty after each restart."""
+    if _writable(CACHE_DIR):
+        return CACHE_DIR
+    if _writable(FALLBACK_CACHE_DIR):
+        log.warning("cache folder %s is not writable; using %s", CACHE_DIR, FALLBACK_CACHE_DIR)
+        return FALLBACK_CACHE_DIR
+    log.error("no writable cache folder (%s, %s); matrices cannot be cached", CACHE_DIR, FALLBACK_CACHE_DIR)
+    return CACHE_DIR
 
 
 def with_travel_source(run: Callable[[bool], object]) -> tuple[object, list[str]]:
@@ -273,9 +306,9 @@ def plan_itinerary(req: ItineraryRequest) -> ItineraryResponse:
 
         def run(use_google: bool):
             if opts.method == "sequential":
-                return run_sequential(req.destinations, req.trip, use_google, CACHE_DIR, mode_weights=weights)
+                return run_sequential(req.destinations, req.trip, use_google, cache_dir(), mode_weights=weights)
             return optimize_joint(req.destinations, req.trip, weights=weights, seed=opts.seed,
-                                  use_google=use_google, cache_dir=CACHE_DIR, time_limit_s=opts.time_limit_s)
+                                  use_google=use_google, cache_dir=cache_dir(), time_limit_s=opts.time_limit_s)
 
         result, warnings = with_travel_source(run)
         runtime = round(clock.perf_counter() - started, 3)
@@ -386,7 +419,7 @@ def reoptimize(req: ReoptimizeRequest) -> ItineraryResponse:
         started = clock.perf_counter()
 
         def run(use_google: bool):
-            matrix = get_matrix_with_start(destinations, req.trip, use_google=use_google, cache_dir=CACHE_DIR)
+            matrix = get_matrix_with_start(destinations, req.trip, use_google=use_google, cache_dir=cache_dir())
             graph = build_graph(destinations, matrix, req.trip, mode_weights=weights)
             in_plan = {s for day in orders for s in day}
             pool = [d.id for d in destinations if d.id not in in_plan]
@@ -496,7 +529,7 @@ def validate_plan(req: ValidateRequest) -> ValidateResponse:
     with profile_flags(opts.profile):
 
         def run(use_google: bool):
-            matrix = get_matrix_with_start(req.destinations, req.trip, use_google=use_google, cache_dir=CACHE_DIR)
+            matrix = get_matrix_with_start(req.destinations, req.trip, use_google=use_google, cache_dir=cache_dir())
             return build_graph(req.destinations, matrix, req.trip, mode_weights=weights)
 
         graph, warnings = with_travel_source(run)

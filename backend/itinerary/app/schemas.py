@@ -10,7 +10,7 @@ Every number in a response comes from the optimizer's output (app/service.py).
 from datetime import time
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, BeforeValidator, Field
 
 from src import config
 from src.models import Destination, TripRequest
@@ -19,6 +19,19 @@ Profile = Literal["realistic", "basic"]
 WeightsPreset = Literal["default", "budget", "time"]
 Method = Literal["joint", "sequential"]
 TravelTimes = Literal["estimated", "google", "mixed"]
+
+
+def _at_most_max_destinations(places: object) -> object:
+    """Reject too many places before each one is validated (config.API_MAX_DESTINATIONS)."""
+    if isinstance(places, list) and len(places) > config.API_MAX_DESTINATIONS:
+        raise ValueError(f"too many destinations: at most {config.API_MAX_DESTINATIONS} per request, "
+                         f"got {len(places)}")
+    return places
+
+
+# The ranked places from Component 1: at least one, at most config.API_MAX_DESTINATIONS
+Destinations = Annotated[list[Destination], BeforeValidator(_at_most_max_destinations),
+                         Field(min_length=1, max_length=config.API_MAX_DESTINATIONS)]
 
 
 # ---------- Requests ----------
@@ -38,7 +51,7 @@ class ItineraryOptions(PlanOptions):
 
 class ItineraryRequest(BaseModel):
     trip: TripRequest
-    destinations: list[Destination] = Field(min_length=1)  # ranked places from Component 1
+    destinations: Destinations  # ranked places from Component 1
     options: ItineraryOptions = ItineraryOptions()
 
 
@@ -52,7 +65,7 @@ class ReoptimizeRequest(BaseModel):
     """The user's edited plan. The search starts from day_orders after add/remove are applied."""
 
     trip: TripRequest
-    destinations: list[Destination] = Field(min_length=1)
+    destinations: Destinations
     day_orders: list[list[str]]  # destination ids per day, in visiting order
     add: list[AddStop] = []
     remove: list[str] = []  # removed for good: the search will not put these back
@@ -90,7 +103,7 @@ class ValidateOptions(BaseModel):
 
 class ValidateRequest(BaseModel):
     trip: TripRequest
-    destinations: list[Destination] = Field(min_length=1)
+    destinations: Destinations
     days: list[DayIn]
     options: ValidateOptions = ValidateOptions()
 

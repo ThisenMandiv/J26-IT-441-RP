@@ -229,6 +229,16 @@ API_DEFAULT_PROFILE = "realistic"
 API_JOINT_TIME_LIMIT_S = 10.0  # APPROX: longest a traveller should wait for a joint plan
 API_MAX_TIME_LIMIT_S = 60.0  # APPROX: the most a request may ask for
 
+# --- Deployment (app/security.py, app/deploy.py) ---
+# Request limits protect a small free-tier server from one huge request.
+API_MAX_DESTINATIONS = 50  # APPROX: the largest trip size evaluated (v3/v4 go up to 50 places)
+API_MAX_BODY_BYTES = 256 * 1024  # APPROX: 50 places are about 15 KB of JSON, so a wide margin
+# Off = the Google key counts only from the server's .env file (local development: a stray
+# shell variable never switches on paid Google calls). app/deploy.py, the container's entry
+# point, turns it on, because hosts such as Render and Cloud Run pass secrets as environment
+# variables. Either way the key itself is only read in src/distance.py.
+API_GOOGLE_KEY_FROM_ENV = False
+
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging
 BUDGET_RESERVE_PCT = 0.10  # APPROX: share of the total kept back for unplanned spending

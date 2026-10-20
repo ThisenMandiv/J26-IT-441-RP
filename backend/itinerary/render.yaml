@@ -1,0 +1,23 @@
+# Render Blueprint for the itinerary API (see docs/DEPLOY.md, part A).
+# This file is not at the repo root, so set "Blueprint Path" to backend/itinerary/render.yaml
+# when creating the Blueprint. Paths below are relative to the repo root.
+services:
+  - type: web
+    name: itinerary-api
+    runtime: docker
+    plan: free
+    region: singapore              # closest Render region to Sri Lanka
+    dockerContext: ./backend/itinerary
+    dockerfilePath: ./backend/itinerary/Dockerfile
+    healthCheckPath: /health
+    buildFilter:
+      paths:
+        - backend/itinerary/**     # only changes to this component trigger a redeploy
+    envVars:
+      # sync: false = Render asks for the value when the Blueprint is created; never commit it here
+      - key: GOOGLE_MAPS_API_KEY   # optional; leave empty for offline travel estimates
+        sync: false
+      - key: ALLOWED_ORIGINS       # e.g. https://your-frontend.onrender.com (comma-separated)
+        sync: false
+      - key: API_KEY               # optional shared secret for X-API-Key; empty = open API
+        sync: false

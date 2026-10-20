@@ -23,7 +23,10 @@ venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 8000
 - Tests: `venv\Scripts\python.exe -m pytest tests/test_api.py`
 
 **Google Maps (optional).** Put `GOOGLE_MAPS_API_KEY=...` in `backend/itinerary/.env` on the server
-(copy `.env.example`; `.env` is git-ignored). Only that file is read. The key is never sent to
+(copy `.env.example`; `.env` is git-ignored). Locally only that file is read; the deployed
+container (`app.deploy:app`) also reads the environment variable, see [DEPLOY.md](DEPLOY.md),
+which also covers `API_KEY` (401 without `X-API-Key`), `ALLOWED_ORIGINS` (CORS) and the request
+limits (413 / 422). The key is never sent to
 clients. Without it, or if a Google request fails, the API uses the offline estimate and says so
 with `"travel_times": "estimated"` (and a warning). Google results are cached in `data/cache/`.
 

@@ -1,0 +1,17 @@
+# Not copied into the Docker image: local tools, secrets, results and tests
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+tests/
+data/results/
+data/cache/
+scripts/
+CLAUDE.md
+Dockerfile
+.dockerignore
+render.yaml
