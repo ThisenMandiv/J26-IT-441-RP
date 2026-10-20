@@ -261,6 +261,30 @@ def test_bad_options_are_422(client, places, options, field):
     assert r.status_code == 422 and r.json()["detail"][0]["field"] == field
 
 
+NO_GAIN = "The joint search found no plan scoring higher than the sequential plan"
+
+
+def test_no_gain_warning_not_shown_when_a_random_restart_wins(client, places):
+    """Bug check: here random restart 1 starts above sequential and makes no moves, so the
+    winning restart's move list is empty, but the plan is NOT the sequential plan."""
+    j = client.post("/itinerary", json=body(
+        pick(places, "D01", "D02", "D04", "D05", "D06", "D11", "D12", "D13"), num_days=3, budget=90_000,
+        method="joint", weights="default", seed=42, time_limit_s=20, profile="realistic")).json()
+    assert not j["status"]["search_time_capped"]
+    assert j["objective"]["total"] > j["objective"]["start_total"]  # 34.083 > 28.5
+    assert not any(NO_GAIN in w for w in j["warnings"])
+
+
+def test_no_gain_warning_shown_when_sequential_is_returned(client, places, monkeypatch):
+    real = service.optimize_joint
+    # no restarts and no iterations: the search cannot move, so the sequential plan comes back
+    monkeypatch.setattr(service, "optimize_joint",
+                        lambda *a, **k: real(*a, **k, restarts=1, max_iterations=0))
+    j = client.post("/itinerary", json=body(pick(places, *HILLS))).json()
+    assert j["objective"]["total"] == j["objective"]["start_total"]
+    assert any(NO_GAIN in w for w in j["warnings"])
+
+
 # ---------- 6. Input errors: clear 422 messages, never a stack trace ----------
 
 def error(r) -> tuple[str, str]:

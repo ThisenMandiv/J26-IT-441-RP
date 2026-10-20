@@ -321,7 +321,9 @@ def plan_itinerary(req: ItineraryRequest) -> ItineraryResponse:
             base = result.baseline
             start_total = score_plan(base.itinerary.days, base.itinerary.unscheduled, base.budget_report,
                                      weights, graph).total
-            if not result.moves and not capped:
+            # moves lists improvements within the WINNING restart only; a random restart can win
+            # with no moves (its start already beat sequential), so check the restart too.
+            if result.restart == 0 and not result.moves and not capped:
                 warnings.append("The joint search found no plan scoring higher than the sequential plan, "
                                 "so this is the sequential plan.")
         info = RunInfo(method=opts.method, profile=opts.profile, weights=opts.weights,
