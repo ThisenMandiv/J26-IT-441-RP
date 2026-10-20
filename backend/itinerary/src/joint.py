@@ -20,10 +20,16 @@ waiting, unscheduled places, budget overruns and the coverage floor.
        So joint can never score below sequential.
 
 A fixed seed makes the random choices, and so the result, repeatable.
+
+Time limit (optional, used by the HTTP API): with time_limit_s set, the search stops at
+that wall-clock limit and returns the best plan found so far (JointResult.timed_out).
+The check never touches the random choices, so a run that finishes inside the limit gives
+exactly the plan of a run without one. time_limit_s=None (the default) = no limit.
 """
 
 import math
 import random
+import time
 from collections.abc import Hashable, Mapping, Sequence
 from pathlib import Path
 from typing import NamedTuple
@@ -82,6 +88,7 @@ class JointResult(NamedTuple):
     restart: int  # which restart produced the plan (0 = from sequential)
     start_score: float  # score of that restart's starting plan
     stats: tuple[RestartStats, ...] = ()  # one entry per restart that ran
+    timed_out: bool = False  # stopped at time_limit_s before the search was finished
 
 
 class Candidate(NamedTuple):
@@ -214,18 +221,23 @@ def _accept(delta: float, iteration: int, iterations: int, anneal: bool, rng: ra
 
 
 def _search(start: Candidate, reasons, graph, trip, weights, iterations, anneal, rng, cache,
-            restart: int = 0, block_moves: bool = False):
+            restart: int = 0, block_moves: bool = False, deadline: float | None = None):
     """One local-search run from `start`.
 
-    Returns (best candidate seen, changes that improved it, RestartStats).
-    The counters never touch rng, so they do not change which plan is found.
+    Returns (best candidate seen, changes that improved it, RestartStats, timed out).
+    deadline: time.perf_counter() value at which to stop early (None = never).
+    The counters and the deadline never touch rng, so they do not change which plan is found.
     """
     current = best = start
     reasons = dict(reasons)  # drops add reasons; keep each restart separate
     moves: list[Move] = []
     tried = infeasible = accepted = accepted_worse = 0
     by_kind: dict[str, list[int]] = {}
+    timed_out = False
     for iteration in range(1, iterations + 1):
+        if deadline is not None and time.perf_counter() >= deadline:
+            timed_out = True
+            break
         change = _random_change(current.day_orders, current.pool, rng, graph, weights, block_moves)
         if change is None:
             break  # nothing scheduled and nothing to insert
@@ -253,7 +265,7 @@ def _search(start: Candidate, reasons, graph, trip, weights, iterations, anneal,
     stats = RestartStats(restart, iterations, start.score.total, best.score.total, tried, infeasible,
                          accepted, accepted_worse, len(moves), moves[-1].iteration if moves else 0,
                          by_kind)
-    return best, moves, stats
+    return best, moves, stats, timed_out
 
 
 def _random_start(graph, trip, weights, rng, cache) -> tuple[Candidate, dict] | None:
@@ -280,13 +292,16 @@ def optimize_joint(
     restarts: int = config.JOINT_RESTARTS,
     anneal: bool = config.JOINT_USE_ANNEALING,
     block_moves: bool | None = None,
+    time_limit_s: float | None = None,
 ) -> JointResult:
     """Improve on the sequential plan by local search (with restarts) on the joint objective.
 
     max_iterations is per restart. restarts=1, anneal=False is plain hill climbing
     from the sequential plan (the version 1 optimizer). block_moves=None uses
-    config.JOINT_USE_BLOCK_MOVES.
+    config.JOINT_USE_BLOCK_MOVES. time_limit_s: stop after this many seconds (counted from
+    this call) with the best plan so far; None = run every restart in full.
     """
+    deadline = None if time_limit_s is None else time.perf_counter() + time_limit_s
     block_moves = config.JOINT_USE_BLOCK_MOVES if block_moves is None else block_moves
     weights = config.OBJECTIVE_WEIGHTS if weights is None else weights
     # mode_weights: with transport modes on, legs use the modes THIS traveller would pick
@@ -304,17 +319,23 @@ def optimize_joint(
                                       baseline.budget_report, weights, graph))
     best, best_moves, best_restart, best_start = sequential, [], 0, sequential.score.total
     all_stats: list[RestartStats] = []
+    timed_out = False
 
     for restart in range(max(1, restarts)):
+        if deadline is not None and time.perf_counter() >= deadline:
+            timed_out = True  # restarts left that never ran
+            break
         if restart == 0:
             start = (sequential, seq_reasons)
         else:
             start = _random_start(graph, trip_request, weights, rng, cache)
             if start is None:
                 continue
-        found, moves, stats = _search(start[0], start[1], graph, trip_request, weights,
-                                      max_iterations, anneal, rng, cache, restart, block_moves)
+        found, moves, stats, stopped = _search(start[0], start[1], graph, trip_request, weights,
+                                               max_iterations, anneal, rng, cache, restart, block_moves,
+                                               deadline)
         all_stats.append(stats)
+        timed_out = timed_out or stopped
         if found.score.total > best.score.total + IMPROVEMENT_EPS:  # strictly better only
             best, best_moves, best_restart, best_start = found, moves, restart, start[0].score.total
 
@@ -327,4 +348,4 @@ def optimize_joint(
         cost_breakdown=cost_breakdown(best.days),
     )
     return JointResult(itinerary, best.score, best.report, graph, best_moves, baseline,
-                       best_restart, best_start, tuple(all_stats))
+                       best_restart, best_start, tuple(all_stats), timed_out)

@@ -215,6 +215,20 @@ ACCOMMODATION_PER_NIGHT_LKR = 5000.0  # APPROX: budget guesthouse or small hotel
 FOOD_PER_DAY_LKR = 2500.0  # APPROX: breakfast, dinner, water and snacks, one traveller
 OTHER_PER_DAY_LKR = 500.0  # APPROX: tips, small purchases
 
+# --- HTTP API (app/, FastAPI layer) ---
+# A profile switches config flags for ONE request only (app/service.py restores them after),
+# so no default above changes. "realistic" = every version 5 rule on, as in v5/v6 part 1;
+# "basic" = the defaults above (every v5 rule off). Per-day start times are a traveller
+# input (TripRequest.day_starts) and are accepted under both profiles.
+API_PROFILES = {
+    "realistic": {"USE_TRANSPORT_MODES": True, "USE_REGION_SPEEDS": True, "USE_LUNCH_BREAK": True,
+                  "USE_EVENING_DRIVE": True, "USE_DAILY_COSTS": True},
+    "basic": {},
+}
+API_DEFAULT_PROFILE = "realistic"
+API_JOINT_TIME_LIMIT_S = 10.0  # APPROX: longest a traveller should wait for a joint plan
+API_MAX_TIME_LIMIT_S = 60.0  # APPROX: the most a request may ask for
+
 # --- Budget ---
 BUDGET_OVERRUN_TOLERANCE = 0.0  # fraction over the daily budget before flagging
 BUDGET_RESERVE_PCT = 0.10  # APPROX: share of the total kept back for unplanned spending
