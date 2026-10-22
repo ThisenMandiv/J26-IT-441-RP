@@ -1,0 +1,74 @@
+{
+  "disclaimer": "DEMONSTRATION DATA: All GPS coordinates in this dataset are approximate reference points used for prototyping purposes only. They have NOT been verified against official survey data or walked with GPS equipment. Do not use for real navigation.",
+  "trails": [
+    {
+      "id": "knuckles-main-trail",
+      "name": "Knuckles Mountain Range",
+      "region": "Central Province",
+      "description": "The Knuckles Mountain Range is a UNESCO World Heritage Site with diverse flora and fauna. This trail traverses the central ridge with stunning panoramic views over the misty valleys. The terrain is moderately challenging with steep ascents and rocky sections.",
+      "difficulty": "Moderate",
+      "distance_km": 14.2,
+      "estimated_duration_hours": 7,
+      "elevation_start_m": 915,
+      "elevation_peak_m": 1863,
+      "best_season": "January–April, August–September",
+      "route_status": "DEMO – coordinates are approximate reference points only",
+      "waypoints": [
+        { "name": "Meemure Trailhead", "lat": 7.4520, "lng": 80.8060 },
+        { "name": "River Crossing", "lat": 7.4540, "lng": 80.8100 },
+        { "name": "Lower Ridge", "lat": 7.4570, "lng": 80.8150 },
+        { "name": "Forest Zone Start", "lat": 7.4620, "lng": 80.8200 },
+        { "name": "Mid-Ridge Viewpoint", "lat": 7.4680, "lng": 80.8265 },
+        { "name": "Upper Camp Site", "lat": 7.4740, "lng": 80.8320 },
+        { "name": "Knuckles Peak Approach", "lat": 7.4790, "lng": 80.8385 },
+        { "name": "Summit Area", "lat": 7.4830, "lng": 80.8440 }
+      ]
+    },
+    {
+      "id": "adams-peak-pilgrims-path",
+      "name": "Adam's Peak (Sri Pada)",
+      "region": "Sabaragamuwa Province",
+      "description": "Adam's Peak is one of Sri Lanka's most sacred mountains, revered by Buddhists, Hindus, Muslims, and Christians. The pilgrims' path ascends 5,200 steps to the summit at 2,243 m. The climb is strenuous but the sunrise from the top is unforgettable.",
+      "difficulty": "Strenuous",
+      "distance_km": 7.0,
+      "estimated_duration_hours": 4,
+      "elevation_start_m": 1070,
+      "elevation_peak_m": 2243,
+      "best_season": "December–May (pilgrimage season)",
+      "route_status": "DEMO – coordinates are approximate reference points only",
+      "waypoints": [
+        { "name": "Dalhousie Town Start", "lat": 6.8094, "lng": 80.4990 },
+        { "name": "First Checkpoint", "lat": 6.8120, "lng": 80.4965 },
+        { "name": "Waterfall Viewing Point", "lat": 6.8150, "lng": 80.4940 },
+        { "name": "Tea Stall Area", "lat": 6.8185, "lng": 80.4915 },
+        { "name": "Mid-Steps Zone", "lat": 6.8220, "lng": 80.4890 },
+        { "name": "Upper Shelter", "lat": 6.8265, "lng": 80.4870 },
+        { "name": "Final Ascent", "lat": 6.8310, "lng": 80.4845 },
+        { "name": "Summit – Sacred Footprint", "lat": 6.8096, "lng": 80.4994 }
+      ]
+    },
+    {
+      "id": "horton-plains-loop",
+      "name": "Horton Plains – World's End Loop",
+      "region": "Nuwara Eliya District",
+      "description": "Horton Plains National Park sits at 2,100–2,300 m and offers a unique cloud forest ecosystem. The World's End trail leads to dramatic escarpments with sheer drops of nearly 900 m. Baker's Falls is a highlight along the way.",
+      "difficulty": "Easy–Moderate",
+      "distance_km": 9.5,
+      "estimated_duration_hours": 3,
+      "elevation_start_m": 2100,
+      "elevation_peak_m": 2389,
+      "best_season": "January–April (clear mornings before mist)",
+      "route_status": "DEMO – coordinates are approximate reference points only",
+      "waypoints": [
+        { "name": "Park Entrance / Visitor Centre", "lat": 6.8020, "lng": 80.7980 },
+        { "name": "Forest Path Junction", "lat": 6.7990, "lng": 80.7940 },
+        { "name": "Baker's Falls", "lat": 6.7960, "lng": 80.7900 },
+        { "name": "Plateau Open Section", "lat": 6.7930, "lng": 80.7860 },
+        { "name": "Small World's End", "lat": 6.7895, "lng": 80.7820 },
+        { "name": "World's End Escarpment", "lat": 6.7860, "lng": 80.7785 },
+        { "name": "Return Loop North", "lat": 6.7910, "lng": 80.7830 },
+        { "name": "Return to Visitor Centre", "lat": 6.8020, "lng": 80.7980 }
+      ]
+    }
+  ]
+}
