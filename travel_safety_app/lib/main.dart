@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 
-import 'package:geolocator/geolocator.dart'; // To fetch current GPS location
-import 'package:flutter_map/flutter_map.dart'; // For OpenStreetMap integration
-import 'package:latlong2/latlong.dart'; // To handle Latitude and Longitude coordinates
-import 'package:firebase_core/firebase_core.dart'; // Core package required for Firebase integration
-import 'package:cloud_firestore/cloud_firestore.dart'; // NEW: Import Firestore package
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<void> main() async {
   // Ensure that the Flutter engine is fully initialized before using Firebase plugins
@@ -26,25 +26,30 @@ Future<void> main() async {
   );
 
   // Run the main Flutter application
-  runApp(const TravelSafetyApp());
+  runApp(const TapropathApp());
 }
 
-class TravelSafetyApp extends StatelessWidget {
-  const TravelSafetyApp({super.key});
+class TapropathApp extends StatelessWidget {
+  const TapropathApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Travel Safety AI',
-      debugShowCheckedModeBanner:
-          false, // Hide the debug banner in the top right corner
+      title: 'Tapropath',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-        useMaterial3: true, // Use the latest Material Design 3 guidelines
-        scaffoldBackgroundColor: Colors
-            .grey[100], // Set a light grey background for a modern UI look
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFF5C945),
+          primary: const Color(0xFF1C1C1E),
+          secondary: const Color(0xFFD4AF37),
+        ),
+        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(
+          0xFFFAF8F5,
+        ), // Warm off-white/beige background
+        fontFamily: 'Roboto',
       ),
-      home: const RiskAssessmentScreen(), // Set the initial screen of the app
+      home: const RiskAssessmentScreen(),
     );
   }
 }
@@ -57,37 +62,49 @@ class RiskAssessmentScreen extends StatefulWidget {
 }
 
 class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
-  // Controller to manage the text input for the location field
+  // Controller to manage the text input for the destination location field
   final TextEditingController _locationController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  // Bottom Navigation selected index
+  int _selectedIndex = 0;
 
   // State variables to track the status of the safety checklists
   bool isEmergencyContactsUpdated = false;
   bool isWeatherAnalyzed = false;
 
   // Variables to store the results from the AI risk assessment backend
-  double? riskScore; // Risk score as a percentage (e.g., 47.23)
-  String riskLevel =
-      "Not Assessed"; // Categorized risk level (e.g., High, Moderate, Low)
-  String? apiMessage; // Additional feedback message from the API
+  double? riskScore;
+  String riskLevel = "Not Assessed";
+
+  // Lists to store Explainable AI causes and recommendations separately
+  List<dynamic> riskCauses = [];
+  List<dynamic> recommendations = [];
 
   // Loading state flags
-  bool isLoading =
-      false; // Indicates if the assessment API request is in progress
-  bool isFetchingLocation =
-      false; // Indicates if the GPS location is currently being fetched
+  bool isLoading = false;
+  bool isFetchingLocation = false;
 
   // OpenStreetMap specific variables
-  final MapController mapController =
-      MapController(); // Controls the map view programmatically
+  final MapController mapController = MapController();
   LatLng _currentMapPosition = const LatLng(
     6.9271,
     79.8612,
-  ); // Default map coordinates set to Colombo, Sri Lanka
+  ); // Default: Colombo, Sri Lanka
+
+  // Brand Colors matching the new UI design
+  static const Color kBgBeige = Color(0xFFFAF8F5);
+  static const Color kDarkCard = Color(0xFF1C1C1E);
+  static const Color kGoldButton = Color(0xFFF5C945);
+  static const Color kGoldIcon = Color(0xFFD4AF37);
+  static const Color kNavBarBg = Color(0xFFF5EFE6);
+  static const Color kNavIndicator = Color(0xFFEBE3D5);
+  static const Color kBorderColor = Color(0xFFEAE6DF);
 
   @override
   void dispose() {
-    // Clean up controllers when the widget is removed from the widget tree to prevent memory leaks
     _locationController.dispose();
+    _scrollController.dispose();
     mapController.dispose();
     super.dispose();
   }
@@ -97,31 +114,79 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
     if (level == "High Risk") return Colors.redAccent;
     if (level == "Moderate Risk") return Colors.orange;
     if (level == "Low Risk") return Colors.green;
-    return Colors.grey; // Default color before any assessment is done
+    return const Color(0xFFD4AF37); // Gold accent before assessment
+  }
+
+  // Asynchronous function to search location using Nominatim API
+  Future<void> _searchLocation(String query) async {
+    if (query.trim().isEmpty) return;
+
+    setState(() {
+      isFetchingLocation = true; // Show loading indicator
+    });
+
+    try {
+      // OpenStreetMap Nominatim API geocoding request
+      final url = Uri.parse(
+        'https://nominatim.openstreetmap.org/search?q=$query&format=json&limit=1',
+      );
+      final response = await http.get(
+        url,
+        headers: {
+          'User-Agent': 'TapropathApp_PP1', // Required by Nominatim policy
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data.isNotEmpty) {
+          final lat = double.parse(data[0]['lat']);
+          final lon = double.parse(data[0]['lon']);
+
+          setState(() {
+            _currentMapPosition = LatLng(lat, lon);
+          });
+
+          // Move the map camera to the searched location
+          mapController.move(_currentMapPosition, 14.0);
+          _showSnackBar('Location found!', kDarkCard);
+        } else {
+          _showSnackBar(
+            'Location not found. Try a different name.',
+            Colors.orange,
+          );
+        }
+      } else {
+        _showSnackBar('Server error fetching location.', Colors.red);
+      }
+    } catch (e) {
+      _showSnackBar('Network error: $e', Colors.red);
+    } finally {
+      setState(() {
+        isFetchingLocation = false;
+      });
+    }
   }
 
   // Asynchronous function to fetch the user's current GPS location
   Future<void> _getCurrentLocation() async {
     setState(() {
-      isFetchingLocation = true; // Show loading indicator in the text field
+      isFetchingLocation = true;
     });
 
     bool serviceEnabled;
     LocationPermission permission;
 
     try {
-      // Verify if location services (GPS) are enabled on the device
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         _showSnackBar('Location services are disabled.', Colors.red);
         return;
       }
 
-      // Check if the app has permission to access the device's location
       permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
-        permission =
-            await Geolocator.requestPermission(); // Prompt user for permission
+        permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
           _showSnackBar('Location permissions denied.', Colors.red);
           return;
@@ -136,28 +201,23 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
         return;
       }
 
-      // Retrieve the highly accurate current geographical position
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
 
       setState(() {
-        // Update the text field with the fetched latitude and longitude
         _locationController.text =
             "${position.latitude}, ${position.longitude}";
-        // Update the map position to the newly fetched coordinates
         _currentMapPosition = LatLng(position.latitude, position.longitude);
       });
 
-      // Smoothly animate the map camera to the new location with a specific zoom level
       mapController.move(_currentMapPosition, 14.0);
-
-      _showSnackBar('Location fetched successfully!', Colors.green);
+      _showSnackBar('Location fetched successfully!', kDarkCard);
     } catch (e) {
       _showSnackBar('Error getting location: $e', Colors.red);
     } finally {
       setState(() {
-        isFetchingLocation = false; // Hide loading indicator
+        isFetchingLocation = false;
       });
     }
   }
@@ -165,37 +225,50 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
   // Helper function to display floating snackbar messages at the bottom of the screen
   void _showSnackBar(String message, Color color) {
     if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: color));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message, style: const TextStyle(color: Colors.white)),
+          backgroundColor: color,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
     }
+  }
+
+  // Helper to scroll down to the interactive risk planner section
+  void _scrollToAssessment() {
+    _scrollController.animateTo(
+      420,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 
   // Asynchronous function to submit user data to the Python/FastAPI backend for risk assessment
   Future<void> _submitAssessment() async {
-    // Validate if the user has entered a location
     if (_locationController.text.trim().isEmpty) {
       _showSnackBar(
-        'Please enter a destination location first.',
+        'Please enter a destination location or coordinates first.',
         Colors.redAccent,
       );
       return;
     }
 
     setState(() {
-      isLoading = true; // Show a loading spinner on the submit button
-      apiMessage = null; // Clear any previous API messages
+      isLoading = true;
+      riskCauses.clear();
+      recommendations.clear();
     });
 
     try {
-      // Determine whether it is Day or Night based on the local device time
       int hour = DateTime.now().hour;
       String timeOfDay = (hour >= 18 || hour < 6) ? "Night" : "Day";
 
-      // The API endpoint URL of the Python backend (configured for localhost execution)
       final url = Uri.parse('http://127.0.0.1:8000/api/calculate-risk');
 
-      // Construct the JSON payload containing the assessment data
       final Map<String, dynamic> requestData = {
         "location": _locationController.text.trim(),
         "emergency_contacts_updated": isEmergencyContactsUpdated,
@@ -203,27 +276,25 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
         "time_of_day": timeOfDay,
       };
 
-      // Execute a POST request to send data to the backend server
       final response = await http.post(
         url,
         headers: {"Content-Type": "application/json"},
         body: json.encode(requestData),
       );
 
-      // Check if the server responded with a success status code (200 OK)
       if (response.statusCode == 200) {
-        final responseData = json.decode(
-          response.body,
-        ); // Parse the JSON response
+        final responseData = json.decode(response.body);
 
         setState(() {
-          // Update state variables with the data received from the backend
           riskScore = (responseData['risk_score'] as num).toDouble();
           riskLevel = responseData['risk_level'];
-          apiMessage = responseData['message'];
+          riskCauses = List<dynamic>.from(responseData['risk_causes'] ?? []);
+          recommendations = List<dynamic>.from(
+            responseData['recommendations'] ?? [],
+          );
         });
 
-        // --- NEW: Save the results to Firebase Firestore ---
+        // --- Save the results to Firebase Firestore ---
         try {
           await FirebaseFirestore.instance.collection('assessments').add({
             'location': _locationController.text.trim(),
@@ -231,39 +302,35 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
             'longitude': _currentMapPosition.longitude,
             'risk_score': riskScore,
             'risk_level': riskLevel,
+            'risk_causes': riskCauses,
+            'recommendations': recommendations,
             'emergency_contacts_updated': isEmergencyContactsUpdated,
             'weather_analyzed': isWeatherAnalyzed,
             'time_of_day': timeOfDay,
-            'timestamp':
-                FieldValue.serverTimestamp(), // Saves the exact server time
+            'timestamp': FieldValue.serverTimestamp(),
           });
 
           _showSnackBar(
             'Assessment Complete & Saved to Database!',
-            Colors.green,
+            Colors.green[700]!,
           );
         } catch (dbError) {
           _showSnackBar(
             'Assessment Complete, but failed to save to DB.',
-            Colors.orange,
+            Colors.orange[800]!,
           );
           print('Firestore Error: $dbError');
         }
-        // ---------------------------------------------------
       } else {
-        // Throw an exception if the server encountered an error
         throw Exception(
           "Failed to get risk score. Server error ${response.statusCode}",
         );
       }
     } catch (error) {
-      setState(() {
-        apiMessage = 'Error connecting to server. Is it running?';
-      });
       _showSnackBar('Error connecting to the Python server', Colors.red);
     } finally {
       setState(() {
-        isLoading = false; // Hide the loading spinner
+        isLoading = false;
       });
     }
   }
@@ -271,142 +338,220 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Top application bar
+      backgroundColor: kBgBeige,
+      // --- Top Application Bar matching TAPROPATH UI ---
       appBar: AppBar(
-        title: const Text(
-          'Risk Assessment',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Colors.teal,
-        centerTitle: true,
+        backgroundColor: kBgBeige,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
+        centerTitle: false,
+        title: const Padding(
+          padding: EdgeInsets.only(left: 8.0),
+          child: Text(
+            'TAPROPATH',
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+              fontSize: 18,
+              letterSpacing: 2.0,
+              color: kDarkCard,
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.notifications_none_outlined,
+                color: kDarkCard,
+                size: 24,
+              ),
+              onPressed: () {
+                _showSnackBar('No new safety alerts right now.', kDarkCard);
+              },
+              tooltip: 'Notifications',
+            ),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(color: kBorderColor, height: 1.0),
+        ),
       ),
-      // Scrollable body content
+
+      // --- Scrollable Body Content ---
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        controller: _scrollController,
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // --- AI Safety Risk Score Display Card ---
-            Card(
-              elevation: 6,
-              shadowColor: Colors.black26,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 30.0,
-                  horizontal: 20.0,
-                ),
-                child: Column(
-                  children: [
-                    // Card Header Row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.security, color: Colors.grey[700]),
-                        const SizedBox(width: 8),
-                        Text(
-                          'AI Safety Risk Score',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-
-                    // Circular Progress Indicator representing the Risk Score percentage
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SizedBox(
-                          height: 140,
-                          width: 140,
-                          child: CircularProgressIndicator(
-                            // Convert percentage (0-100) to a fraction (0.0-1.0) for the indicator
-                            value: riskScore != null ? (riskScore! / 100) : 0,
-                            strokeWidth: 14,
-                            backgroundColor: Colors.grey[200],
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              _getRiskColor(riskLevel),
-                            ),
-                          ),
-                        ),
-                        // Center text displaying the exact percentage
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              riskScore != null
-                                  ? "${riskScore!.toStringAsFixed(1)}%"
-                                  : "N/A",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: _getRiskColor(riskLevel),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Risk Level Label (e.g., High Risk, Low Risk)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: _getRiskColor(riskLevel).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Text(
-                        riskLevel,
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: _getRiskColor(riskLevel),
-                        ),
-                      ),
-                    ),
-
-                    // Display optional API messages or errors below the score
-                    if (apiMessage != null) ...[
-                      const SizedBox(height: 15),
-                      Text(
-                        apiMessage!,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontStyle: FontStyle.italic,
-                          color: riskScore == null
-                              ? Colors.red
-                              : Colors.grey[600],
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
+            // --- Header Section: Explore Sri Lanka ---
+            const Text(
+              'Explore Sri Lanka',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: kDarkCard,
+                letterSpacing: -0.5,
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 6),
+            Text(
+              'Plan your next adventure with personalized AI recommendations.',
+              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 24),
 
-            // --- Location Input Field with GPS Fetch Feature ---
+            // --- Dark Hero Card: Plan your perfect trip ---
+            Container(
+              decoration: BoxDecoration(
+                color: kDarkCard,
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.auto_awesome_outlined,
+                    color: kGoldButton,
+                    size: 30,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Plan your perfect trip',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Tell us what you love and TAPROPATH will find destinations that match your preferences.',
+                    style: TextStyle(fontSize: 13.5, color: Colors.grey[350]),
+                  ),
+                  const SizedBox(height: 22),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: _scrollToAssessment,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kGoldButton,
+                        foregroundColor: kDarkCard,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Start Planning',
+                            style: TextStyle(
+                              fontSize: 14.5,
+                              fontWeight: FontWeight.w700,
+                              color: kDarkCard,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Icon(Icons.arrow_forward, size: 18, color: kDarkCard),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 28),
+
+            // --- Discover Section (Nature & Beaches Cards) ---
+            const Text(
+              'Discover',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: kDarkCard,
+              ),
+            ),
+            const SizedBox(height: 14),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildDiscoverCard(
+                    icon: Icons.terrain_outlined,
+                    title: 'Nature',
+                    onTap: () {
+                      setState(() {
+                        _locationController.text = "Ella";
+                        _currentMapPosition = const LatLng(6.8667, 81.0466);
+                      });
+                      mapController.move(_currentMapPosition, 13.0);
+                      _scrollToAssessment();
+                    },
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: _buildDiscoverCard(
+                    icon: Icons.beach_access_outlined,
+                    title: 'Beaches',
+                    onTap: () {
+                      setState(() {
+                        _locationController.text = "Mirissa";
+                        _currentMapPosition = const LatLng(5.9483, 80.4716);
+                      });
+                      mapController.move(_currentMapPosition, 13.0);
+                      _scrollToAssessment();
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+
+            // --- Section Header for Destination Assessment ---
+            Row(
+              children: [
+                const Icon(Icons.shield_outlined, color: kGoldIcon, size: 22),
+                const SizedBox(width: 8),
+                const Text(
+                  'Tapropath - Destination Assessment',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: kDarkCard,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+
+            // --- Destination Location Input Field ---
             TextField(
               controller: _locationController,
+              onSubmitted: (value) =>
+                  _searchLocation(value), // Added mapping for Enter key
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                labelText: 'Destination Location',
-                hintText: 'Enter a city or tap GPS icon',
-                prefixIcon: const Icon(Icons.location_on, color: Colors.teal),
-                // Display a loading spinner if location is fetching; otherwise, display the GPS button
+                labelText: 'Destination Location (e.g., Nuwara Eliya, Kandy, or tap map)',
+                labelStyle: TextStyle(color: Colors.grey[700], fontSize: 14),
+                hintText: 'Enter city name, coordinates, or tap map',
+                prefixIcon: const Icon(
+                  Icons.location_on_outlined,
+                  color: kGoldIcon,
+                ),
                 suffixIcon: isFetchingLocation
                     ? const Padding(
                         padding: EdgeInsets.all(12.0),
@@ -415,32 +560,33 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
                           height: 20,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            color: Colors.teal,
+                            color: kGoldIcon,
                           ),
                         ),
                       )
                     : IconButton(
-                        icon: const Icon(Icons.my_location, color: Colors.teal),
+                        icon: const Icon(Icons.my_location, color: kDarkCard),
                         onPressed: _getCurrentLocation,
                         tooltip: 'Get Current GPS Location',
                       ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: const BorderSide(color: kBorderColor, width: 1.5),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.teal, width: 2),
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: const BorderSide(color: kGoldIcon, width: 2),
                 ),
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
 
-            // --- OpenStreetMap Integration View ---
+            // --- OpenStreetMap Integration View with Tap-to-Select ---
             Container(
-              height: 250,
+              height: 260,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: kBorderColor, width: 1.5),
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black12,
@@ -454,28 +600,33 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
                 child: FlutterMap(
                   mapController: mapController,
                   options: MapOptions(
-                    initialCenter:
-                        _currentMapPosition, // Map initial focus coordinates
-                    initialZoom: 14.0, // Default zoom level
+                    initialCenter: _currentMapPosition,
+                    initialZoom: 14.0,
+                    onTap: (tapPosition, latLng) {
+                      setState(() {
+                        _currentMapPosition = latLng;
+                        _locationController.text =
+                            "${latLng.latitude}, ${latLng.longitude}";
+                      });
+                      _showSnackBar('Location selected from map!', kDarkCard);
+                    },
                   ),
                   children: [
-                    // Map tile provider rendering the street view images
                     TileLayer(
                       urlTemplate:
                           'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       userAgentPackageName: 'com.example.travel_safety_app',
                     ),
-                    // Layer displaying a red pin marker at the selected location
                     MarkerLayer(
                       markers: [
                         Marker(
                           point: _currentMapPosition,
-                          width: 40,
-                          height: 40,
+                          width: 44,
+                          height: 44,
                           child: const Icon(
                             Icons.location_pin,
-                            color: Colors.red,
-                            size: 40,
+                            color: kDarkCard,
+                            size: 42,
                           ),
                         ),
                       ],
@@ -484,96 +635,369 @@ class _RiskAssessmentScreenState extends State<RiskAssessmentScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
 
             // --- Pre-Travel Safety Checklist Section ---
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: kBorderColor, width: 1.5),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: 16.0,
-                        bottom: 8.0,
-                        top: 8.0,
-                      ),
-                      child: Text(
-                        'Pre-Travel Safety Checklist',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16.0, bottom: 4.0, top: 8.0),
+                    child: Text(
+                      'Pre-Travel Safety Checklist',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: kDarkCard,
                       ),
                     ),
-                    // Checkbox for updating emergency contacts
-                    CheckboxListTile(
-                      title: const Text('Emergency Contacts Updated'),
-                      activeColor: Colors.teal,
-                      value: isEmergencyContactsUpdated,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isEmergencyContactsUpdated = value ?? false;
-                        });
-                      },
+                  ),
+                  CheckboxListTile(
+                    title: const Text(
+                      'Emergency Contacts Updated',
+                      style: TextStyle(fontSize: 14.5, color: kDarkCard),
                     ),
-                    // Checkbox for weather analysis confirmation
-                    CheckboxListTile(
-                      title: const Text('Weather & Location Analyzed'),
-                      activeColor: Colors.teal,
-                      value: isWeatherAnalyzed,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isWeatherAnalyzed = value ?? false;
-                        });
-                      },
+                    activeColor: kDarkCard,
+                    checkColor: kGoldButton,
+                    value: isEmergencyContactsUpdated,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isEmergencyContactsUpdated = value ?? false;
+                      });
+                    },
+                  ),
+                  CheckboxListTile(
+                    title: const Text(
+                      'Weather & Location Analyzed',
+                      style: TextStyle(fontSize: 14.5, color: kDarkCard),
                     ),
-                  ],
-                ),
+                    activeColor: kDarkCard,
+                    checkColor: kGoldButton,
+                    value: isWeatherAnalyzed,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isWeatherAnalyzed = value ?? false;
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 24),
 
-            // --- Assessment Submission Button ---
+            // --- Assessment Submission Button (Golden Theme) ---
             SizedBox(
-              height: 55,
+              height: 52,
               child: ElevatedButton(
-                // Disable button to prevent multiple submissions while an API call is ongoing
                 onPressed: isLoading ? null : _submitAssessment,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  foregroundColor: Colors.white,
+                  backgroundColor: kGoldButton,
+                  foregroundColor: kDarkCard,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  elevation: 5,
+                  elevation: 0,
                 ),
-                // Show a progress indicator inside the button if isLoading is true
                 child: isLoading
                     ? const SizedBox(
                         height: 24,
                         width: 24,
                         child: CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 3,
+                          color: kDarkCard,
+                          strokeWidth: 2.5,
                         ),
                       )
-                    : const Text(
-                        'Submit Assessment',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    : const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Check Destination Risk',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: kDarkCard,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Icon(Icons.arrow_forward, size: 18, color: kDarkCard),
+                        ],
                       ),
               ),
             ),
+            const SizedBox(height: 28),
+
+            // --- AI Safety Risk Score Display Card ---
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: kBorderColor, width: 1.5),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 28.0,
+                horizontal: 20.0,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.security, color: kGoldIcon),
+                      const SizedBox(width: 8),
+                      const Text(
+                        'Destination AI Safety Risk Score',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: kDarkCard,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        height: 130,
+                        width: 130,
+                        child: CircularProgressIndicator(
+                          value: riskScore != null ? (riskScore! / 100) : 0,
+                          strokeWidth: 12,
+                          backgroundColor: kNavBarBg,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            _getRiskColor(riskLevel),
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            riskScore != null
+                                ? "${riskScore!.toStringAsFixed(1)}%"
+                                : "N/A",
+                            style: TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              color: kDarkCard,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 18),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _getRiskColor(riskLevel).withOpacity(0.12),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      riskLevel,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: _getRiskColor(riskLevel),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 20),
+
+            // --- Explainable AI Causes & Recommendations Display Cards ---
+            if (riskCauses.isNotEmpty || recommendations.isNotEmpty) ...[
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: kBorderColor, width: 1.5),
+                ),
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(Icons.warning_amber_rounded, color: Colors.orange),
+                        SizedBox(width: 8),
+                        Text(
+                          "Identified Risk Factors (Causes):",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.5,
+                            color: kDarkCard,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    ...riskCauses.map(
+                      (cause) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Text(
+                          "• $cause",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                decoration: BoxDecoration(
+                  color: kDarkCard,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(Icons.auto_awesome, color: kGoldButton, size: 20),
+                        SizedBox(width: 8),
+                        Text(
+                          "Actionable Recommendations:",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.5,
+                            color: kGoldButton,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    ...recommendations.map(
+                      (rec) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Text(
+                          "• $rec",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
+
+      // --- Bottom Navigation Bar matching the UI Screenshot ---
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          labelTextStyle: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: kDarkCard,
+              );
+            }
+            return TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              color: Colors.grey[700],
+            );
+          }),
+        ),
+        child: NavigationBar(
+          height: 68,
+          backgroundColor: kNavBarBg,
+          indicatorColor: kNavIndicator,
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: (int index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+            if (index == 1 || index == 3) {
+              _scrollToAssessment();
+            }
+          },
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.home_outlined, color: kDarkCard),
+              selectedIcon: Icon(Icons.home, color: kDarkCard),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.explore_outlined, color: kDarkCard),
+              selectedIcon: Icon(Icons.explore, color: kDarkCard),
+              label: 'Explore',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.luggage_outlined, color: kDarkCard),
+              selectedIcon: Icon(Icons.luggage, color: kDarkCard),
+              label: 'Trips',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.navigation_outlined, color: kDarkCard),
+              selectedIcon: Icon(Icons.navigation, color: kDarkCard),
+              label: 'Navigate',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_outline, color: kDarkCard),
+              selectedIcon: Icon(Icons.person, color: kDarkCard),
+              label: 'Profile',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Helper widget to build the "Nature" and "Beaches" cards under Discover
+  Widget _buildDiscoverCard({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: kBorderColor, width: 1.5),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: kGoldIcon, size: 28),
+            const SizedBox(height: 14),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: kDarkCard,
+              ),
+            ),
           ],
         ),
       ),
